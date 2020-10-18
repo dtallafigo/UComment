@@ -343,6 +343,393 @@
 | **Entrega**     | v1             |
 
 
+| **R39**     | **Iniciar Sesión.**         |
+| --------------: | :------------------- |
+| **Descripción** | Un usuario previamente registrado podrá iniciar sesión             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R40**     | **Cerrar Sesión.**         |
+| --------------: | :------------------- |
+| **Descripción** | Un usuario previamente logeado se podrá deslogear.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R41**     | **Registrar Usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Un usuario que se conecte por primera vez a la aplicación se podrá registrar.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R42**     | **Eliminar Usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Un usuario registrado y logeado en su perfil podrá eliminar este.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R43**     | **Modificar contraseña.**         |
+| --------------: | :------------------- |
+| **Descripción** | El usuario ya registrado podrá restablecer su contraseña mediante email.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R44**     | **Modificar nombre de usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Un usuario podrá modificar su nombre de usuario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R45**     | **Modificar biografía.**         |
+| --------------: | :------------------- |
+| **Descripción** | El usuario tendrá su perfil en el cual podrá modificar la biografía que será un pequeño apartado de una cantidad limitada de caracteres para poner lo que quiera.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R46**     | **Modificar foto de perfil.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cada usuario tendrá una foto de perfil determinada al crear el perfil y está podrá ser modificada en cualquier momento.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R47**     | **Modificar ubicación de usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | El usuario tendrá en su perfil un apartado para poder poner su ubicación y lo podrá modificar en cualquier momento.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R48**     | **Publicar Comentario**         |
+| --------------: | :------------------- |
+| **Descripción** | Un usuario logeado y situado en la pagina principal podrá publicar un comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R49**     | **Responder a un comentario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario puede responder a otro comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R50**     | **Citar un comentario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario puede citar el comentario de otro usuario que lo haya publicado con anterioridad             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R51**     | **Like a un comentario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario puede dar like a cualquier comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R52**     | **Guardar un comentario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario puede guardar cualquier comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R53**     | **Lista de comentario guardados.**         |
+| --------------: | :------------------- |
+| **Descripción** | El usuario tendrá un apartado donde te llevara a una vista con una lista de todos los comentarios que hayas guardado anteriormente.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v2             |
+
+
+| **R54**     | **Lista de usuarios que han dado like.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá acceder a una lista de usuarios que hayan dado like a cualquier comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R55**     | **Lista de usuarios que han citado tu comentario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá acceder a una lista de comentarios con la gente que haya citado dicho comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R56**     | **Perfil de usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Podrás ver el perfil de cualquier usuario, sus comentarios y una lista de comentarios a los que le ha dado like.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R57**     | **Biografía.**         |
+| --------------: | :------------------- |
+| **Descripción** | El usuario tendrá en su perfil un apartado de unos caracteres concretos para poder poner lo que quiera.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R58**     | **Foto de perfil.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cada usuario tendrá una foto de perfil.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R59**     | **Ubicación.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cada usuario tendrá un apartado en el perfil donde podrá poner su ubicación.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v1             |
+
+
+| **R60**     | **Confirmar cuenta.**         |
+| --------------: | :------------------- |
+| **Descripción** | Un usuario que se registre antes de loguearse deberá ir a su email y dar click en un enlace para confirmar su cuenta.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v2             |
+
+
+| **R61**     | **Chat de usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Entre usuarios previamente registrados y logeados tendrán un chat de usuario entre ellos.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Difícil         |
+| **Entrega**     | v3             |
+
+
+| **R62**     | **Vista comentario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá entrar en cualquier comentario y ver el número de respuestas que tiene cada comentario, el numero de likes y el numero de veces que se ha citado el comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R63**     | **Imágenes en comentarios.**         |
+| --------------: | :------------------- |
+| **Descripción** | En cualquier comentario podrás insertar una imagen.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R64**     | **Listado de comentarios con imágenes.**         |
+| --------------: | :------------------- |
+| **Descripción** | Al entrar en el perfil del usuario habrá un apartado donde podrás ver una lista de los comentarios que ha publicado ese perfil con imágenes.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R65**     | **Seguir a un usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá seguir a cualquier otro usuario, y ver los comentarios que publica, da like o cita otro usuario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v1             |
+
+
+| **R66**     | **Dejar de seguir a un usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá dejar de seguir a cualquier otro usuario, y dejara de ver los comentarios que publica, da like o cita otro usuario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v1             |
+
+
+| **R67**     | **Bloquear a un usuario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá bloquear a otro usuario para que el otro no pueda ver nada de esa persona.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R68**     | **Gente que puedas conocer.**         |
+| --------------: | :------------------- |
+| **Descripción** | En la página principal te saldrán algunos perfiles de personas que quizás conozcas.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R69**     | **Notificaciones.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cada vez que un usuario, responda, de like o cite tu comentario te llegara una notificación.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R70**     | **Noticias del día.**         |
+| --------------: | :------------------- |
+| **Descripción** | En la página principal habrá una serie de noticias destacables del día.             |
+| **Prioridad**   | Opcional           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Difícil         |
+| **Entrega**     | v3             |
+
+
+| **R71**     | **Búsqueda de comentarios.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá buscar cualquier comentario             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R72**     | **Búsqueda de usuarios.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cualquier usuario podrá buscar cualquier usuario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R73**     | **Lista de comentarios (admin).**         |
+| --------------: | :------------------- |
+| **Descripción** | El usuario administrador tendrá una lista de comentarios donde podrá eliminar los comentarios que vea apropiados.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v3             |
+
+
+| **R74**     | **Lista de usuarios (admin).**         |
+| --------------: | :------------------- |
+| **Descripción** | El usuario administrador tendrá una lista de usuarios donde podrá eliminar cualquier usuario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v3             |
+
+
+| **R75**     | **Eliminar mi comentario.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cuando entres en un perfil de una persona si otra cuenta a la que tu sigues sigue a ese usuario te saldrá una lista de las personas que siguen a este usuario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Fácil         |
+| **Entrega**     | v2             |
+
+
+| **R76**     | **Seguidores relacionados.**         |
+| --------------: | :------------------- |
+| **Descripción** | Cuando entres en un perfil de una persona si otra cuenta a la que tu sigues sigue a ese usuario te saldrá una lista de las personas que siguen a este usuario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v3             |
+
+
+| **R77**     | **Paginación con ajax.**         |
+| --------------: | :------------------- |
+| **Descripción** | Los comentarios de la página principal se cargaran mediante una petición ajax.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v3             |
+
+
+| **R78**     | **Tiempo de publicación en los comentarios.**         |
+| --------------: | :------------------- |
+| **Descripción** | Podrás ver el tiempo que hace desde que se publico el comentario.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R79**     | **Lista de usuarios a los que sigues.**         |
+| --------------: | :------------------- |
+| **Descripción** | En tu perfil podrás ver una liste de usuarios a los que sigues.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R80**     | **Lista de usuarios que te siguen.**         |
+| --------------: | :------------------- |
+| **Descripción** | En tu perfil podrás ver una liste de usuarios que te siguen.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+
+
+| **R81**     | **Timeline.**         |
+| --------------: | :------------------- |
+| **Descripción** | La Timeline de cada usuario será su página principal y será diferente para cada usuario porque se ira haciendo en función a los usuarios que sigues y las interacciones que hacen.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v3             |
+
+
 
 ## Cuadro resumen
 
@@ -386,3 +773,46 @@
 | (**R36**) Varios navegadores | Mínimo | Técnico | Fácil | v1 | 
 | (**R37**) Despliegue en un Host | Mínimo | Técnico | Fácil | v1 | 
 | (**R38**) Despliegue en un servidor local | Mínimo | Técnico | Fácil | v1 | 
+| (**R39**) Iniciar Sesión. | Importante | Funcional | Fácil | v1 | 
+| (**R40**) Cerrar Sesión. | Importante | Funcional | Fácil | v1 | 
+| (**R41**) Registrar Usuario. | Importante | Funcional | Fácil | v1 | 
+| (**R42**) Eliminar Usuario. | Importante | Funcional | Fácil | v1 | 
+| (**R43**) Modificar contraseña. | Importante | Funcional | Fácil | v1 | 
+| (**R44**) Modificar nombre de usuario. | Importante | Funcional | Fácil | v1 | 
+| (**R45**) Modificar biografía. | Importante | Funcional | Fácil | v1 | 
+| (**R46**) Modificar foto de perfil. | Importante | Funcional | Fácil | v1 | 
+| (**R47**) Modificar ubicación de usuario. | Importante | Funcional | Fácil | v1 | 
+| (**R48**) Publicar Comentario | Importante | Funcional | Fácil | v1 | 
+| (**R49**) Responder a un comentario. | Importante | Funcional | Fácil | v1 | 
+| (**R50**) Citar un comentario. | Importante | Funcional | Fácil | v1 | 
+| (**R51**) Like a un comentario. | Importante | Funcional | Fácil | v1 | 
+| (**R52**) Guardar un comentario. | Importante | Funcional | Fácil | v1 | 
+| (**R53**) Lista de comentario guardados. | Importante | Funcional | Fácil | v2 | 
+| (**R54**) Lista de usuarios que han dado like. | Importante | Funcional | Media | v2 | 
+| (**R55**) Lista de usuarios que han citado tu comentario. | Importante | Funcional | Media | v2 | 
+| (**R56**) Perfil de usuario. | Importante | Funcional | Media | v2 | 
+| (**R57**) Biografía. | Importante | Funcional | Fácil | v1 | 
+| (**R58**) Foto de perfil. | Importante | Funcional | Fácil | v1 | 
+| (**R59**) Ubicación. | Importante | Funcional | Fácil | v1 | 
+| (**R60**) Confirmar cuenta. | Importante | Funcional | Fácil | v2 | 
+| (**R61**) Chat de usuario. | Importante | Funcional | Difícil | v3 | 
+| (**R62**) Vista comentario. | Importante | Funcional | Media | v2 | 
+| (**R63**) Imágenes en comentarios. | Importante | Funcional | Media | v2 | 
+| (**R64**) Listado de comentarios con imágenes. | Importante | Funcional | Media | v2 | 
+| (**R65**) Seguir a un usuario. | Importante | Funcional | Media | v1 | 
+| (**R66**) Dejar de seguir a un usuario. | Importante | Funcional | Media | v1 | 
+| (**R67**) Bloquear a un usuario. | Importante | Funcional | Media | v2 | 
+| (**R68**) Gente que puedas conocer. | Importante | Funcional | Media | v2 | 
+| (**R69**) Notificaciones. | Importante | Funcional | Media | v2 | 
+| (**R70**) Noticias del día. | Opcional | Funcional | Difícil | v3 | 
+| (**R71**) Búsqueda de comentarios. | Importante | Funcional | Media | v2 | 
+| (**R72**) Búsqueda de usuarios. | Importante | Funcional | Media | v2 | 
+| (**R73**) Lista de comentarios (admin). | Importante | Funcional | Media | v3 | 
+| (**R74**) Lista de usuarios (admin). | Importante | Funcional | Media | v3 | 
+| (**R75**) Eliminar mi comentario. | Importante | Funcional | Fácil | v2 | 
+| (**R76**) Seguidores relacionados. | Importante | Funcional | Media | v3 | 
+| (**R77**) Paginación con ajax. | Importante | Funcional | Media | v3 | 
+| (**R78**) Tiempo de publicación en los comentarios. | Importante | Funcional | Media | v2 | 
+| (**R79**) Lista de usuarios a los que sigues. | Importante | Funcional | Media | v2 | 
+| (**R80**) Lista de usuarios que te siguen. | Importante | Funcional | Media | v2 | 
+| (**R81**) Timeline. | Importante | Funcional | Media | v3 | 

@@ -8,7 +8,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [1](https://github.com/dtallafigo/UComment/issues/1) |
 
 | **R2**     | **Código fuente**         |
 | --------------: | :------------------- |
@@ -17,7 +17,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [2](https://github.com/dtallafigo/UComment/issues/2) |
 
 | **R3**     | **Estilo del código**         |
 | --------------: | :------------------- |
@@ -26,7 +26,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [3](https://github.com/dtallafigo/UComment/issues/3) |
 
 | **R4**     | **Tres lanzamientos**         |
 | --------------: | :------------------- |
@@ -35,7 +35,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [4](https://github.com/dtallafigo/UComment/issues/4) |
 
 | **R5**     | **README.md**         |
 | --------------: | :------------------- |
@@ -44,7 +44,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [5](https://github.com/dtallafigo/UComment/issues/5) |
 
 | **R6**     | **Documentación**         |
 | --------------: | :------------------- |
@@ -53,7 +53,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [6](https://github.com/dtallafigo/UComment/issues/6) |
 
 | **R7**     | **Incidencias en GitHub**         |
 | --------------: | :------------------- |
@@ -62,7 +62,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [7](https://github.com/dtallafigo/UComment/issues/7) |
 
 | **R8**     | **Etiquetas e hitos**         |
 | --------------: | :------------------- |
@@ -71,7 +71,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [8](https://github.com/dtallafigo/UComment/issues/8) |
 
 | **R9**     | **Rama master**         |
 | --------------: | :------------------- |
@@ -80,7 +80,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [9](https://github.com/dtallafigo/UComment/issues/9) |
 
 | **R10**     | **Gestión del proyecto**         |
 | --------------: | :------------------- |
@@ -89,7 +89,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [10](https://github.com/dtallafigo/UComment/issues/10) |
 
 | **R11**     | **Final de cada iteración**         |
 | --------------: | :------------------- |
@@ -98,7 +98,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [11](https://github.com/dtallafigo/UComment/issues/11) |
 
 | **R12**     | **Validación de formularios**         |
 | --------------: | :------------------- |
@@ -107,7 +107,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [12](https://github.com/dtallafigo/UComment/issues/12) |
 
 | **R13**     | **Gestión de ventanas**         |
 | --------------: | :------------------- |
@@ -116,7 +116,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [13](https://github.com/dtallafigo/UComment/issues/13) |
 
 | **R14**     | **Manejo de eventos**         |
 | --------------: | :------------------- |
@@ -125,7 +125,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [14](https://github.com/dtallafigo/UComment/issues/14) |
 
 | **R15**     | **DOM**         |
 | --------------: | :------------------- |
@@ -134,7 +134,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [15](https://github.com/dtallafigo/UComment/issues/15) |
 
 | **R16**     | **Almacenamiento en el lado del cliente**         |
 | --------------: | :------------------- |
@@ -143,7 +143,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [16](https://github.com/dtallafigo/UComment/issues/16) |
 
 | **R17**     | **jQuery, jQuery UI**         |
 | --------------: | :------------------- |
@@ -152,7 +152,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [17](https://github.com/dtallafigo/UComment/issues/17) |
 
 | **R18**     | **Plugin no trabajado en clase**         |
 | --------------: | :------------------- |
@@ -161,7 +161,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [18](https://github.com/dtallafigo/UComment/issues/18) |
 
 | **R19**     | **Utilización de AJAX**         |
 | --------------: | :------------------- |
@@ -170,7 +170,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [19](https://github.com/dtallafigo/UComment/issues/19) |
 
 | **R20**     | **ECMAScript2015 (ES6)**         |
 | --------------: | :------------------- |
@@ -179,7 +179,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [20](https://github.com/dtallafigo/UComment/issues/20) |
 
 | **R21**     | **PHP**         |
 | --------------: | :------------------- |
@@ -188,7 +188,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [21](https://github.com/dtallafigo/UComment/issues/21) |
 
 | **R22**     | **Yii2 Framework**         |
 | --------------: | :------------------- |
@@ -197,7 +197,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [22](https://github.com/dtallafigo/UComment/issues/22) |
 
 | **R23**     | **PostgreSQL**         |
 | --------------: | :------------------- |
@@ -206,7 +206,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [23](https://github.com/dtallafigo/UComment/issues/23) |
 
 | **R24**     | **Heroku**         |
 | --------------: | :------------------- |
@@ -215,7 +215,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [24](https://github.com/dtallafigo/UComment/issues/24) |
 
 | **R25**     | **Codeception**         |
 | --------------: | :------------------- |
@@ -224,7 +224,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [25](https://github.com/dtallafigo/UComment/issues/25) |
 
 | **R26**     | **Code Climate**         |
 | --------------: | :------------------- |
@@ -233,7 +233,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [26](https://github.com/dtallafigo/UComment/issues/26) |
 
 | **R27**     | **Aplicación escalable**         |
 | --------------: | :------------------- |
@@ -242,7 +242,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [27](https://github.com/dtallafigo/UComment/issues/27) |
 
 | **R28**     | **Tecnología AJAX**         |
 | --------------: | :------------------- |
@@ -251,7 +251,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [28](https://github.com/dtallafigo/UComment/issues/28) |
 
 | **R29**     | **Etiquetas semánticas de HTML5**         |
 | --------------: | :------------------- |
@@ -260,7 +260,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [29](https://github.com/dtallafigo/UComment/issues/29) |
 
 | **R30**     | **Presentación mediante CSS**         |
 | --------------: | :------------------- |
@@ -269,7 +269,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [30](https://github.com/dtallafigo/UComment/issues/30) |
 
 | **R31**     | **Diseño flexible**         |
 | --------------: | :------------------- |
@@ -278,7 +278,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [31](https://github.com/dtallafigo/UComment/issues/31) |
 
 | **R32**     | **Transiciones, transformaciones, animaciones y contenido multimedia**         |
 | --------------: | :------------------- |
@@ -287,7 +287,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [32](https://github.com/dtallafigo/UComment/issues/32) |
 
 | **R33**     | **Uso de microdatos**         |
 | --------------: | :------------------- |
@@ -296,7 +296,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [33](https://github.com/dtallafigo/UComment/issues/33) |
 
 | **R34**     | **Validación HTML5, CSS3 y accesibilidad**         |
 | --------------: | :------------------- |
@@ -305,7 +305,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [34](https://github.com/dtallafigo/UComment/issues/34) |
 
 | **R35**     | **Diseño para varias resoluciones**         |
 | --------------: | :------------------- |
@@ -314,7 +314,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [35](https://github.com/dtallafigo/UComment/issues/35) |
 
 | **R36**     | **Varios navegadores**         |
 | --------------: | :------------------- |
@@ -323,7 +323,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [36](https://github.com/dtallafigo/UComment/issues/36) |
 
 | **R37**     | **Despliegue en un Host**         |
 | --------------: | :------------------- |
@@ -332,7 +332,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [37](https://github.com/dtallafigo/UComment/issues/37) |
 
 | **R38**     | **Despliegue en un servidor local**         |
 | --------------: | :------------------- |
@@ -341,7 +341,7 @@
 | **Tipo**        | Técnico                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [38](https://github.com/dtallafigo/UComment/issues/38) |
 
 | **R39**     | **Iniciar Sesión.**         |
 | --------------: | :------------------- |
@@ -350,7 +350,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [39](https://github.com/dtallafigo/UComment/issues/39) |
 
 | **R40**     | **Cerrar Sesión.**         |
 | --------------: | :------------------- |
@@ -359,7 +359,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [40](https://github.com/dtallafigo/UComment/issues/40) |
 
 | **R41**     | **Registrar Usuario.**         |
 | --------------: | :------------------- |
@@ -368,7 +368,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [41](https://github.com/dtallafigo/UComment/issues/41) |
 
 | **R42**     | **Eliminar Usuario.**         |
 | --------------: | :------------------- |
@@ -377,7 +377,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [42](https://github.com/dtallafigo/UComment/issues/42) |
 
 | **R43**     | **Modificar contraseña.**         |
 | --------------: | :------------------- |
@@ -386,7 +386,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [43](https://github.com/dtallafigo/UComment/issues/43) |
 
 | **R44**     | **Modificar nombre de usuario.**         |
 | --------------: | :------------------- |
@@ -395,7 +395,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [44](https://github.com/dtallafigo/UComment/issues/44) |
 
 | **R45**     | **Modificar biografía.**         |
 | --------------: | :------------------- |
@@ -404,7 +404,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [45](https://github.com/dtallafigo/UComment/issues/45) |
 
 | **R46**     | **Modificar foto de perfil.**         |
 | --------------: | :------------------- |
@@ -413,7 +413,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [46](https://github.com/dtallafigo/UComment/issues/46) |
 
 | **R47**     | **Modificar ubicación de usuario.**         |
 | --------------: | :------------------- |
@@ -422,7 +422,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [47](https://github.com/dtallafigo/UComment/issues/47) |
 
 | **R48**     | **Publicar Comentario**         |
 | --------------: | :------------------- |
@@ -431,7 +431,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [48](https://github.com/dtallafigo/UComment/issues/48) |
 
 | **R49**     | **Responder a un comentario.**         |
 | --------------: | :------------------- |
@@ -440,7 +440,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [49](https://github.com/dtallafigo/UComment/issues/49) |
 
 | **R50**     | **Citar un comentario.**         |
 | --------------: | :------------------- |
@@ -449,7 +449,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [50](https://github.com/dtallafigo/UComment/issues/50) |
 
 | **R51**     | **Like a un comentario.**         |
 | --------------: | :------------------- |
@@ -458,7 +458,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [51](https://github.com/dtallafigo/UComment/issues/51) |
 
 | **R52**     | **Guardar un comentario.**         |
 | --------------: | :------------------- |
@@ -467,7 +467,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [52](https://github.com/dtallafigo/UComment/issues/52) |
 
 | **R53**     | **Lista de comentario guardados.**         |
 | --------------: | :------------------- |
@@ -476,7 +476,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [53](https://github.com/dtallafigo/UComment/issues/53) |
 
 | **R54**     | **Lista de usuarios que han dado like.**         |
 | --------------: | :------------------- |
@@ -485,7 +485,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [54](https://github.com/dtallafigo/UComment/issues/54) |
 
 | **R55**     | **Lista de usuarios que han citado tu comentario.**         |
 | --------------: | :------------------- |
@@ -494,7 +494,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [55](https://github.com/dtallafigo/UComment/issues/55) |
 
 | **R56**     | **Perfil de usuario.**         |
 | --------------: | :------------------- |
@@ -503,7 +503,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [56](https://github.com/dtallafigo/UComment/issues/56) |
 
 | **R57**     | **Biografía.**         |
 | --------------: | :------------------- |
@@ -512,7 +512,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [57](https://github.com/dtallafigo/UComment/issues/57) |
 
 | **R58**     | **Foto de perfil.**         |
 | --------------: | :------------------- |
@@ -521,7 +521,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [58](https://github.com/dtallafigo/UComment/issues/58) |
 
 | **R59**     | **Ubicación.**         |
 | --------------: | :------------------- |
@@ -530,7 +530,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [59](https://github.com/dtallafigo/UComment/issues/59) |
 
 | **R60**     | **Confirmar cuenta.**         |
 | --------------: | :------------------- |
@@ -539,7 +539,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [60](https://github.com/dtallafigo/UComment/issues/60) |
 
 | **R61**     | **Chat de usuario.**         |
 | --------------: | :------------------- |
@@ -548,7 +548,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Difícil         |
 | **Entrega**     | v3             |
-
+| **Incidencia**  | [61](https://github.com/dtallafigo/UComment/issues/61) |
 
 | **R62**     | **Vista comentario.**         |
 | --------------: | :------------------- |
@@ -557,7 +557,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [62](https://github.com/dtallafigo/UComment/issues/62) |
 
 | **R63**     | **Imágenes en comentarios.**         |
 | --------------: | :------------------- |
@@ -566,7 +566,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [63](https://github.com/dtallafigo/UComment/issues/63) |
 
 | **R64**     | **Listado de comentarios con imágenes.**         |
 | --------------: | :------------------- |
@@ -575,7 +575,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [64](https://github.com/dtallafigo/UComment/issues/64) |
 
 | **R65**     | **Seguir a un usuario.**         |
 | --------------: | :------------------- |
@@ -584,7 +584,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [65](https://github.com/dtallafigo/UComment/issues/65) |
 
 | **R66**     | **Dejar de seguir a un usuario.**         |
 | --------------: | :------------------- |
@@ -593,7 +593,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v1             |
-
+| **Incidencia**  | [66](https://github.com/dtallafigo/UComment/issues/66) |
 
 | **R67**     | **Bloquear a un usuario.**         |
 | --------------: | :------------------- |
@@ -602,7 +602,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [67](https://github.com/dtallafigo/UComment/issues/67) |
 
 | **R68**     | **Gente que puedas conocer.**         |
 | --------------: | :------------------- |
@@ -611,7 +611,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [68](https://github.com/dtallafigo/UComment/issues/68) |
 
 | **R69**     | **Notificaciones.**         |
 | --------------: | :------------------- |
@@ -620,7 +620,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [69](https://github.com/dtallafigo/UComment/issues/69) |
 
 | **R70**     | **Noticias del día.**         |
 | --------------: | :------------------- |
@@ -629,7 +629,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Difícil         |
 | **Entrega**     | v3             |
-
+| **Incidencia**  | [70](https://github.com/dtallafigo/UComment/issues/70) |
 
 | **R71**     | **Búsqueda de comentarios.**         |
 | --------------: | :------------------- |
@@ -638,7 +638,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [71](https://github.com/dtallafigo/UComment/issues/71) |
 
 | **R72**     | **Búsqueda de usuarios.**         |
 | --------------: | :------------------- |
@@ -647,7 +647,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [72](https://github.com/dtallafigo/UComment/issues/72) |
 
 | **R73**     | **Lista de comentarios (admin).**         |
 | --------------: | :------------------- |
@@ -656,7 +656,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v3             |
-
+| **Incidencia**  | [73](https://github.com/dtallafigo/UComment/issues/73) |
 
 | **R74**     | **Lista de usuarios (admin).**         |
 | --------------: | :------------------- |
@@ -665,7 +665,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v3             |
-
+| **Incidencia**  | [74](https://github.com/dtallafigo/UComment/issues/74) |
 
 | **R75**     | **Eliminar mi comentario.**         |
 | --------------: | :------------------- |
@@ -674,7 +674,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [75](https://github.com/dtallafigo/UComment/issues/75) |
 
 | **R76**     | **Seguidores relacionados.**         |
 | --------------: | :------------------- |
@@ -683,7 +683,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v3             |
-
+| **Incidencia**  | [76](https://github.com/dtallafigo/UComment/issues/76) |
 
 | **R77**     | **Paginación con ajax.**         |
 | --------------: | :------------------- |
@@ -692,7 +692,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v3             |
-
+| **Incidencia**  | [77](https://github.com/dtallafigo/UComment/issues/77) |
 
 | **R78**     | **Tiempo de publicación en los comentarios.**         |
 | --------------: | :------------------- |
@@ -701,7 +701,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [78](https://github.com/dtallafigo/UComment/issues/78) |
 
 | **R79**     | **Lista de usuarios a los que sigues.**         |
 | --------------: | :------------------- |
@@ -710,7 +710,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [79](https://github.com/dtallafigo/UComment/issues/79) |
 
 | **R80**     | **Lista de usuarios que te siguen.**         |
 | --------------: | :------------------- |
@@ -719,7 +719,7 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v2             |
-
+| **Incidencia**  | [80](https://github.com/dtallafigo/UComment/issues/80) |
 
 | **R81**     | **Timeline.**         |
 | --------------: | :------------------- |
@@ -728,91 +728,91 @@
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v3             |
-
+| **Incidencia**  | [81](https://github.com/dtallafigo/UComment/issues/81) |
 
 
 ## Cuadro resumen
 
-| **Requisito** | **Prioridad** | **Tipo** | **Complejidad** | **Entrega** |
-| :------------ | :-----------: | :------: | :-------------: | :---------: |
-| (**R1**) Requisitos como incidencias | Mínimo | Técnico | Fácil | v1 | 
-| (**R2**) Código fuente | Mínimo | Técnico | Fácil | v1 | 
-| (**R3**) Estilo del código | Mínimo | Técnico | Fácil | v1 | 
-| (**R4**) Tres lanzamientos | Mínimo | Técnico | Fácil | v1 | 
-| (**R5**) README.md | Mínimo | Técnico | Fácil | v1 | 
-| (**R6**) Documentación | Mínimo | Técnico | Fácil | v1 | 
-| (**R7**) Incidencias en GitHub | Mínimo | Técnico | Fácil | v1 | 
-| (**R8**) Etiquetas e hitos | Mínimo | Técnico | Fácil | v1 | 
-| (**R9**) Rama master | Mínimo | Técnico | Fácil | v1 | 
-| (**R10**) Gestión del proyecto | Mínimo | Técnico | Fácil | v1 | 
-| (**R11**) Final de cada iteración | Mínimo | Técnico | Fácil | v1 | 
-| (**R12**) Validación de formularios | Mínimo | Técnico | Fácil | v1 | 
-| (**R13**) Gestión de ventanas | Mínimo | Técnico | Fácil | v1 | 
-| (**R14**) Manejo de eventos | Mínimo | Técnico | Fácil | v1 | 
-| (**R15**) DOM | Mínimo | Técnico | Fácil | v1 | 
-| (**R16**) Almacenamiento en el lado del cliente | Mínimo | Técnico | Fácil | v1 | 
-| (**R17**) jQuery, jQuery UI | Mínimo | Técnico | Fácil | v1 | 
-| (**R18**) Plugin no trabajado en clase | Mínimo | Técnico | Fácil | v1 | 
-| (**R19**) Utilización de AJAX | Mínimo | Técnico | Fácil | v1 | 
-| (**R20**) ECMAScript2015 (ES6) | Mínimo | Técnico | Fácil | v1 | 
-| (**R21**) PHP | Mínimo | Técnico | Fácil | v1 | 
-| (**R22**) Yii2 Framework | Mínimo | Técnico | Fácil | v1 | 
-| (**R23**) PostgreSQL | Mínimo | Técnico | Fácil | v1 | 
-| (**R24**) Heroku | Mínimo | Técnico | Fácil | v1 | 
-| (**R25**) Codeception | Mínimo | Técnico | Fácil | v1 | 
-| (**R26**) Code Climate | Mínimo | Técnico | Fácil | v1 | 
-| (**R27**) Aplicación escalable | Mínimo | Técnico | Fácil | v1 | 
-| (**R28**) Tecnología AJAX | Mínimo | Técnico | Fácil | v1 | 
-| (**R29**) Etiquetas semánticas de HTML5 | Mínimo | Técnico | Fácil | v1 | 
-| (**R30**) Presentación mediante CSS | Mínimo | Técnico | Fácil | v1 | 
-| (**R31**) Diseño flexible | Mínimo | Técnico | Fácil | v1 | 
-| (**R32**) Transiciones, transformaciones, animaciones y contenido multimedia | Mínimo | Técnico | Fácil | v1 | 
-| (**R33**) Uso de microdatos | Mínimo | Técnico | Fácil | v1 | 
-| (**R34**) Validación HTML5, CSS3 y accesibilidad | Mínimo | Técnico | Fácil | v1 | 
-| (**R35**) Diseño para varias resoluciones | Mínimo | Técnico | Fácil | v1 | 
-| (**R36**) Varios navegadores | Mínimo | Técnico | Fácil | v1 | 
-| (**R37**) Despliegue en un Host | Mínimo | Técnico | Fácil | v1 | 
-| (**R38**) Despliegue en un servidor local | Mínimo | Técnico | Fácil | v1 | 
-| (**R39**) Iniciar Sesión. | Importante | Funcional | Fácil | v1 | 
-| (**R40**) Cerrar Sesión. | Importante | Funcional | Fácil | v1 | 
-| (**R41**) Registrar Usuario. | Importante | Funcional | Fácil | v1 | 
-| (**R42**) Eliminar Usuario. | Importante | Funcional | Fácil | v1 | 
-| (**R43**) Modificar contraseña. | Importante | Funcional | Fácil | v1 | 
-| (**R44**) Modificar nombre de usuario. | Importante | Funcional | Fácil | v1 | 
-| (**R45**) Modificar biografía. | Importante | Funcional | Fácil | v1 | 
-| (**R46**) Modificar foto de perfil. | Importante | Funcional | Fácil | v1 | 
-| (**R47**) Modificar ubicación de usuario. | Importante | Funcional | Fácil | v1 | 
-| (**R48**) Publicar Comentario | Importante | Funcional | Fácil | v1 | 
-| (**R49**) Responder a un comentario. | Importante | Funcional | Fácil | v1 | 
-| (**R50**) Citar un comentario. | Importante | Funcional | Fácil | v1 | 
-| (**R51**) Like a un comentario. | Importante | Funcional | Fácil | v1 | 
-| (**R52**) Guardar un comentario. | Importante | Funcional | Fácil | v1 | 
-| (**R53**) Lista de comentario guardados. | Importante | Funcional | Fácil | v2 | 
-| (**R54**) Lista de usuarios que han dado like. | Importante | Funcional | Media | v2 | 
-| (**R55**) Lista de usuarios que han citado tu comentario. | Importante | Funcional | Media | v2 | 
-| (**R56**) Perfil de usuario. | Importante | Funcional | Media | v2 | 
-| (**R57**) Biografía. | Importante | Funcional | Fácil | v1 | 
-| (**R58**) Foto de perfil. | Importante | Funcional | Fácil | v1 | 
-| (**R59**) Ubicación. | Importante | Funcional | Fácil | v1 | 
-| (**R60**) Confirmar cuenta. | Importante | Funcional | Fácil | v2 | 
-| (**R61**) Chat de usuario. | Importante | Funcional | Difícil | v3 | 
-| (**R62**) Vista comentario. | Importante | Funcional | Media | v2 | 
-| (**R63**) Imágenes en comentarios. | Importante | Funcional | Media | v2 | 
-| (**R64**) Listado de comentarios con imágenes. | Importante | Funcional | Media | v2 | 
-| (**R65**) Seguir a un usuario. | Importante | Funcional | Media | v1 | 
-| (**R66**) Dejar de seguir a un usuario. | Importante | Funcional | Media | v1 | 
-| (**R67**) Bloquear a un usuario. | Importante | Funcional | Media | v2 | 
-| (**R68**) Gente que puedas conocer. | Importante | Funcional | Media | v2 | 
-| (**R69**) Notificaciones. | Importante | Funcional | Media | v2 | 
-| (**R70**) Noticias del día. | Opcional | Funcional | Difícil | v3 | 
-| (**R71**) Búsqueda de comentarios. | Importante | Funcional | Media | v2 | 
-| (**R72**) Búsqueda de usuarios. | Importante | Funcional | Media | v2 | 
-| (**R73**) Lista de comentarios (admin). | Importante | Funcional | Media | v3 | 
-| (**R74**) Lista de usuarios (admin). | Importante | Funcional | Media | v3 | 
-| (**R75**) Eliminar mi comentario. | Importante | Funcional | Fácil | v2 | 
-| (**R76**) Seguidores relacionados. | Importante | Funcional | Media | v3 | 
-| (**R77**) Paginación con ajax. | Importante | Funcional | Media | v3 | 
-| (**R78**) Tiempo de publicación en los comentarios. | Importante | Funcional | Media | v2 | 
-| (**R79**) Lista de usuarios a los que sigues. | Importante | Funcional | Media | v2 | 
-| (**R80**) Lista de usuarios que te siguen. | Importante | Funcional | Media | v2 | 
-| (**R81**) Timeline. | Importante | Funcional | Media | v3 | 
+| **Requisito** | **Prioridad** | **Tipo** | **Complejidad** | **Entrega** | **Incidencia** |
+| :------------ | :-----------: | :------: | :-------------: | :---------: | :------------: |
+| (**R1**) Requisitos como incidencias | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [1](https://github.com/dtallafigo/UComment/issues/1) |
+| (**R2**) Código fuente | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [2](https://github.com/dtallafigo/UComment/issues/2) |
+| (**R3**) Estilo del código | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [3](https://github.com/dtallafigo/UComment/issues/3) |
+| (**R4**) Tres lanzamientos | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [4](https://github.com/dtallafigo/UComment/issues/4) |
+| (**R5**) README.md | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [5](https://github.com/dtallafigo/UComment/issues/5) |
+| (**R6**) Documentación | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [6](https://github.com/dtallafigo/UComment/issues/6) |
+| (**R7**) Incidencias en GitHub | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [7](https://github.com/dtallafigo/UComment/issues/7) |
+| (**R8**) Etiquetas e hitos | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [8](https://github.com/dtallafigo/UComment/issues/8) |
+| (**R9**) Rama master | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [9](https://github.com/dtallafigo/UComment/issues/9) |
+| (**R10**) Gestión del proyecto | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [10](https://github.com/dtallafigo/UComment/issues/10) |
+| (**R11**) Final de cada iteración | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [11](https://github.com/dtallafigo/UComment/issues/11) |
+| (**R12**) Validación de formularios | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [12](https://github.com/dtallafigo/UComment/issues/12) |
+| (**R13**) Gestión de ventanas | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [13](https://github.com/dtallafigo/UComment/issues/13) |
+| (**R14**) Manejo de eventos | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [14](https://github.com/dtallafigo/UComment/issues/14) |
+| (**R15**) DOM | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [15](https://github.com/dtallafigo/UComment/issues/15) |
+| (**R16**) Almacenamiento en el lado del cliente | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [16](https://github.com/dtallafigo/UComment/issues/16) |
+| (**R17**) jQuery, jQuery UI | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [17](https://github.com/dtallafigo/UComment/issues/17) |
+| (**R18**) Plugin no trabajado en clase | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [18](https://github.com/dtallafigo/UComment/issues/18) |
+| (**R19**) Utilización de AJAX | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [19](https://github.com/dtallafigo/UComment/issues/19) |
+| (**R20**) ECMAScript2015 (ES6) | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [20](https://github.com/dtallafigo/UComment/issues/20) |
+| (**R21**) PHP | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [21](https://github.com/dtallafigo/UComment/issues/21) |
+| (**R22**) Yii2 Framework | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [22](https://github.com/dtallafigo/UComment/issues/22) |
+| (**R23**) PostgreSQL | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [23](https://github.com/dtallafigo/UComment/issues/23) |
+| (**R24**) Heroku | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [24](https://github.com/dtallafigo/UComment/issues/24) |
+| (**R25**) Codeception | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [25](https://github.com/dtallafigo/UComment/issues/25) |
+| (**R26**) Code Climate | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [26](https://github.com/dtallafigo/UComment/issues/26) |
+| (**R27**) Aplicación escalable | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [27](https://github.com/dtallafigo/UComment/issues/27) |
+| (**R28**) Tecnología AJAX | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [28](https://github.com/dtallafigo/UComment/issues/28) |
+| (**R29**) Etiquetas semánticas de HTML5 | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [29](https://github.com/dtallafigo/UComment/issues/29) |
+| (**R30**) Presentación mediante CSS | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [30](https://github.com/dtallafigo/UComment/issues/30) |
+| (**R31**) Diseño flexible | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [31](https://github.com/dtallafigo/UComment/issues/31) |
+| (**R32**) Transiciones, transformaciones, animaciones y contenido multimedia | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [32](https://github.com/dtallafigo/UComment/issues/32) |
+| (**R33**) Uso de microdatos | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [33](https://github.com/dtallafigo/UComment/issues/33) |
+| (**R34**) Validación HTML5, CSS3 y accesibilidad | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [34](https://github.com/dtallafigo/UComment/issues/34) |
+| (**R35**) Diseño para varias resoluciones | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [35](https://github.com/dtallafigo/UComment/issues/35) |
+| (**R36**) Varios navegadores | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [36](https://github.com/dtallafigo/UComment/issues/36) |
+| (**R37**) Despliegue en un Host | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [37](https://github.com/dtallafigo/UComment/issues/37) |
+| (**R38**) Despliegue en un servidor local | Mínimo | Técnico | Fácil | v1 | | **Incidencia**  | [38](https://github.com/dtallafigo/UComment/issues/38) |
+| (**R39**) Iniciar Sesión. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [39](https://github.com/dtallafigo/UComment/issues/39) |
+| (**R40**) Cerrar Sesión. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [40](https://github.com/dtallafigo/UComment/issues/40) |
+| (**R41**) Registrar Usuario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [41](https://github.com/dtallafigo/UComment/issues/41) |
+| (**R42**) Eliminar Usuario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [42](https://github.com/dtallafigo/UComment/issues/42) |
+| (**R43**) Modificar contraseña. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [43](https://github.com/dtallafigo/UComment/issues/43) |
+| (**R44**) Modificar nombre de usuario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [44](https://github.com/dtallafigo/UComment/issues/44) |
+| (**R45**) Modificar biografía. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [45](https://github.com/dtallafigo/UComment/issues/45) |
+| (**R46**) Modificar foto de perfil. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [46](https://github.com/dtallafigo/UComment/issues/46) |
+| (**R47**) Modificar ubicación de usuario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [47](https://github.com/dtallafigo/UComment/issues/47) |
+| (**R48**) Publicar Comentario | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [48](https://github.com/dtallafigo/UComment/issues/48) |
+| (**R49**) Responder a un comentario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [49](https://github.com/dtallafigo/UComment/issues/49) |
+| (**R50**) Citar un comentario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [50](https://github.com/dtallafigo/UComment/issues/50) |
+| (**R51**) Like a un comentario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [51](https://github.com/dtallafigo/UComment/issues/51) |
+| (**R52**) Guardar un comentario. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [52](https://github.com/dtallafigo/UComment/issues/52) |
+| (**R53**) Lista de comentario guardados. | Importante | Funcional | Fácil | v2 | | **Incidencia**  | [53](https://github.com/dtallafigo/UComment/issues/53) |
+| (**R54**) Lista de usuarios que han dado like. | Importante | Funcional | Media | v2 | | **Incidencia**  | [54](https://github.com/dtallafigo/UComment/issues/54) |
+| (**R55**) Lista de usuarios que han citado tu comentario. | Importante | Funcional | Media | v2 | | **Incidencia**  | [55](https://github.com/dtallafigo/UComment/issues/55) |
+| (**R56**) Perfil de usuario. | Importante | Funcional | Media | v2 | | **Incidencia**  | [56](https://github.com/dtallafigo/UComment/issues/56) |
+| (**R57**) Biografía. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [57](https://github.com/dtallafigo/UComment/issues/57) |
+| (**R58**) Foto de perfil. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [58](https://github.com/dtallafigo/UComment/issues/58) |
+| (**R59**) Ubicación. | Importante | Funcional | Fácil | v1 | | **Incidencia**  | [59](https://github.com/dtallafigo/UComment/issues/59) |
+| (**R60**) Confirmar cuenta. | Importante | Funcional | Fácil | v2 | | **Incidencia**  | [60](https://github.com/dtallafigo/UComment/issues/60) |
+| (**R61**) Chat de usuario. | Importante | Funcional | Difícil | v3 | | **Incidencia**  | [61](https://github.com/dtallafigo/UComment/issues/61) |
+| (**R62**) Vista comentario. | Importante | Funcional | Media | v2 | | **Incidencia**  | [62](https://github.com/dtallafigo/UComment/issues/62) |
+| (**R63**) Imágenes en comentarios. | Importante | Funcional | Media | v2 | | **Incidencia**  | [63](https://github.com/dtallafigo/UComment/issues/63) |
+| (**R64**) Listado de comentarios con imágenes. | Importante | Funcional | Media | v2 | | **Incidencia**  | [64](https://github.com/dtallafigo/UComment/issues/64) |
+| (**R65**) Seguir a un usuario. | Importante | Funcional | Media | v1 | | **Incidencia**  | [65](https://github.com/dtallafigo/UComment/issues/65) |
+| (**R66**) Dejar de seguir a un usuario. | Importante | Funcional | Media | v1 | | **Incidencia**  | [66](https://github.com/dtallafigo/UComment/issues/66) |
+| (**R67**) Bloquear a un usuario. | Importante | Funcional | Media | v2 | | **Incidencia**  | [67](https://github.com/dtallafigo/UComment/issues/67) |
+| (**R68**) Gente que puedas conocer. | Importante | Funcional | Media | v2 | | **Incidencia**  | [68](https://github.com/dtallafigo/UComment/issues/68) |
+| (**R69**) Notificaciones. | Importante | Funcional | Media | v2 | | **Incidencia**  | [69](https://github.com/dtallafigo/UComment/issues/69) |
+| (**R70**) Noticias del día. | Opcional | Funcional | Difícil | v3 | | **Incidencia**  | [70](https://github.com/dtallafigo/UComment/issues/70) |
+| (**R71**) Búsqueda de comentarios. | Importante | Funcional | Media | v2 | | **Incidencia**  | [71](https://github.com/dtallafigo/UComment/issues/71) |
+| (**R72**) Búsqueda de usuarios. | Importante | Funcional | Media | v2 | | **Incidencia**  | [72](https://github.com/dtallafigo/UComment/issues/72) |
+| (**R73**) Lista de comentarios (admin). | Importante | Funcional | Media | v3 | | **Incidencia**  | [73](https://github.com/dtallafigo/UComment/issues/73) |
+| (**R74**) Lista de usuarios (admin). | Importante | Funcional | Media | v3 | | **Incidencia**  | [74](https://github.com/dtallafigo/UComment/issues/74) |
+| (**R75**) Eliminar mi comentario. | Importante | Funcional | Fácil | v2 | | **Incidencia**  | [75](https://github.com/dtallafigo/UComment/issues/75) |
+| (**R76**) Seguidores relacionados. | Importante | Funcional | Media | v3 | | **Incidencia**  | [76](https://github.com/dtallafigo/UComment/issues/76) |
+| (**R77**) Paginación con ajax. | Importante | Funcional | Media | v3 | | **Incidencia**  | [77](https://github.com/dtallafigo/UComment/issues/77) |
+| (**R78**) Tiempo de publicación en los comentarios. | Importante | Funcional | Media | v2 | | **Incidencia**  | [78](https://github.com/dtallafigo/UComment/issues/78) |
+| (**R79**) Lista de usuarios a los que sigues. | Importante | Funcional | Media | v2 | | **Incidencia**  | [79](https://github.com/dtallafigo/UComment/issues/79) |
+| (**R80**) Lista de usuarios que te siguen. | Importante | Funcional | Media | v2 | | **Incidencia**  | [80](https://github.com/dtallafigo/UComment/issues/80) |
+| (**R81**) Timeline. | Importante | Funcional | Media | v3 | | **Incidencia**  | [81](https://github.com/dtallafigo/UComment/issues/81) |

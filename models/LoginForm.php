@@ -31,8 +31,26 @@ class LoginForm extends Model
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
-            ['password', 'validatePassword'],
+            ['password', 'validarPassword'],
+            [['username'], 'validarUsuario'],
         ];
+    }
+
+    public function attributeLabels() {
+        return [
+            'username' => 'Usuario',
+            'password' => 'Contraseña'
+        ];
+    }
+
+    public function validarUsuario($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if ($user->token !== null) {
+                $this->addError($attribute, 'El usuario aún no está validado.');
+            }
+        }
     }
 
     /**
@@ -42,13 +60,13 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
-    public function validatePassword($attribute, $params)
+    public function validarPassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Usuario o contraseña incorrectos.');
             }
         }
     }
@@ -73,7 +91,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = Usuarios::find()->where(['log_us' => $this->username])->one();
         }
 
         return $this->_user;

@@ -8,7 +8,9 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\Usuarios;
+use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
@@ -64,6 +66,15 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionRecuperarpass()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $usuario = new Usuarios;
+    }
+
     /**
      * Login action.
      *
@@ -75,15 +86,66 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
+        $loginForm = new LoginForm();
+        $newUser = new Usuarios(['scenario' => Usuarios::SCENARIO_CREAR]);
 
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        if (isset($_POST['LoginForm'])) {
+            if ($loginForm->load(Yii::$app->request->post()) && $loginForm->login()) {
+                return $this->goBack();
+            }
+        } elseif (isset($_POST['Usuarios'])) {
+            if ($newUser->load(Yii::$app->request->post()) && $newUser->save()) {
+                $url = Url::to([
+                    'site/activar',
+                    'id' => $newUser->id,
+                    'token' => $newUser->token,
+                ], true);
+    
+                $body = <<<EOT
+                    <h2>Pulsa el siguiente enlace para confirmar la cuenta de correo.<h2>
+                    <a href="$url">Confirmar cuenta</a>
+                EOT;
+                $this->enviarMail($body, $newUser->email);
+                Yii::$app->session->setFlash('success', 'Se ha creado el usuario correctamente.');
+                return $this->redirect(['site/login']);
+            }
+        }
+            return $this->render('login', [
+                'login' => $loginForm,
+                'usuario' => $newUser
+            ]);
+    }
+
+    public function enviarMail($cuerpo, $dest)
+    {
+        return Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['smtpUsername'])
+            ->setTo($dest)
+            ->setSubject('Confirmar Cuenta')
+            ->setHtmlBody($cuerpo)
+            ->send();
+    }
+
+    public function actionActivar($id, $token)
+    {
+        $usuario = $this->findModel($id);
+        if ($usuario->token === $token) {
+            $usuario->token = null;
+            $usuario->save();
+            Yii::$app->session->setFlash('success', 'Usuario validado. Inicie sesión.');
+            return $this->redirect(['site/login']);
+        }
+        Yii::$app->session->setFlash('error', 'La validación no es correcta.');
+        return $this->redirect(['site/index']);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Usuarios::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('La página no existe.');
+        }
     }
 
     /**
@@ -96,33 +158,5 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }

@@ -9,15 +9,16 @@ DROP TABLE IF EXISTS usuarios CASCADE;
 
 CREATE TABLE usuarios
 (
-        id          BIGSERIAL       PRIMARY KEY
-    ,   log_us      varchar(60)     NOT NULL UNIQUE
-    ,   email       varchar(255)    NOT NULL UNIQUE
-    ,   password    varchar(255)    NOT NULL
-    ,   rol         varchar(255)    DEFAULT 'user'
-    ,   auth_key    varchar(255)
-    ,   url_img     varchar(2048)   DEFAULT 'user.svg'
-    ,   bio         varchar(280)    DEFAULT 'Hola!'
-    ,   ubi         varchar(50)   
+        id                  BIGSERIAL       PRIMARY KEY
+    ,   log_us              varchar(60)     NOT NULL UNIQUE
+    ,   email               varchar(255)    NOT NULL UNIQUE
+    ,   password            varchar(255)    NOT NULL
+    ,   rol                 varchar(255)    DEFAULT 'user'
+    ,   auth_key            varchar(255)
+    ,   token               varchar(32)
+    ,   url_img             varchar(2048)   DEFAULT 'user.svg'
+    ,   bio                 varchar(280)    DEFAULT 'Hola!'
+    ,   ubi                 varchar(50)
 );
 
 
@@ -34,3 +35,6 @@ CREATE TABLE comentarios
     ,   citado          BIGINT          REFERENCES comentarios (id) ON DELETE CASCADE
     ,   img             varchar(2048)
 );
+
+INSERT INTO usuarios (log_us, email, password, rol, auth_key)
+VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');

@@ -6,7 +6,6 @@ CREATE EXTENSION pgcrypto;
 
 DROP TABLE IF EXISTS usuarios CASCADE;
 
-
 CREATE TABLE usuarios
 (
         id                  BIGSERIAL       PRIMARY KEY
@@ -21,9 +20,7 @@ CREATE TABLE usuarios
     ,   ubi                 varchar(50)
 );
 
-
 DROP TABLE IF EXISTS comentarios CASCADE;
-
 
 CREATE TABLE comentarios
 (
@@ -34,6 +31,15 @@ CREATE TABLE comentarios
     ,   respuesta       BIGINT          REFERENCES comentarios (id) ON DELETE CASCADE
     ,   citado          BIGINT          REFERENCES comentarios (id) ON DELETE CASCADE
     ,   img             varchar(2048)
+);
+
+DROP TABLE IF EXISTS seguidores CASCADE;
+
+CREATE TABLE seguidores
+(
+    seguidor_id     BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
+  , seguido_id      BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
+  , PRIMARY KEY (seguidor_id, seguido_id)
 );
 
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)

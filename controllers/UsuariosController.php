@@ -8,6 +8,7 @@ use app\models\UsuariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Seguidores;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -52,8 +53,12 @@ class UsuariosController extends Controller
      */
     public function actionView($id)
     {
+        $usuario = Usuarios::findOne(['id' => $id]);
+        
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'usuario' => $usuario,
+            'seguido' => $id,
         ]);
     }
 

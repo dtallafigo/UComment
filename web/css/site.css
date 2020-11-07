@@ -48,12 +48,29 @@ body {
     display: block;
     margin: 0 auto;
     margin-top: 15%;
+    border: solid;
+    border-radius: 50%;
 }
 
 .usuario {
     position: absolute;
     bottom: 10%;
     left: 5%;
+}
+
+#siguiendo:hover {
+    background-color: rgb(10, 71, 43);
+}
+
+#siguiendo {
+    transition-timing-function: ease-in-out;
+    position: absolute;
+    bottom: 15%;
+    left: 70%;
+}
+
+div {
+    border: solid;
 }
 
 /* add sorting icons to gridview sort links */

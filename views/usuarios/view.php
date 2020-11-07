@@ -2,8 +2,9 @@
 
 use yii\bootstrap4\Html;
 use yii\widgets\DetailView;
-use app\models\Seguidores;
 use yii\helpers\Url;
+use app\controllers\SeguidoresController;
+use app\models\Seguidores;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -21,20 +22,24 @@ boton.click(function(event) {
             'seguido_id': $usuario->id
         },
         success: function (data, code, jqXHR) {
-            var texto= data[0]?"Dejar de seguir":"Seguir"
-            boton.toggle("slide",1000);
-            setTimeout( ()=> {
-                boton.html(texto);
-            }, 1000);
-            boton.toggle("slide",1000);
-            var seguidores = document.getElementById('seguidores')
-            seguidores.innerHTML = data[1]
+            var text
+
+            if (data[0])
+                text = 'Dejar de seguir'
+                
+            else
+                text = 'Seguir'
+
+            var seguidores = document.getElementById('siguiendo')
+            seguidores.innerHTML = text
     }
     });
 });
 EOT;
 $this->registerJs($js);
 Yii::$app->formatter->locale = 'ES';
+$text = Seguidores::siguiendo($usuario->id) ? 'Dejar de seguir' : 'Seguir';
+$class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-primary';
 ?>
 
 <div class="container">
@@ -46,11 +51,12 @@ Yii::$app->formatter->locale = 'ES';
                 </div>
                 <div class="col-9">
                     <h3 class="usuario"><?= $usuario->log_us ?></h3>
+                    <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'btn btn-outline-info', 'id' => 'siguiendo']) ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <?= Html::a(['seguidores/siguiendo', 'seguido_id', $usuario->id] ? 'Dejar de seguir' : 'Seguir', ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'btn btn-success text-light', 'id' => 'siguiendo']) ?>
+                    
                 </div>
             </div>
         </div>

@@ -43,4 +43,5 @@ CREATE TABLE seguidores
 );
 
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
-VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');
+VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', '');

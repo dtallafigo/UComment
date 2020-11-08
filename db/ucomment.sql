@@ -15,9 +15,9 @@ CREATE TABLE usuarios
     ,   rol                 varchar(255)    DEFAULT 'user'
     ,   auth_key            varchar(255)
     ,   token               varchar(32)
-    ,   url_img             varchar(2048)   DEFAULT 'user.svg'
+    ,   url_img             varchar(2048)   DEFAULT 'user/user.svg'
     ,   bio                 varchar(280)    DEFAULT 'Hola!'
-    ,   ubi                 varchar(50)
+    ,   ubi                 varchar(50)     
 );
 
 DROP TABLE IF EXISTS comentarios CASCADE;

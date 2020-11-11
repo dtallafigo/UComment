@@ -104,6 +104,16 @@ body {
     border-bottom: 1px solid;
 }
 
+.sg {
+    background-color: white;
+    box-shadow: 5px 10px #888888;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+}
+
 #bio {
     width: 80%;
     height: auto;

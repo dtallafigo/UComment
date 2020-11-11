@@ -13,6 +13,7 @@ $this->title = 'Perfil de ' . $usuario->log_us;
 $url = Url::to(['seguidores/follow']);
 $js = <<<EOT
 var boton = $("#siguiendo");
+var sg = $("#sg");
 boton.click(function(event) {
     event.preventDefault();
     $.ajax({
@@ -22,16 +23,16 @@ boton.click(function(event) {
             'seguido_id': $usuario->id
         },
         success: function (data, code, jqXHR) {
-            var text
-
+            var text = ''
             if (data[0])
                 text = 'Dejar de seguir'
-                
             else
                 text = 'Seguir'
 
-            var seguidores = document.getElementById('siguiendo')
-            seguidores.innerHTML = text
+            var seguidores = document.getElementById("siguiendo")
+            var sg = document.getElementById("sg")
+            sg.innerHTML = data[1];
+            seguidores.innerHTML = text;
     }
     });
 });
@@ -68,6 +69,20 @@ $class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-prima
                 </div>
                 <div class="col-11">
                     <p><?= $usuario->bio ?></p>
+                </div>
+            </div>
+            <div class="row sg">
+                <div class="col-3 d-flex justify-content-center">
+                    <p id="sg"><?= Seguidores::find()->where(['seguido_id' => $usuario->id])->count() ?></p>
+                </div>
+                <div class="col-3">
+                    <h5>Seguidores</h5>
+                </div>
+                <div class="col-3 d-flex justify-content-center">
+                    <p><?= Seguidores::find()->where(['seguidor_id' => $usuario->id])->count() ?></p>
+                </div>
+                <div class="col-3">
+                    <h5>Seguidos</h5>
                 </div>
             </div>
         </div>

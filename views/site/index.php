@@ -42,17 +42,15 @@ $this->registerJs($js);
   <div class="modal-dialog">
     <header class="modal-header">
       <img src="<?= $model->url_img ?>" id="inicio">
+      <h4><?= $model->log_us ?></h4>
     </header>
     <section class="modal-content">
         <?php $form = ActiveForm::begin(); ?>
-            <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
-            <div class="form-group d-flex justify-content-end">
-                    <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
-            </div>
-        <?php ActiveForm::end(); ?>
+            <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>      
     </section>
     <footer class="modal-footer">
-      The footer of the first modal
+      <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+        <?php ActiveForm::end(); ?>
     </footer>
   </div>
 </div>

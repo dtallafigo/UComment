@@ -72,7 +72,7 @@ body {
     background-color: #1ba6be;
     border-radius: 10px;
     border: 1px solid black;
-    transition-timing-function: ease-in-out;
+    transition: all 0.50s ease-in;
     position: absolute;
     bottom: 10%;
     left: 70%;
@@ -268,10 +268,6 @@ a.desc:after {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-   
-  .modal-header .modal-close {
-    font-size: 1.5rem;
   }
    
   .modal p + p {

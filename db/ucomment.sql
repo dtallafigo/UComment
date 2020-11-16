@@ -45,3 +45,11 @@ CREATE TABLE seguidores
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', '');
+
+INSERT INTO comentarios (usuario_id, text, respuesta, citado, img)
+VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL),
+        ('1', 'Segundo comentario.', NULL, NULL, NULL),
+        ('1', 'Tercero comentario.', NULL, NULL, NULL),
+        ('1', 'Cuarto comentario.', NULL, NULL, NULL),
+        ('1', 'Quinto comentario.', NULL, NULL, NULL),
+        ('1', 'Sexto comentario.', NULL, NULL, NULL);

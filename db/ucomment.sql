@@ -52,4 +52,10 @@ VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL),
         ('1', 'Tercero comentario.', NULL, NULL, NULL),
         ('1', 'Cuarto comentario.', NULL, NULL, NULL),
         ('1', 'Quinto comentario.', NULL, NULL, NULL),
-        ('1', 'Sexto comentario.', NULL, NULL, NULL);
+        ('1', 'Sexto comentario.', NULL, NULL, NULL),
+        ('2', 'Primer comentario.', NULL, NULL, NULL),
+        ('2', 'Segundo comentario.', NULL, NULL, NULL),
+        ('2', 'Tercero comentario.', NULL, NULL, NULL),
+        ('2', 'Cuarto comentario.', NULL, NULL, NULL),
+        ('2', 'Quinto comentario.', NULL, NULL, NULL),
+        ('2', 'Sexto comentario.', NULL, NULL, NULL);

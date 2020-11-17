@@ -36,9 +36,12 @@ class Comentarios extends \yii\db\ActiveRecord
             [['usuario_id', 'text'], 'required'],
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
+            [['respuesta'], 'integer'],
+            [['citado'], 'integer'],
             [['created_at'], 'safe'],
             [['text'], 'string', 'max' => 280],
             [['respuesta'], 'exist', 'skipOnError' => true, 'targetClass' => Comentarios::className(), 'targetAttribute' => ['respuesta' => 'id']],
+            [['citado'], 'exist', 'skipOnError' => true, 'targetClass' => Comentarios::className(), 'targetAttribute' => ['citado' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
@@ -54,6 +57,7 @@ class Comentarios extends \yii\db\ActiveRecord
             'text' => 'Text',
             'created_at' => 'Created At',
             'respuesta' => 'Respuesta',
+            'citado' => 'Citado',
         ];
     }
 

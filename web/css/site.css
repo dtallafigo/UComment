@@ -57,7 +57,6 @@ body {
     background-color: white;
     padding-bottom: 2%;
     box-shadow: 5px 10px #888888;
-    border: solid 1px;
 }
 
 .user div {
@@ -85,9 +84,6 @@ body {
 
 
 .location {
-    border-right: 1px solid;
-    border-left: 1px solid;
-    border-bottom: 1px solid;
     background-color: white;
     box-shadow: 5px 10px #888888;
     padding-top: 2%;
@@ -99,9 +95,6 @@ body {
     box-shadow: 5px 10px #888888;
     padding-top: 2%;
     padding-bottom: 2%;
-    border-right: 1px solid;
-    border-left: 1px solid;
-    border-bottom: 1px solid;
 }
 
 .sg {
@@ -109,9 +102,16 @@ body {
     box-shadow: 5px 10px #888888;
     padding-top: 2%;
     padding-bottom: 2%;
-    border-right: 1px solid;
-    border-left: 1px solid;
     border-bottom: 1px solid;
+}
+
+.com {
+    background-color: white;
+    box-shadow: 5px 10px #888888;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 #bio {
@@ -238,6 +238,7 @@ a.desc:after {
     visibility: hidden;
     opacity: 0;
     transition: all 0.35s ease-in;
+    border: 1px solid;
   }
   
   .modal.is-visible {
@@ -253,6 +254,7 @@ a.desc:after {
     background: var(--white);
     overflow: auto;
     cursor: default;
+    border: 1px solid;
   }
 
   .modal-dialog > * {
@@ -276,5 +278,10 @@ a.desc:after {
 
   #inicio {
       width: 10%;
+      height: auto;
+  }
+
+  #fcom {
+      width: 80%;
       height: auto;
   }

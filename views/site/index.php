@@ -27,6 +27,13 @@ document.addEventListener("click", e => {
     document.querySelector(".modal.is-visible").classList.remove(isVisible);
   }
 });
+
+document.addEventListener("keyup", e => {
+  // if we press the ESC
+  if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
 EOT;
 $this->registerJs($js);
 ?>
@@ -43,14 +50,17 @@ $this->registerJs($js);
     <header class="modal-header">
       <img src="<?= $model->url_img ?>" id="inicio">
       <h4><?= $model->log_us ?></h4>
+      <button class="close-modal" aria-label="close modal" data-close>
+        ✕  
+      </button>
     </header>
     <section class="modal-content">
         <?php $form = ActiveForm::begin(); ?>
-            <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>      
-    </section>
-    <footer class="modal-footer">
-      <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+            <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
+            <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+            <?= $form->field($publicar, 'respuesta')->hiddenInput(['value' => '1'])->label(false); ?>
+            <?= $form->field($publicar, 'respuesta')->hiddenInput(['value' => '1'])->label(false); ?>
         <?php ActiveForm::end(); ?>
-    </footer>
+    </section>
   </div>
 </div>

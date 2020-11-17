@@ -72,7 +72,6 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
             return $this->redirect('index');
         }
-
         
         return $this->render('index', [
             'publicar' => $publicar,

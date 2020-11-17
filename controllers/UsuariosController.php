@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Comentarios;
 use Yii;
 use app\models\Usuarios;
 use app\models\UsuariosSearch;
@@ -54,11 +55,19 @@ class UsuariosController extends Controller
     public function actionView($id)
     {
         $usuario = Usuarios::findOne(['id' => $id]);
-        
+        $publicacion = new Comentarios(['usuario_id' => $id]);
+        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->all();
+
+        if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
+            Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
+            return $this->redirect('index');
+        }
 
         return $this->render('view', [
             'usuario' => $usuario,
             'seguido' => $id,
+            'comentarios' => $comentarios,
+            'publicacion' => $publicacion,
         ]);
     }
 

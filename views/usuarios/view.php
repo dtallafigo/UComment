@@ -1,17 +1,17 @@
 <?php
 
 use yii\bootstrap4\Html;
-use yii\widgets\DetailView;
 use yii\helpers\Url;
-use app\controllers\SeguidoresController;
+use yii\bootstrap4\ActiveForm;
 use app\models\Seguidores;
+use app\models\Usuarios;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
 
 $this->title = 'Perfil de ' . $usuario->log_us;
 $url = Url::to(['seguidores/follow']);
-$js = <<<EOT
+$js1 = <<<EOT
 var boton = $("#siguiendo");
 var sg = $("#sg");
 boton.click(function(event) {
@@ -37,6 +37,38 @@ boton.click(function(event) {
     });
 });
 EOT;
+$this->registerJs($js1);
+$js = <<<EOT
+const openEls = document.querySelectorAll("[data-open]");
+const closeEls = document.querySelectorAll("[data-close]");
+const isVisible = "is-visible";
+
+for (const el of openEls) {
+  el.addEventListener("click", function() {
+    const modalId = this.dataset.open;
+    document.getElementById(modalId).classList.add(isVisible);
+  });
+}
+
+for (const el of closeEls) {
+  el.addEventListener("click", function() {
+    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+  });
+}
+
+document.addEventListener("click", e => {
+  if (e.target == document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+
+document.addEventListener("keyup", e => {
+  // if we press the ESC
+  if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+EOT;
 $this->registerJs($js);
 Yii::$app->formatter->locale = 'ES';
 $text = Seguidores::siguiendo($usuario->id) ? 'Dejar de seguir' : 'Seguir';
@@ -44,8 +76,8 @@ $class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-prima
 ?>
 
 <div class="container">
-    <div class="row">
-        <div class="col-xl-9 col-md-12">
+    <div class="row" style="margin: 0 2% 0 2%;">
+        <div class="col-xl-9 col-md-12" style="border: 1px solid;">
             <div class="row user">
                 <div class="col-xl-3">
                     <img src="<?= $usuario->url_img ?>" id="perfil">
@@ -55,20 +87,20 @@ $class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-prima
                     <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
                 </div>
             </div>
-            <div class="row location">
-                <div class="col-1 d-flex justify-content-center">
-                    <img src="icons/location.svg">
-                </div>
-                <div class="col-11">
-                    <p><?= $usuario->ubi ?></p>
-                </div>
-            </div>
             <div class="row bio">
                 <div class="col-1 d-flex justify-content-center" style="text-align: center;">
                     <img src="icons/bio.svg" id="bio">
                 </div>
                 <div class="col-11">
                     <p><?= $usuario->bio ?></p>
+                </div>
+            </div>
+            <div class="row location">
+                <div class="col-1 d-flex justify-content-center">
+                    <img src="icons/location.svg">
+                </div>
+                <div class="col-11">
+                    <p><?= $usuario->ubi ?></p>
                 </div>
             </div>
             <div class="row sg">
@@ -85,9 +117,100 @@ $class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-prima
                     <h5>Seguidos</h5>
                 </div>
             </div>
+                <?php foreach ($comentarios as $comentario) : ?>
+                <?php 
+                $user = Usuarios::findOne(['id' => $comentario->usuario_id]);    
+                ?>
+                    <div class="row com justify-content-center">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-1 d-flex justify-content-center">
+                                        <img src="<?= $user->url_img ?>" id="fcom">
+                                    </div>
+                                    <div class="col-5 d-flex justify-content-left">
+                                        <p class="card-title"><?= $user->log_us ?></p>
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-center">
+                                        <p><?= $comentario->created_at ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><?= $comentario->text ?></p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="btn-group">
+                                    <button type="button" class="open-modal" data-open="respuesta<?=$comentario->id?>">
+                                        <img src="icons/respuesta.ico" style="width: 20%; height: auto;">
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="open-modal" data-open="citado<?=$comentario->id?>">
+                                    Citado
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal" id="respuesta<?=$comentario->id?>">
+                        <div class="modal-dialog">
+                            <header class="modal-header">
+                                <img src="<?= $usuario->url_img ?>" id="inicio">
+                                <h4><?= $usuario->log_us ?></h4>
+                                <button class="close-modal" aria-label="close modal" data-close>
+                                ✕  
+                                </button>
+                            </header>
+                            <section class="modal-content">
+                                <?php $form = ActiveForm::begin(); ?>
+                                <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
+                                <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                                <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+                                <?php ActiveForm::end(); ?>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="modal" id="citado<?=$comentario->id?>">
+                        <div class="modal-dialog">
+                            <header class="modal-header">
+                                <img src="<?= $usuario->url_img ?>" id="inicio">
+                                <h4><?= $usuario->log_us ?></h4>
+                                <button class="close-modal" aria-label="close modal" data-close>
+                                ✕  
+                                </button>
+                            </header>
+                            <section class="modal-content">
+                                <?php $form = ActiveForm::begin(); ?>
+                                <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
+                                <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                                <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+                                <?php ActiveForm::end(); ?>
+                                <div class="card" style="margin-top: 2%;">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-1 d-flex justify-content-center">
+                                            <img src="<?= $user->url_img ?>" id="citado">
+                                        </div>
+                                        <div class="col-5 d-flex justify-content-left">
+                                            <p class="card-title"><?= $user->log_us ?></p>
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-center">
+                                            <p><?= $comentario->created_at ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $comentario->text ?></p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
         </div>
         <div class="col-xl-3">
-            <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero, eius neque. Quidem corporis id, architecto placeat corrupti maiores deserunt distinctio numquam culpa dicta quod facere et modi perspiciatis voluptas deleniti?</h1>
+                
         </div>
     </div>
 </div>

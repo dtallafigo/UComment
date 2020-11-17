@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\Usuarios;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
+use app\models\Comentarios;
 
 class SiteController extends Controller
 {
@@ -63,7 +64,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $idActual = Yii::$app->user->id;
+        $publicar = new Comentarios(['usuario_id' => $idActual]);
+        $model = Usuarios::findOne(['id' => $idActual]);
+
+        if ($publicar->load(Yii::$app->request->post()) && $publicar->save()) {
+            Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
+            return $this->redirect('index');
+        }
+        
+        return $this->render('index', [
+            'publicar' => $publicar,
+            'model' => $model,
+        ]);
     }
 
     public function actionRecuperarpass()

@@ -58,8 +58,6 @@ $this->registerJs($js);
         <?php $form = ActiveForm::begin(); ?>
             <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
             <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
-            <?= $form->field($publicar, 'respuesta')->hiddenInput(['value' => '1'])->label(false); ?>
-            <?= $form->field($publicar, 'respuesta')->hiddenInput(['value' => '1'])->label(false); ?>
         <?php ActiveForm::end(); ?>
     </section>
   </div>

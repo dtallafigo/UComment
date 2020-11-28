@@ -5,12 +5,14 @@ use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
 use app\models\Seguidores;
 use app\models\Usuarios;
+use app\models\Likes;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
 
 $this->title = 'Perfil de ' . $usuario->log_us;
-$url = Url::to(['seguidores/follow']);
+$text = Seguidores::siguiendo($usuario->id) ? 'Dejar de seguir' : 'Seguir';
+$seguir = Url::to(['seguidores/follow']);
 $js1 = <<<EOT
 var boton = $("#siguiendo");
 var sg = $("#sg");
@@ -18,7 +20,7 @@ boton.click(function(event) {
     event.preventDefault();
     $.ajax({
         method: 'GET',
-        url: '$url',
+        url: '$seguir',
         data: {
             'seguido_id': $usuario->id
         },
@@ -30,7 +32,7 @@ boton.click(function(event) {
                 text = 'Seguir'
 
             var seguidores = document.getElementById("siguiendo")
-            var sg = document.getElementById("sg")
+            var countLikes = document.getElementById("sg")
             sg.innerHTML = data[1];
             seguidores.innerHTML = text;
     }
@@ -38,7 +40,7 @@ boton.click(function(event) {
 });
 EOT;
 $this->registerJs($js1);
-$js = <<<EOT
+$js2 = <<<EOT
 const openEls = document.querySelectorAll("[data-open]");
 const closeEls = document.querySelectorAll("[data-close]");
 const isVisible = "is-visible";
@@ -69,10 +71,9 @@ document.addEventListener("keyup", e => {
   }
 });
 EOT;
-$this->registerJs($js);
+$this->registerJs($js2);
+$like = Url::to(['likes/like']);
 Yii::$app->formatter->locale = 'ES';
-$text = Seguidores::siguiendo($usuario->id) ? 'Dejar de seguir' : 'Seguir';
-$class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-primary';
 ?>
 
 <div class="container">
@@ -119,7 +120,33 @@ $class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-prima
             </div>
                 <?php foreach ($comentarios as $comentario) : ?>
                 <?php 
-                $user = Usuarios::findOne(['id' => $comentario->usuario_id]);    
+                $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
+                $js3 = <<<EOT
+                var boton = $("#like$comentario->id");
+                boton.click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        method: 'GET',
+                        url: '$like',
+                        data: {
+                            'comentario_id': $comentario->id
+                        },
+                        success: function (data, code, jqXHR) {
+                            var text = '';
+
+                            if (data[0])
+                                text = 'Dislike'
+                            else
+                                text = 'Like'
+                            var like$comentario->id = document.getElementById("like$comentario->id");
+                            var countlike$comentario->id = document.getElementById("countLike$comentario->id");
+                            countlike$comentario->id.innerHTML = data[1];
+                            like$comentario->id.innerHTML = text;
+                        }
+                    });
+                });
+                EOT;
+                $this->registerJs($js3); 
                 ?>
                     <div class="row com justify-content-center">
                         <div class="card">
@@ -149,6 +176,10 @@ $class = Seguidores::siguiendo($usuario->id) ? 'btn btn-danger' : 'btn btn-prima
                                     <button type="button" class="open-modal" data-open="citado<?=$comentario->id?>">
                                     Citado
                                     </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button id="like<?= $comentario->id ?>">like</button>
+                                    <p id="countLike<?= $comentario->id ?>"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                 </div>
                             </div>
                         </div>

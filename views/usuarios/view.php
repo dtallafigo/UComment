@@ -73,6 +73,7 @@ document.addEventListener("keyup", e => {
 EOT;
 $this->registerJs($js2);
 $like = Url::to(['likes/like']);
+$save = Url::to(['comsave/save']);
 Yii::$app->formatter->locale = 'ES';
 ?>
 
@@ -146,7 +147,30 @@ Yii::$app->formatter->locale = 'ES';
                     });
                 });
                 EOT;
-                $this->registerJs($js3); 
+                $this->registerJs($js3);
+                $js4 = <<<EOT
+                var boton = $("#save$comentario->id");
+                boton.click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        method: 'GET',
+                        url: '$save',
+                        data: {
+                            'comentario_id': $comentario->id
+                        },
+                        success: function (data, code, jqXHR) {
+                            var text = '';
+                            if (data[0])
+                                text = 'NotSave'
+                            else
+                                text = 'Save'
+                            var save$comentario->id = document.getElementById("save$comentario->id");
+                            save$comentario->id.innerHTML = text;
+                        }
+                    });
+                });
+                EOT;
+                $this->registerJs($js4);  
                 ?>
                     <div class="row com justify-content-center">
                         <div class="card">
@@ -180,6 +204,9 @@ Yii::$app->formatter->locale = 'ES';
                                 <div class="btn-group">
                                     <button id="like<?= $comentario->id ?>">like</button>
                                     <p id="countLike<?= $comentario->id ?>"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
+                                </div>
+                                <div class="btn-group">
+                                    <button id="save<?= $comentario->id ?>">save</button>
                                 </div>
                             </div>
                         </div>

@@ -44,7 +44,7 @@ body {
 }
 
 #perfil {
-    width: 90%;
+    width: 200px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -283,5 +283,10 @@ a.desc:after {
 
   #fcom {
       width: 80%;
+      height: auto;
+  }
+
+  #citado {
+      width: 35px;
       height: auto;
   }

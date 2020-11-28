@@ -79,12 +79,12 @@ Yii::$app->formatter->locale = 'ES';
 
 <div class="container">
     <div class="row" style="margin: 0 2% 0 2%;">
-        <div class="col-xl-9 col-md-12" style="border: 1px solid;">
+        <div class="col-sm-12 col-md-12 col-lg-9" style="border: 1px solid;">
             <div class="row user">
-                <div class="col-xl-3">
+                <div class="col-sm-12 col-md-4 col-lg-3">
                     <img src="<?= $usuario->url_img ?>" id="perfil">
                 </div>
-                <div class="col-xl-9">
+                <div class="col-sm-12 col-md-8 col-lg-9">
                     <h2 class="usuario"><?= $usuario->log_us ?></h2>
                     <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
                 </div>
@@ -267,8 +267,8 @@ Yii::$app->formatter->locale = 'ES';
                     </div>
                 <?php endforeach; ?>
         </div>
-        <div class="col-xl-3">
-                
+        <div class="col-sm-12 col-md-12 col-lg-3">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt dolorum unde modi itaque porro, harum optio minima ad ex exercitationem hic necessitatibus consequatur corporis dolore voluptatum in ea perferendis.</p>
         </div>
     </div>
 </div>

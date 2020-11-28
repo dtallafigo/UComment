@@ -52,6 +52,16 @@ CREATE TABLE likes
     ,   PRIMARY KEY (usuario_id, comentario_id)  
 );
 
+DROP TABLE IF EXISTS comsave CASCADE;
+
+/* Tabla donde se guardan los comentarios favorios */
+CREATE TABLE comsave
+(
+        usuario_id      BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
+    ,   comentario_id   BIGINT      REFERENCES comentarios(id) ON DELETE CASCADE
+    ,   PRIMARY KEY (usuario_id, comentario_id)  
+);
+
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', '');

@@ -42,6 +42,16 @@ CREATE TABLE seguidores
   , PRIMARY KEY (seguidor_id, seguido_id)
 );
 
+DROP TABLE IF EXISTS likes CASCADE;
+
+/* En esta tabla se almacena el comentario y el usuario que ha realizado la accion */
+CREATE TABLE likes
+(
+        usuario_id      BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
+    ,   comentario_id   BIGINT      REFERENCES comentarios(id) ON DELETE CASCADE
+    ,   PRIMARY KEY (usuario_id, comentario_id)  
+);
+
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', '');

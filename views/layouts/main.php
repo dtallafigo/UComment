@@ -43,9 +43,18 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            [
+                'label' => 'Inicio',
+                'url' => ['/site/index']
+            ],
+            [
+                'label' => 'Busqueda',
+                'url' => ['/usuarios/index']
+            ],
+            [
+                'label' => 'Comentarios',
+                'url' => ['/comentarios/index']
+            ],
             [
                 'label'=> 'Usuarios',
                 'items' => [

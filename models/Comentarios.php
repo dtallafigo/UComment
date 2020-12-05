@@ -81,6 +81,39 @@ class Comentarios extends \yii\db\ActiveRecord
         return $this->hasMany(Comentarios::className(), ['respuesta' => 'id']);
     }
 
+    public function getCitados()
+    {
+        return $this->hasMany(Comentarios::className(), ['citado' => 'id']);
+    }
+
+    public function like($comentario_id)
+    {
+        $like = Likes::find()->where([
+            'comentario_id' => $comentario_id,
+            'usuario_id' => Yii::$app->user->id
+        ])->one();
+
+        return isset($like);
+    }
+
+    public function fecha($fecha)
+    {
+        $actual = new  \DateTime('now');
+        $cf = new \DateTime($fecha);
+
+        $interval = $actual->diff($cf);
+
+        if ($interval->format('%i') < 1) {
+            return $interval->format('%ss');
+        } elseif ($interval->format('%H') < 1) {
+            return $interval->format('%im');
+        } elseif ($interval->format('%d') < 1) {
+            return $interval->format('%Hh');
+        } elseif ($interval->format('%d') > 1) {
+            return $cf->format('d-m-Y');
+        }
+    }
+
     /**
      * Gets query for [[Usuario]].
      *

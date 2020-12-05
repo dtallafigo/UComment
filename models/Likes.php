@@ -59,7 +59,7 @@ class Likes extends \yii\db\ActiveRecord
         return $this->hasOne(Comentarios::className(), ['id' => 'comentario_id']);
     }
 
-    public function like($comentario_id)
+    public static function like($comentario_id)
     {
         $like = Likes::find()->where([
             'comentario_id' => $comentario_id,

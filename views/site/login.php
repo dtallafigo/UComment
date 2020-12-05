@@ -23,7 +23,6 @@ $this->title = 'Login';
                     'layout' => 'horizontal',
                     'fieldConfig' => [
                         'horizontalCssClasses' => ['wrapper' => 'col-lg-12'],
-                        'template' => "{label}\n{hint}\n{input}",
                     ],
                 ]); ?>
 
@@ -44,7 +43,6 @@ $this->title = 'Login';
                         'layout' => 'horizontal',
                         'fieldConfig' => [
                             'horizontalCssClasses' => ['wrapper' => 'col-lg-12'],
-                            'template' => "{label}\n{hint}\n{input}",
                         ],
                     ]); ?>
 

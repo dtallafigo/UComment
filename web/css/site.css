@@ -16,11 +16,6 @@ body {
     padding: 70px 15px 20px;
 }
 
-.col-sm-2 {
-    flex: 100%;
-    max-width: 100%;
-}
-
 .footer {
     height: 60px;
     background-color: #f5f5f5;
@@ -57,6 +52,12 @@ body {
     background-color: white;
     padding-bottom: 2%;
     box-shadow: 5px 10px #888888;
+}
+
+#comentario {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    color: black;
 }
 
 .user div {
@@ -115,7 +116,12 @@ body {
 }
 
 #bio {
-    width: 80%;
+    width: 30px;
+    height: auto;
+}
+
+#location {
+    width: 30px;
     height: auto;
 }
 
@@ -215,12 +221,6 @@ a.desc:after {
    
   .open-modal {
     text-decoration: none;
-    padding: 10px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #1ba6be;
-    border-radius: 10px;
-    border: 1px solid black;
   }
 
   .modal {
@@ -288,5 +288,18 @@ a.desc:after {
 
   #citado {
       width: 35px;
+      height: auto;
+  }
+
+  .icon {
+    width: 20px; height: auto;
+  }
+
+  .count {
+    margin-left: 8%;
+  }
+
+  .card {
+      width: 100%;
       height: auto;
   }

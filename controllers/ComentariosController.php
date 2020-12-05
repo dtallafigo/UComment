@@ -97,6 +97,16 @@ class ComentariosController extends Controller
         ]);
     }
 
+    public function fecha($fecha)
+    {
+        $actual = new  \DateTime('now', new \DateTimeZone('GMT+1'));
+        $cf = new \DateTime($fecha, new \DateTimeZone('GMT+1'));
+
+        $interval = date_diff($actual, $cf);
+
+        return $interval->format('Days %a Time = %H:%I:%s');
+    }
+
     /**
      * Deletes an existing Comentarios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

@@ -32,7 +32,7 @@ boton.click(function(event) {
                 text = 'Seguir'
 
             var seguidores = document.getElementById("siguiendo")
-            var countLikes = document.getElementById("sg")
+            var sg = document.getElementById("sg")
             sg.innerHTML = data[1];
             seguidores.innerHTML = text;
     }
@@ -74,55 +74,52 @@ EOT;
 $this->registerJs($js2);
 $like = Url::to(['likes/like']);
 $save = Url::to(['comsave/save']);
-Yii::$app->formatter->locale = 'ES';
 ?>
-
-<div class="container">
-    <div class="row" style="margin: 0 2% 0 2%;">
-        <div class="col-sm-12 col-md-12 col-lg-9" style="border: 1px solid;">
-            <div class="row user">
-                <div class="col-sm-12 col-md-4 col-lg-3">
-                    <img src="<?= $usuario->url_img ?>" id="perfil">
-                </div>
-                <div class="col-sm-12 col-md-8 col-lg-9">
-                    <h2 class="usuario"><?= $usuario->log_us ?></h2>
-                    <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
-                </div>
+<div class="row" style="margin: 0 2% 0 2%;">
+    <div class="col-9" style="border: 1px solid;">
+        <div class="row user">
+            <div class="col-sm-12 col-md-4 col-lg-3">
+                <img src="<?= $usuario->url_img ?>" id="perfil">
             </div>
-            <div class="row bio">
-                <div class="col-1 d-flex justify-content-center" style="text-align: center;">
-                    <img src="icons/bio.svg" id="bio">
-                </div>
-                <div class="col-11">
-                    <p><?= $usuario->bio ?></p>
-                </div>
+            <div class="col-sm-12 col-md-8 col-lg-9">
+                <h2 class="usuario"><?= $usuario->log_us ?></h2>
+                <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
             </div>
-            <div class="row location">
-                <div class="col-1 d-flex justify-content-center">
-                    <img src="icons/location.svg">
-                </div>
-                <div class="col-11">
-                    <p><?= $usuario->ubi ?></p>
-                </div>
+        </div>
+        <div class="row bio">
+            <div class="col-2 d-flex justify-content-center" style="text-align: center;">
+                <img src="icons/bio.svg" id="bio">
             </div>
-            <div class="row sg">
-                <div class="col-3 d-flex justify-content-center">
-                    <p id="sg"><?= Seguidores::find()->where(['seguido_id' => $usuario->id])->count() ?></p>
-                </div>
-                <div class="col-3">
-                    <h5>Seguidores</h5>
-                </div>
-                <div class="col-3 d-flex justify-content-center">
-                    <p><?= Seguidores::find()->where(['seguidor_id' => $usuario->id])->count() ?></p>
-                </div>
-                <div class="col-3">
-                    <h5>Seguidos</h5>
-                </div>
+            <div class="col-10">
+                <p><?= $usuario->bio ?></p>
             </div>
-                <?php foreach ($comentarios as $comentario) : ?>
-                <?php 
-                $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
-                $js3 = <<<EOT
+        </div>
+        <div class="row location">
+            <div class="col-2 d-flex justify-content-center">
+                <img src="icons/location.svg" id="location">
+            </div>
+            <div class="col-10">
+                <p><?= $usuario->ubi ?></p>
+            </div>
+        </div>
+        <div class="row sg">
+            <div class="col-3 d-flex justify-content-center">
+                <p id="sg"><?= Seguidores::find()->where(['seguido_id' => $usuario->id])->count() ?></p>
+            </div>
+            <div class="col-3">
+                <h5>Seguidores</h5>
+            </div>
+            <div class="col-3 d-flex justify-content-center">
+                <p><?= Seguidores::find()->where(['seguidor_id' => $usuario->id])->count() ?></p>
+            </div>
+            <div class="col-3">
+                <h5>Seguidos</h5>
+            </div>
+        </div>
+        <?php foreach ($comentarios as $comentario) : ?>
+            <?php
+            $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
+            $js3 = <<<EOT
                 var boton = $("#like$comentario->id");
                 boton.click(function(event) {
                     event.preventDefault();
@@ -133,22 +130,19 @@ Yii::$app->formatter->locale = 'ES';
                             'comentario_id': $comentario->id
                         },
                         success: function (data, code, jqXHR) {
-                            var text = '';
-
-                            if (data[0])
-                                text = 'Dislike'
-                            else
-                                text = 'Like'
-                            var like$comentario->id = document.getElementById("like$comentario->id");
                             var countlike$comentario->id = document.getElementById("countLike$comentario->id");
                             countlike$comentario->id.innerHTML = data[1];
-                            like$comentario->id.innerHTML = text;
+                            if (data[0]) {
+                                document.getElementById("icon$comentario->id").src="icons/like.svg";
+                            } else {
+                                document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                            }
                         }
                     });
                 });
                 EOT;
-                $this->registerJs($js3);
-                $js4 = <<<EOT
+            $this->registerJs($js3);
+            $js4 = <<<EOT
                 var boton = $("#save$comentario->id");
                 boton.click(function(event) {
                     event.preventDefault();
@@ -170,105 +164,109 @@ Yii::$app->formatter->locale = 'ES';
                     });
                 });
                 EOT;
-                $this->registerJs($js4);  
-                ?>
-                    <div class="row com justify-content-center">
-                        <div class="card">
+            $this->registerJs($js4);
+            ?>
+            <div class="modal" id="respuesta<?= $comentario->id ?>">
+                <div class="modal-dialog">
+                    <header class="modal-header">
+                        <img src="<?= $usuario->url_img ?>" id="inicio">
+                        <h4><?= $usuario->log_us ?></h4>
+                        <button class="close-modal" aria-label="close modal" data-close>
+                            ✕
+                        </button>
+                    </header>
+                    <section class="modal-content">
+                        <?php $form = ActiveForm::begin(); ?>
+                        <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
+                        <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                        <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+                        <?php ActiveForm::end(); ?>
+                    </section>
+                </div>
+            </div>
+            <div class="modal" id="citado<?= $comentario->id ?>">
+                <div class="modal-dialog">
+                    <header class="modal-header">
+                        <img src="<?= $usuario->url_img ?>" id="inicio">
+                        <h4><?= $usuario->log_us ?></h4>
+                        <button class="close-modal" aria-label="close modal" data-close>
+                            ✕
+                        </button>
+                    </header>
+                    <section class="modal-content">
+                        <?php $form = ActiveForm::begin(); ?>
+                        <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
+                        <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                        <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+                        <?php ActiveForm::end(); ?>
+                        <div class="card" style="margin-top: 2%;">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-1 d-flex justify-content-center">
-                                        <img src="<?= $user->url_img ?>" id="fcom">
+                                    <div class="col-2 d-flex justify-content-center">
+                                        <img src="<?= $user->url_img ?>" id="citado">
                                     </div>
-                                    <div class="col-5 d-flex justify-content-left">
+                                    <div class="col-4 d-flex justify-content-left">
                                         <p class="card-title"><?= $user->log_us ?></p>
                                     </div>
                                     <div class="col-6 d-flex justify-content-center">
-                                        <p><?= $comentario->created_at ?></p>
+                                        <p><?= $comentario->fecha($comentario->created_at) ?></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <p class="card-text"><?= $comentario->text ?></p>
                             </div>
-                            <div class="card-footer">
-                                <div class="btn-group">
-                                    <button type="button" class="open-modal" data-open="respuesta<?=$comentario->id?>">
-                                        <img src="icons/respuesta.ico" style="width: 20%; height: auto;">
-                                    </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row com justify-content-center">
+                <div class="card">
+                    <a href="<?= Url::to(['comentarios/view', 'id' => $comentario['id']]); ?>" id="comentario">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-1 d-flex justify-content-center">
+                                    <img src="<?= $user->url_img ?>" style="width: 100%; height:auto;">
                                 </div>
-                                <div class="btn-group">
-                                    <button type="button" class="open-modal" data-open="citado<?=$comentario->id?>">
-                                    Citado
-                                    </button>
+                                <div class="col-7">
+                                    <p class="card-title"><?= $user->log_us ?></p>
                                 </div>
-                                <div class="btn-group">
-                                    <button id="like<?= $comentario->id ?>">like</button>
-                                    <p id="countLike<?= $comentario->id ?>"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
-                                </div>
-                                <div class="btn-group">
-                                    <button id="save<?= $comentario->id ?>">save</button>
+                                <div class="col-4">
+                                    <p><?= $comentario->fecha($comentario->created_at) ?></p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal" id="respuesta<?=$comentario->id?>">
-                        <div class="modal-dialog">
-                            <header class="modal-header">
-                                <img src="<?= $usuario->url_img ?>" id="inicio">
-                                <h4><?= $usuario->log_us ?></h4>
-                                <button class="close-modal" aria-label="close modal" data-close>
-                                ✕  
-                                </button>
-                            </header>
-                            <section class="modal-content">
-                                <?php $form = ActiveForm::begin(); ?>
-                                <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
-                                <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $comentario->id])->label(false); ?>
-                                <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
-                                <?php ActiveForm::end(); ?>
-                            </section>
+                        <div class="card-body">
+                            <p class="card-text"><?= $comentario->text ?></p>
                         </div>
-                    </div>
-                    <div class="modal" id="citado<?=$comentario->id?>">
-                        <div class="modal-dialog">
-                            <header class="modal-header">
-                                <img src="<?= $usuario->url_img ?>" id="inicio">
-                                <h4><?= $usuario->log_us ?></h4>
-                                <button class="close-modal" aria-label="close modal" data-close>
-                                ✕  
-                                </button>
-                            </header>
-                            <section class="modal-content">
-                                <?php $form = ActiveForm::begin(); ?>
-                                <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
-                                <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $comentario->id])->label(false); ?>
-                                <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
-                                <?php ActiveForm::end(); ?>
-                                <div class="card" style="margin-top: 2%;">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-1 d-flex justify-content-center">
-                                            <img src="<?= $user->url_img ?>" id="citado">
-                                        </div>
-                                        <div class="col-5 d-flex justify-content-left">
-                                            <p class="card-title"><?= $user->log_us ?></p>
-                                        </div>
-                                        <div class="col-6 d-flex justify-content-center">
-                                            <p><?= $comentario->created_at ?></p>
-                                        </div>
-                                    </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-3 d-flex justify-content-center">
+                                    <a class="open-modal" data-open="respuesta<?= $comentario->id ?>">
+                                        <img src="icons/respuesta.svg" class="icon">
+                                    </a>
+                                    <p class="count"><?= $comentario->getComentarios()->count(); ?></p>
                                 </div>
-                                    <div class="card-body">
-                                        <p class="card-text"><?= $comentario->text ?></p>
-                                    </div>
+                                <div class="col-3 d-flex justify-content-center">
+                                    <a class="open-modal" data-open="citado<?= $comentario->id ?>">
+                                        <img src="icons/citado.svg" class="icon">
+                                    </a>
+                                    <p class="count"><?= $comentario->getCitados()->count(); ?></p>
                                 </div>
-                            </section>
+                                <div class="col-3 d-flex justify-content-center">
+                                    <a id="like<?= $comentario->id ?>">
+                                        <img src="<?= Likes::like($comentario->id) ? 'icons/like.svg' : 'icons/dislike.svg' ?>" class="icon" id="icon<?= $comentario->id ?>">
+                                    </a>
+                                    <p id="countLike<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
+                                </div>
+                                <div class="col-3">
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-3">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt dolorum unde modi itaque porro, harum optio minima ad ex exercitationem hic necessitatibus consequatur corporis dolore voluptatum in ea perferendis.</p>
-        </div>
+                    </a>
+                </div>
+            </div>
+            <?php endforeach; ?>
     </div>
 </div>

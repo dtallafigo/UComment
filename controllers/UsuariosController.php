@@ -55,8 +55,8 @@ class UsuariosController extends Controller
     public function actionView($id)
     {
         $usuario = Usuarios::findOne(['id' => $id]);
-        $publicacion = new Comentarios(['usuario_id' => $id]);
-        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->all();
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->all();
 
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');

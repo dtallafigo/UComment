@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Comentarios;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
@@ -75,7 +76,7 @@ $this->registerJs($js2);
 $like = Url::to(['likes/like']);
 $save = Url::to(['comsave/save']);
 ?>
-<div class="row" style="margin: 0 2% 0 2%;">
+<div class="row">
     <div class="col-9" style="border: 1px solid;">
         <div class="row user">
             <div class="col-sm-12 col-md-4 col-lg-3">
@@ -83,7 +84,11 @@ $save = Url::to(['comsave/save']);
             </div>
             <div class="col-sm-12 col-md-8 col-lg-9">
                 <h2 class="usuario"><?= $usuario->log_us ?></h2>
-                <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
+                <?php if ($usuario->id != Yii::$app->user->id) : ?>
+                    <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
+                <?php else : ?>
+                    <?= Html::a('Editar', ['usuarios/update', 'id' => Yii::$app->user->id], ['class' => 'follow']) ?>
+                <?php endif ; ?>
             </div>
         </div>
         <div class="row bio">
@@ -226,7 +231,7 @@ $save = Url::to(['comsave/save']);
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-1 d-flex justify-content-center">
-                                    <img src="<?= $user->url_img ?>" style="width: 100%; height:auto;">
+                                    <img src="<?= $user->url_img ?>" id="fcom">
                                 </div>
                                 <div class="col-7">
                                     <p class="card-title"><?= $user->log_us ?></p>
@@ -238,6 +243,28 @@ $save = Url::to(['comsave/save']);
                         </div>
                         <div class="card-body">
                             <p class="card-text"><?= $comentario->text ?></p>
+                            <?php if ($comentario->citado) : ?>
+                            <?php $citado = Comentarios::find()->where(['id' => $comentario->citado])->one(); ?>
+                            <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
+                                <div class="card" style="margin-top: 2%;">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-2 d-flex justify-content-center">
+                                                <img src="<?= $uc->url_img ?>" id="citado">
+                                            </div>
+                                            <div class="col-4 d-flex justify-content-left">
+                                                <p class="card-title"><?= $uc->log_us ?></p>
+                                            </div>
+                                            <div class="col-6 d-flex justify-content-center">
+                                                <p><?= $citado->fecha($citado->created_at) ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $citado->text ?></p>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                         <div class="card-footer">
                             <div class="row">

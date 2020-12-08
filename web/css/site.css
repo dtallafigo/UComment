@@ -277,12 +277,12 @@ a.desc:after {
   }
 
   #inicio {
-      width: 10%;
+      width: 35px;
       height: auto;
   }
 
   #fcom {
-      width: 80%;
+      width: 35px;
       height: auto;
   }
 
@@ -302,4 +302,10 @@ a.desc:after {
   .card {
       width: 100%;
       height: auto;
+  }
+
+  #usuarios-log_us {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
   }

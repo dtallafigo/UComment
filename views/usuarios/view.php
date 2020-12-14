@@ -7,12 +7,13 @@ use yii\bootstrap4\ActiveForm;
 use app\models\Seguidores;
 use app\models\Usuarios;
 use app\models\Likes;
+use yii\bootstrap4\ButtonDropdown;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
 
 $this->title = 'Perfil de ' . $usuario->log_us;
-$text = Seguidores::siguiendo($usuario->id) ? 'Dejar de seguir' : 'Seguir';
+$text = Seguidores::siguiendo($usuario->id) ? 'Siguiendo' : 'Seguir';
 $seguir = Url::to(['seguidores/follow']);
 $js1 = <<<EOT
 var boton = $("#siguiendo");
@@ -28,7 +29,7 @@ boton.click(function(event) {
         success: function (data, code, jqXHR) {
             var text = ''
             if (data[0])
-                text = 'Dejar de seguir'
+                text = 'Siguiendo'
             else
                 text = 'Seguir'
 
@@ -88,14 +89,25 @@ $save = Url::to(['comsave/save']);
                     <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
                 <?php else : ?>
                     <?= Html::a('Editar', ['usuarios/update', 'id' => Yii::$app->user->id], ['class' => 'follow']) ?>
+                    <?= ButtonDropdown::widget([
+                        'options' => ['class' => 'delete'],
+                        'direction' => 'left',
+                        'label' => '···',
+                        'dropdown' => [
+                            'items' => [
+                                Html::beginForm(['/usuarios/delete', 'id' => Yii::$app->user->id], 'post') . Html::submitButton('Borrar cuenta', ['class' => 'btn btn-danger']) . Html::endForm()
+                            ],
+                        ]
+                    ]) ?>
                 <?php endif; ?>
+
             </div>
         </div>
         <div class="row bio">
             <div class="col-2 d-flex justify-content-center" style="text-align: center;">
                 <img src="icons/bio.svg" id="bio">
             </div>
-            <div class="col-10">
+            <div class="col-8">
                 <p><?= $usuario->bio ?></p>
             </div>
         </div>
@@ -103,7 +115,7 @@ $save = Url::to(['comsave/save']);
             <div class="col-2 d-flex justify-content-center">
                 <img src="icons/location.svg" id="location">
             </div>
-            <div class="col-10">
+            <div class="col-8">
                 <p><?= $usuario->ubi ?></p>
             </div>
         </div>

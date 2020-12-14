@@ -13,7 +13,7 @@ $this->title = 'Login';
 
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-6" style="background-color: white; padding: 2%;">
             <div class="col-12">
                 <h1>Iniciar Sesion</h1>
             </div>
@@ -35,7 +35,7 @@ $this->title = 'Login';
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-6" style="background-color: white; padding: 2%;">
             <div class="col-12">
                     <h1>Unete a UComment</h1>
                     <div class="col-12">

@@ -17,10 +17,10 @@ $this->title = 'Editar usuario ' . $model->log_us;
                 <img src="<?= $model->url_img ?>" id="perfil">
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <?= $form->field($model, 'log_us')->input(['maxlength' => true, 'class' => 'usuario', 'value' => $model->log_us])->label(false) ?>
+                <?= $form->field($model, 'log_us', ['options' => ['class' => 'edit-log_us']])->input(['maxlength' => true, 'value' => $model->log_us])->label(false) ?>
             </div>
-            <div class="col-12 d-flex flex-row-reverse">
-                <?= Html::submitButton('Editar', ['class' => 'btn btn-primary']) ?>   
+            <div class="col-4">
+                <?= Html::submitButton('Editar', ['class' => 'edit']) ?>   
             </div>
         </div>
         <div class="row bio">

@@ -57,7 +57,7 @@ class UsuariosController extends Controller
         $usuario = Usuarios::findOne(['id' => $id]);
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
-        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->all();
+        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
 
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');

@@ -7,7 +7,7 @@ use yii\bootstrap4\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
 
-$this->title = 'Update Usuarios: ' . $model->id;
+$this->title = 'Editar usuario ' . $model->log_us;
 ?>
 <div class="row">
     <div class="col-9" style="border: 1px solid;">
@@ -16,7 +16,7 @@ $this->title = 'Update Usuarios: ' . $model->id;
             <?php $form = ActiveForm::begin(); ?>
                 <img src="<?= $model->url_img ?>" id="perfil">
             </div>
-            <div class="col-sm-12 col-md-8 col-lg-4">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <?= $form->field($model, 'log_us')->input(['maxlength' => true, 'class' => 'usuario', 'value' => $model->log_us])->label(false) ?>
             </div>
             <div class="col-12 d-flex flex-row-reverse">
@@ -27,7 +27,7 @@ $this->title = 'Update Usuarios: ' . $model->id;
             <div class="col-2 d-flex justify-content-center" style="text-align: center;">
                 <img src="icons/bio.svg" id="bio">
             </div>
-            <div class="col-10">
+            <div class="col-9">
                 <?= $form->field($model, 'bio')->input(['maxlength' => true, 'value' => $model->bio])->label(false) ?>
             </div>
         </div>
@@ -35,7 +35,7 @@ $this->title = 'Update Usuarios: ' . $model->id;
             <div class="col-2 d-flex justify-content-center">
                 <img src="icons/location.svg" id="location">
             </div>
-            <div class="col-10">
+            <div class="col-9">
                 <?= $form->field($model, 'ubi')->input(['maxlength' => true, 'value' => $model->ubi])->label(false) ?>
             </div>
         </div>

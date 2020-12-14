@@ -55,6 +55,7 @@ class UsuariosController extends Controller
     public function actionView($id)
     {
         $usuario = Usuarios::findOne(['id' => $id]);
+        $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
         $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->all();
 
@@ -68,6 +69,7 @@ class UsuariosController extends Controller
             'seguido' => $id,
             'comentarios' => $comentarios,
             'publicacion' => $publicacion,
+            'actual' => $actual,
         ]);
     }
 

@@ -121,16 +121,24 @@ $save = Url::to(['comsave/save']);
         </div>
         <div class="row sg">
             <div class="col-3 d-flex justify-content-center">
-                <p id="sg"><?= Seguidores::find()->where(['seguido_id' => $usuario->id])->count() ?></p>
+                <a href="<?= Url::to(['seguidores/followers', 'id' => $usuario->id]); ?>">
+                    <p id="sg"><?= Seguidores::find()->where(['seguido_id' => $usuario->id])->count() ?></p>
+                </a>
             </div>
             <div class="col-3">
-                <h5>Seguidores</h5>
+                <a href="<?= Url::to(['seguidores/followers', 'id' => $usuario->id]); ?>">
+                    <h5>Seguidores</h5>
+                </a>
             </div>
             <div class="col-3 d-flex justify-content-center">
-                <p><?= Seguidores::find()->where(['seguidor_id' => $usuario->id])->count() ?></p>
+                <a href="<?= Url::to(['seguidores/follows', 'id' => $usuario->id]); ?>">
+                    <p><?= Seguidores::find()->where(['seguidor_id' => $usuario->id])->count() ?></p>
+                </a>
             </div>
             <div class="col-3">
-                <h5>Seguidos</h5>
+                <a href="<?= Url::to(['seguidores/follows', 'id' => $usuario->id]); ?>">
+                    <h5>Seguidos</h5>
+                </a>
             </div>
         </div>
         <div class="row pt">
@@ -315,26 +323,28 @@ $save = Url::to(['comsave/save']);
                                     <?php if ($comentario->citado) : ?>
                                         <?php $citado = Comentarios::find()->where(['id' => $comentario->citado])->one(); ?>
                                         <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
-                                        <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>" id="comentario">
-                                            <div class="card" style="margin-top: 2%;">
-                                                <div class="card-header">
-                                                    <div class="row">
-                                                        <div class="col-2 d-flex justify-content-center">
-                                                            <img src="<?= $uc->url_img ?>" id="citado">
-                                                        </div>
-                                                        <div class="col-4 d-flex justify-content-left">
+                                        <div class="card" style="margin-top: 2%;">
+                                            <div class="card-header">
+                                                <div class="row">
+                                                    <div class="col-2 d-flex justify-content-right">
+                                                        <img src="<?= $uc->url_img ?>" id="citado">
+                                                    </div>
+                                                    <div class="col-4 d-flex justify-content-left">
+                                                        <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
                                                             <p class="card-title"><?= $uc->log_us ?></p>
-                                                        </div>
-                                                        <div class="col-6 d-flex justify-content-center">
-                                                            <p><?= $citado->fecha($citado->created_at) ?></p>
-                                                        </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-6 d-flex justify-content-center">
+                                                        <p><?= $citado->fecha($citado->created_at) ?></p>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
                                                 <div class="card-body">
                                                     <p class="card-text"><?= $citado->text ?></p>
                                                 </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </div>
                                     <?php endif; ?>
                                 </div>
                                 <div class="card-footer">

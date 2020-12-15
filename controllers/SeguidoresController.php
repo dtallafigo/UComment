@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use app\models\Usuarios;
 
 /**
  * SeguidoresController implements the CRUD actions for Seguidores model.
@@ -76,19 +77,29 @@ class SeguidoresController extends Controller
         return isset($seguido);
     }
 
-    /**
-     * Displays a single Seguidores model.
-     * @param integer $seguidor_id
-     * @param integer $seguido_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($seguidor_id, $seguido_id)
+    public function actionFollowers($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($seguidor_id, $seguido_id),
+        $seguidores = Seguidores::find()->where(['seguido_id' => $id])->all();
+        $ua = Usuarios::findOne(['id' => $id]);
+
+        return $this->render('followers', [
+            'seguidores' => $seguidores,
+            'ua' => $ua,
         ]);
     }
+
+    public function actionFollows($id)
+    {
+        $seguidos = Seguidores::find()->where(['seguidor_id' => $id])->all();
+        $ua = Usuarios::findOne(['id' => $id]);
+
+        return $this->render('follows', [
+            'seguidos' => $seguidos,
+            'ua' => $ua,
+        ]);
+    }
+
+
 
     /**
      * Finds the Seguidores model based on its primary key value.

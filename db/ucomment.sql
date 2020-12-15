@@ -64,7 +64,10 @@ CREATE TABLE comsave
 
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
-        ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', '');
+        ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('ricardo', 'ricardo99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('antonio', 'antonio@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('damian', 'damian@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');
 
 INSERT INTO comentarios (usuario_id, text, respuesta, citado, img)
 VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL),
@@ -79,3 +82,13 @@ VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL),
         ('2', 'Cuarto comentario.', NULL, NULL, NULL),
         ('2', 'Quinto comentario.', NULL, NULL, NULL),
         ('2', 'Sexto comentario.', NULL, NULL, NULL);
+
+INSERT INTO seguidores (seguido_id, seguidor_id)
+VALUES ('3', '1'),
+       ('4', '1'),
+       ('1', '2'),
+       ('1', '5'),
+       ('1', '3'),
+       ('1', '4'),
+       ('2', '1'),
+       ('2', '4');

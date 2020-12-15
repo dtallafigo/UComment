@@ -54,8 +54,16 @@ class ComentariosController extends Controller
      */
     public function actionView($id)
     {
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+
+        if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
+            Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
+            return $this->redirect('index');
+        }
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'publicacion' => $publicacion,
         ]);
     }
 

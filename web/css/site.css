@@ -9,16 +9,11 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
-    background-color: #999;
+    background-color:#703609;
 }
 
 .wrap > .container {
     padding: 70px 15px 20px;
-}
-
-.col-sm-2 {
-    flex: 100%;
-    max-width: 100%;
 }
 
 .footer {
@@ -54,9 +49,15 @@ body {
 }
 
 .user {
-    background-color: white;
+    background-color:white;
     padding-bottom: 2%;
-    box-shadow: 5px 10px #888888;
+    box-shadow: 5px 10px #66402A;
+}
+
+#comentario {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    color: black;
 }
 
 .user div {
@@ -65,57 +66,107 @@ body {
 
 .follow {
     text-decoration: none;
-    padding: 10px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #1ba6be;
-    border-radius: 10px;
-    border: 1px solid black;
-    transition: all 0.50s ease-in;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
     position: absolute;
-    bottom: 10%;
-    left: 70%;
+    bottom: 31px;
+    left: 400px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.edit {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    position: absolute;
+    bottom: 22px;
+    left: 100px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .follow:hover {
-    text-decoration: none;
     color: black;
 }
 
+.delete {
+    position: absolute;
+    bottom: 31px;
+    left: 500px;
+}
 
 .location {
-    background-color: white;
-    box-shadow: 5px 10px #888888;
+    background-color:white;
+    box-shadow: 5px 10px #66402A;
     padding-top: 2%;
     padding-bottom: 2%;
 }
 
 .bio {
-    background-color: white;
-    box-shadow: 5px 10px #888888;
+    background-color:white;
+    box-shadow: 5px 10px #66402A;
     padding-top: 2%;
     padding-bottom: 2%;
 }
 
 .sg {
-    background-color: white;
-    box-shadow: 5px 10px #888888;
+    background-color:white;
+    box-shadow: 5px 10px #66402A;
     padding-top: 2%;
     padding-bottom: 2%;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .com {
-    background-color: white;
-    box-shadow: 5px 10px #888888;
+    background-color:white;
+    box-shadow: 5px 10px #66402A;
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 2%;
     padding-right: 2%;
 }
 
+.card-header {
+    background-color: #D66711;
+}
+
+.card-footer {
+    background-color: #D66711;
+}
+
+.pt {
+    background-color:white;
+    box-shadow: 5px 10px #66402A;
+}
+
+#nav-comments-tab {
+    background-color: white;
+}
+
+#nav-likes-tab {
+    background-color: white;
+}
+
 #bio {
-    width: 80%;
+    width: 30px;
+    height: auto;
+}
+
+#location {
+    width: 30px;
     height: auto;
 }
 
@@ -215,12 +266,6 @@ a.desc:after {
    
   .open-modal {
     text-decoration: none;
-    padding: 10px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #1ba6be;
-    border-radius: 10px;
-    border: 1px solid black;
   }
 
   .modal {
@@ -259,6 +304,7 @@ a.desc:after {
 
   .modal-dialog > * {
     padding: 1rem;
+    background-color:white;
   }
    
   .modal-header,
@@ -270,6 +316,7 @@ a.desc:after {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #D66711;
   }
    
   .modal p + p {
@@ -277,16 +324,47 @@ a.desc:after {
   }
 
   #inicio {
-      width: 10%;
+      width: 35px;
       height: auto;
   }
 
   #fcom {
-      width: 80%;
+      width: 35px;
       height: auto;
   }
 
   #citado {
       width: 35px;
       height: auto;
+  }
+
+  .icon {
+    width: 20px; height: auto;
+  }
+
+  .count {
+    margin-left: 8%;
+  }
+
+  .card {
+      width: 100%;
+      height: auto;
+  }
+
+  .edit-log_us {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+  }
+
+  .heart img:hover {
+    filter: drop-shadow(1px 1px 0.2px red);
+  }
+
+  #answer:hover {
+    filter: drop-shadow(1px 1px 0.2px blue);
+  }
+
+  #citar:hover {
+    filter: drop-shadow(1px 1px 0.2px green);
   }

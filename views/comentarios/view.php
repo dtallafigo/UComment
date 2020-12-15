@@ -49,7 +49,6 @@ document.addEventListener("keyup", e => {
 EOT;
 $this->registerJs($js2);
 $like = Url::to(['likes/like']);
-$user = Usuarios::findOne(['id' => $model->usuario_id]);
 $likes = <<<EOT
 var boton = $("#like$model->id");
 boton.click(function(event) {
@@ -199,26 +198,28 @@ $this->registerJs($likes);
                     <?php $citado = Comentarios::find()->where(['id' => $model->citado])->one(); ?>
                     <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
                     <div class="card-body">
-                        <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>" id="comentario">
-                            <div class="card" style="margin-bottom: 2%;">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-2 d-flex justify-content-center">
-                                            <img src="<?= $uc->url_img ?>" id="citado">
-                                        </div>
-                                        <div class="col-4 d-flex justify-content-left">
+                        <div class="card" style="margin-bottom: 2%;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-2 d-flex justify-content-center">
+                                        <img src="<?= $uc->url_img ?>" id="citado">
+                                    </div>
+                                    <div class="col-2 d-flex justify-content-left">
+                                        <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
                                             <p class="card-title"><?= $uc->log_us ?></p>
-                                        </div>
-                                        <div class="col-6 d-flex justify-content-center">
-                                            <p><?= $citado->fecha($citado->created_at) ?></p>
-                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-8 d-flex justify-content-center">
+                                        <p><?= $citado->fecha($citado->created_at) ?></p>
                                     </div>
                                 </div>
+                            </div>
+                            <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>" id="comentario">
                                 <div class="card-body">
                                     <p class="card-text"><?= $citado->text ?></p>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 <?php endif; ?>
                 <div class="card-footer">

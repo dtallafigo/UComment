@@ -9,7 +9,7 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
-    background-color:#703609;
+    background-color:#1C1210;
 }
 
 .wrap > .container {
@@ -51,7 +51,7 @@ body {
 .user {
     background-color:white;
     padding-bottom: 2%;
-    box-shadow: 5px 10px #66402A;
+    box-shadow: 5px 10px #EE8A2F;
 }
 
 #comentario {
@@ -110,29 +110,29 @@ body {
 
 .location {
     background-color:white;
-    box-shadow: 5px 10px #66402A;
+    box-shadow: 5px 10px#EE8A2F;
     padding-top: 2%;
     padding-bottom: 2%;
 }
 
 .bio {
     background-color:white;
-    box-shadow: 5px 10px #66402A;
+    box-shadow: 5px 10px#EE8A2F;
     padding-top: 2%;
     padding-bottom: 2%;
 }
 
 .sg {
     background-color:white;
-    box-shadow: 5px 10px #66402A;
+    box-shadow: 5px 10px#EE8A2F;
     padding-top: 2%;
     padding-bottom: 2%;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid;
 }
 
 .com {
     background-color:white;
-    box-shadow: 5px 10px #66402A;
+    box-shadow: 5px 10px#EE8A2F;
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 2%;
@@ -140,16 +140,20 @@ body {
 }
 
 .card-header {
-    background-color: #D66711;
+    background-color: #EE8A2F;
 }
 
 .card-footer {
-    background-color: #D66711;
+    background-color: #EE8A2F;
+}
+
+.card-body {
+    background-color: white;
 }
 
 .pt {
     background-color:white;
-    box-shadow: 5px 10px #66402A;
+    box-shadow: 5px 10px#EE8A2F;
 }
 
 #nav-comments-tab {
@@ -316,7 +320,7 @@ a.desc:after {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #D66711;
+    
   }
    
   .modal p + p {

@@ -89,7 +89,7 @@ $this->registerJs($likes1);
                 },
                 success: function (data, code, jqXHR) {
                     var countlike$original->id = document.getElementById("countLike$original->id");
-                    countlike$original->id.innerHTML = data[1] + ' Likes';
+                    countlike$original->id.innerHTML = data[1];
                     if (data[0]) {
                         document.getElementById("icon$original->id").src="icons/like.svg";
                     } else {

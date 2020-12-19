@@ -155,50 +155,50 @@ $save = Url::to(['comsave/save']);
                     <?php
                     $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
                     $likes = <<<EOT
-                var boton = $("#like$comentario->id");
-                boton.click(function(event) {
-                    event.preventDefault();
-                    $.ajax({
-                        method: 'GET',
-                        url: '$like',
-                        data: {
-                            'comentario_id': $comentario->id
-                        },
-                        success: function (data, code, jqXHR) {
-                            var countlike$comentario->id = document.getElementById("countLike$comentario->id");
-                            countlike$comentario->id.innerHTML = data[1];
-                            if (data[0]) {
-                                document.getElementById("icon$comentario->id").src="icons/like.svg";
-                            } else {
-                                document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                    var boton = $("#like$comentario->id");
+                    boton.click(function(event) {
+                        event.preventDefault();
+                        $.ajax({
+                            method: 'GET',
+                            url: '$like',
+                            data: {
+                                'comentario_id': $comentario->id
+                            },
+                            success: function (data, code, jqXHR) {
+                                var countlike$comentario->id = document.getElementById("countLike$comentario->id");
+                                countlike$comentario->id.innerHTML = data[1];
+                                if (data[0]) {
+                                    document.getElementById("icon$comentario->id").src="icons/like.svg";
+                                } else {
+                                    document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                                }
                             }
-                        }
+                        });
                     });
-                });
-                EOT;
+                    EOT;
                     $this->registerJs($likes);
                     $fav = <<<EOT
-                var boton = $("#save$comentario->id");
-                boton.click(function(event) {
-                    event.preventDefault();
-                    $.ajax({
-                        method: 'GET',
-                        url: '$save',
-                        data: {
-                            'comentario_id': $comentario->id
-                        },
-                        success: function (data, code, jqXHR) {
-                            var text = '';
-                            if (data[0])
-                                text = 'NotSave'
-                            else
-                                text = 'Save'
-                            var save$comentario->id = document.getElementById("save$comentario->id");
-                            save$comentario->id.innerHTML = text;
-                        }
+                    var boton = $("#save$comentario->id");
+                    boton.click(function(event) {
+                        event.preventDefault();
+                        $.ajax({
+                            method: 'GET',
+                            url: '$save',
+                            data: {
+                                'comentario_id': $comentario->id
+                            },
+                            success: function (data, code, jqXHR) {
+                                var text = '';
+                                if (data[0])
+                                    text = 'NotSave'
+                                else
+                                    text = 'Save'
+                                var save$comentario->id = document.getElementById("save$comentario->id");
+                                save$comentario->id.innerHTML = text;
+                            }
+                        });
                     });
-                });
-                EOT;
+                    EOT;
                     $this->registerJs($fav);
                     ?>
                     <div class="modal" id="respuesta<?= $comentario->id ?>">

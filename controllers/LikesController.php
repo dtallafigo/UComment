@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use app\models\Usuarios;
+use app\models\Comentarios;
 
 /**
  * LikesController implements the CRUD actions for Likes model.
@@ -82,65 +84,16 @@ class LikesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($usuario_id, $comentario_id)
+    public function actionView($comentario_id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($usuario_id, $comentario_id),
+        $likes = Likes::findAll(['comentario_id' => $comentario_id]);
+        $comentario = Comentarios::findOne(['id' => $comentario_id]);
+        $ucl = Usuarios::findOne(['id' => $comentario->usuario_id]);
+
+        return $this->render('likes', [
+            'likes' => $likes,
+            'ucl' => $ucl,
         ]);
-    }
-
-    /**
-     * Creates a new Likes model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Likes();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'usuario_id' => $model->usuario_id, 'comentario_id' => $model->comentario_id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Likes model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $usuario_id
-     * @param integer $comentario_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($usuario_id, $comentario_id)
-    {
-        $model = $this->findModel($usuario_id, $comentario_id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'usuario_id' => $model->usuario_id, 'comentario_id' => $model->comentario_id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing Likes model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $usuario_id
-     * @param integer $comentario_id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($usuario_id, $comentario_id)
-    {
-        $this->findModel($usuario_id, $comentario_id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

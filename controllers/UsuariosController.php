@@ -61,7 +61,7 @@ class UsuariosController extends Controller
 
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
-            return $this->redirect('index');
+            return $this->redirect(['comentarios/view', 'id' => $publicacion->id]);
         }
 
         return $this->render('view', [

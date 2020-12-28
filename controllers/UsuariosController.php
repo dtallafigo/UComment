@@ -9,7 +9,7 @@ use app\models\UsuariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Seguidores;
+use app\models\Likes;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -57,7 +57,8 @@ class UsuariosController extends Controller
         $usuario = Usuarios::findOne(['id' => $id]);
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
-        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
+        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+        $misLikes = Likes::find()->where(['usuario_id' => $id])->limit(5)->all();
 
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
@@ -70,6 +71,7 @@ class UsuariosController extends Controller
             'comentarios' => $comentarios,
             'publicacion' => $publicacion,
             'actual' => $actual,
+            'ml' => $misLikes,
         ]);
     }
 

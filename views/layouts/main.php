@@ -12,6 +12,20 @@ use app\assets\AppAsset;
 use app\models\Usuarios;
 
 AppAsset::register($this);
+$js2 = <<<EOT
+$(document).ready(function(){ //Hacia arriba
+    irArriba();
+  });
+  
+  function irArriba(){
+    $('.ir-arriba').click(function(){ $('body,html').animate({ scrollTop:'0px' },1000); });
+    $(window).scroll(function(){
+      if($(this).scrollTop() > 0){ $('.ir-arriba').slideDown(600); }else{ $('.ir-arriba').slideUp(600); }
+    });
+    $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
+  }
+EOT;
+$this->registerJs($js2);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,6 +41,13 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+
+<a class="ir-arriba"  javascript:void(0) title="Volver arriba">
+  <span class="fa-stack">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-arrow-up fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
 
 <div class="wrap">
     <?php

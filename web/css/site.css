@@ -4,8 +4,8 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-    
+p, h1, h2, h3, h4, h5, h6, label {
+    color: white;
 }
 
 .wrap {
@@ -13,7 +13,7 @@ p, h1, h2, h3, h4, h5, h6 {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
-    background-color:#1C1210;
+    background-color:#26172B;
 }
 
 .wrap > .container {
@@ -52,10 +52,22 @@ p, h1, h2, h3, h4, h5, h6 {
     border-radius: 100%;
 }
 
+.nav-item {
+    color: gray;
+}
+
+.nav-tabs .nav-link.active {
+    color: white;
+}
+
+.card {
+    border-color:#515480;
+}
+
 .user {
-    background-color:white;
+    background-color:#36294C;
     padding-bottom: 2%;
-    box-shadow: 5px 10px #EE8A2F;
+    box-shadow: 5px 10px #7E4DBA;
 }
 
 #comentario {
@@ -68,6 +80,11 @@ p, h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.middle {
+    vertical-align: middle;
+    display: inline;
+}
+
 .follow {
     text-decoration: none;
     display: inline-block;
@@ -78,11 +95,25 @@ p, h1, h2, h3, h4, h5, h6 {
     line-height: 1.5;
     border-radius: 0.25rem;
     position: absolute;
-    bottom: 31px;
-    left: 400px;
+    bottom: 14%;
+    left: 60%;
     color: #fff;
-    background-color: #007bff;
+    background-color:#7E4DBA;
     border-color: #007bff;
+}
+
+.log-button {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color:#7E4DBA;
+    border: none;
 }
 
 .cbutton {
@@ -97,8 +128,19 @@ p, h1, h2, h3, h4, h5, h6 {
     position: absolute;
     color: #fff;
     background-color: #007bff;
-    border-color: #007bff;
     bottom: 35%;
+}
+
+.ir-arriba{
+    display:none;
+    background-repeat:no-repeat;
+    font-size:20px;
+    color:black;
+    cursor:pointer;
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    z-index:2;
 }
 
 .edit {
@@ -114,8 +156,7 @@ p, h1, h2, h3, h4, h5, h6 {
     bottom: 22px;
     left: 100px;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #7E4DBA;
 }
 
 .follow:hover {
@@ -124,13 +165,13 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .delete {
     position: absolute;
-    bottom: 31px;
-    left: 500px;
+    bottom: 14%;
+    left: 80%;
 }
 
 .location {
-    background-color:white;
-    box-shadow: 5px 10px#EE8A2F;
+    background-color:#36294C;
+    box-shadow: 5px 10px#7E4DBA;
     padding-top: 2%;
     padding-bottom: 2%;
 }
@@ -154,52 +195,59 @@ a:hover {
 }
 
 .bio {
-    background-color:white;
-    box-shadow: 5px 10px#EE8A2F;
+    background-color:#36294C;
+    box-shadow: 5px 10px#7E4DBA;
     padding-top: 2%;
     padding-bottom: 2%;
 }
 
 .sg {
-    background-color:white;
-    box-shadow: 5px 10px#EE8A2F;
+    background-color:#36294C;
+    box-shadow: 5px 10px#7E4DBA;
     padding-top: 2%;
     padding-bottom: 2%;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #515480;
+}
+
+.center {
+    position: absolute;
+    display: inline;
+    top: 20%;
 }
 
 .com {
-    background-color:white;
-    box-shadow: 5px 10px#EE8A2F;
+    background-color:#36294C;
+    box-shadow: 5px 10px#7E4DBA;
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 2%;
     padding-right: 2%;
+    border-bottom: 1px solid #515480;
 }
 
 .card-header {
-    background-color: #EE8A2F;
+    background-color: #7E4DBA;
 }
 
 .card-footer {
-    background-color: #EE8A2F;
+    background-color: #7E4DBA;
 }
 
 .card-body {
-    background-color: white;
+    background-color: #36294C;
 }
 
 .pt {
-    background-color:white;
-    box-shadow: 5px 10px#EE8A2F;
+    background-color:#36294C;
+    box-shadow: 5px 10px#7E4DBA;
 }
 
 #nav-comments-tab {
-    background-color: white;
+    background-color: #36294C;
 }
 
 #nav-likes-tab {
-    background-color: white;
+    background-color: #36294C;
 }
 
 #bio {
@@ -220,7 +268,7 @@ a:hover {
 
 /*.row {
     border: solid 1px;
-    background-color: white;
+    background-color: #36294C;
 }*/
 
 /* add sorting icons to gridview sort links */
@@ -257,10 +305,6 @@ a.desc:after {
 
 .sort-ordinal a.desc:after {
     content: "\e156";
-}
-
-.grid-view th {
-    white-space: nowrap;
 }
 
 .hint-block {
@@ -338,7 +382,7 @@ a.desc:after {
     width: 80%;
     height: auto;
     border-radius: 5px;
-    background: var(--white);
+    background: var(--#36294C);
     overflow: auto;
     cursor: default;
     border: 1px solid;
@@ -346,7 +390,7 @@ a.desc:after {
 
   .modal-dialog > * {
     padding: 1rem;
-    background-color:white;
+    background-color:#36294C;
   }
    
   .modal-header,

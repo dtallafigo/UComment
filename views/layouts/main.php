@@ -52,7 +52,7 @@ $this->registerJs($js2);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Html::img('@web/icons/logodavo2.png', ['alt'=>Yii::$app->name, 'id' =>'logo']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-dark bg-dark navbar-expand-md fixed-top',
@@ -107,7 +107,7 @@ $this->registerJs($js2);
 
 <footer class="footer">
     <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="float-left">UComment</p>
 
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>

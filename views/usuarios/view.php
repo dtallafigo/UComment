@@ -233,7 +233,7 @@ $save = Url::to(['comsave/save']);
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-text"><?= $comentario->text ?></p>
+                                                <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
                                             </div>
                                         </div>
                                         <div class="card" style="margin-top: 3%;">
@@ -289,7 +289,7 @@ $save = Url::to(['comsave/save']);
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-text"><?= $comentario->text ?></p>
+                                                <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
                                             </div>
                                         </div>
                                         <div style="margin-top: 4%;">
@@ -319,7 +319,7 @@ $save = Url::to(['comsave/save']);
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-text"><?= $comentario->text ?></p>
+                                    <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
                                     <?php if ($comentario->citado) : ?>
                                         <?php $citado = Comentarios::find()->where(['id' => $comentario->citado])->one(); ?>
                                         <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
@@ -461,7 +461,7 @@ $save = Url::to(['comsave/save']);
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-text"><?= $comentario->text ?></p>
+                                                <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
                                             </div>
                                         </div>
                                         <div class="card" style="margin-top: 3%;">
@@ -517,7 +517,7 @@ $save = Url::to(['comsave/save']);
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <p class="card-text"><?= $comentario->text ?></p>
+                                                <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
                                             </div>
                                         </div>
                                         <div style="margin-top: 4%;">
@@ -547,7 +547,7 @@ $save = Url::to(['comsave/save']);
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-text"><?= $comentario->text ?></p>
+                                    <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
                                     <?php if ($comentario->citado) : ?>
                                         <?php $citado = Comentarios::find()->where(['id' => $comentario->citado])->one(); ?>
                                         <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>

@@ -52,6 +52,10 @@ p, h1, h2, h3, h4, h5, h6, label {
     border-radius: 100%;
 }
 
+.nav {
+    flex-wrap: inherit;
+}
+
 .nav-item {
     color: gray;
 }
@@ -114,6 +118,16 @@ p, h1, h2, h3, h4, h5, h6, label {
     color: #fff;
     background-color:#7E4DBA;
     border: none;
+}
+
+#logo {
+    width: 10%;
+    height: auto;
+}
+
+#logo2 {
+    width: 6%;
+    height: auto;
 }
 
 .cbutton {

@@ -15,7 +15,7 @@ $this->title = 'Seguidos de ' . $ua->log_us;
 $seguir = Url::to(['seguidores/follow']);
 ?>
 <div class="row">
-    <div class="col-9">
+    <div class="col-sm-12 col-md-12 col-lg-9">
         <div class="row com">
             <div class="col-12">
                 <h1>Seguidos de <?= $ua->log_us ?></h1>
@@ -54,10 +54,10 @@ $seguir = Url::to(['seguidores/follow']);
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-2 d-flex justify-content-center">
+                            <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-center">
                                 <img src="<?= $user->url_img ?>" alt="" style="width: 90px; height: auto;">
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-4 col-md-4 col-lg-6">
                                 <?php if (Seguidores::findOne(['seguido_id' => Yii::$app->user->id, 'seguidor_id' => $user->id])) : ?>
                                     <p>Te sigue</p>
                                 <?php else : ?>
@@ -69,7 +69,7 @@ $seguir = Url::to(['seguidores/follow']);
                                 <p><?= $user->bio ?></p>
                             </div>
                             <?php if ($user->id != Yii::$app->user->id) : ?>
-                                <div class="col-4 d-flex justify-content-center">
+                                <div class="col-sm-2 col-md-4 col-lg-2 d-flex justify-content-center">
                                     <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $user->id], ['class' => 'cbutton', 'id' => 'siguiendo' . $user->id]) ?>
                                 </div>
                             <?php endif; ?>

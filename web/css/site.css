@@ -102,8 +102,8 @@ p, h1, h2, h3, h4, h5, h6, label {
     bottom: 14%;
     left: 60%;
     color: #fff;
-    background-color:#7E4DBA;
-    border-color: #007bff;
+    background-color: #7E4DBA;
+    border-color: #7E4DBA;
 }
 
 .log-button {
@@ -409,7 +409,7 @@ a.desc:after {
    
   .modal-header,
   .modal-footer {
-    background: var(--lightgray);
+    background:  #7E4DBA;
   }
    
   .modal-header {

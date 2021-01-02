@@ -70,17 +70,18 @@ $this->registerJs($js2);
             ],
             [
                 'label' => 'Busqueda',
-                'url' => ['/usuarios/index']
+                'url' => ['/site/busqueda']
             ],
             [
-                'label' => 'Comentarios',
-                'url' => ['/comentarios/index']
+                'label' => 'Perfil',
+                'url' => ['/usuarios/view', 'id' => Yii::$app->user->id]
             ],
             [
                 'label'=> 'Usuarios',
                 'items' => [
                     Yii::$app->user->isGuest ? (
-                        ['label' => 'Login', 'url' => ['/site/login']]
+                        ['label' => 'Login', 
+                         'url' => ['/site/login']]
                     ) : (
                         Html::beginForm(['/site/logout'], 'post')
                         . Html::submitButton(

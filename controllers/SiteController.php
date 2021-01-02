@@ -12,6 +12,7 @@ use app\models\Usuarios;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use app\models\Comentarios;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -91,6 +92,27 @@ class SiteController extends Controller
         }
 
         $usuario = new Usuarios;
+    }
+
+    public function actionBusqueda()
+    {
+        $usuarios = new ActiveDataProvider([
+            'query' => Usuarios::find()->where('1=0'),
+        ]);
+        $comentarios = new ActiveDataProvider([
+            'query' => Comentarios::find()->where('1=0'),
+        ]);
+
+        if (($cadena = Yii::$app->request->get('cadena', ''))) {
+            $usuarios->query->where(['ilike', 'log_us', $cadena]);
+            $comentarios->query->where(['ilike', 'text', $cadena]);
+        }
+
+        return $this->render('busqueda', [
+            'usuarios' => $usuarios,
+            'comentarios' => $comentarios,
+            'cadena' => $cadena,
+        ]);
     }
 
     /**

@@ -49,6 +49,7 @@ CREATE TABLE likes
 (
         usuario_id      BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
     ,   comentario_id   BIGINT      REFERENCES comentarios(id) ON DELETE CASCADE
+    ,   created_at      TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
     ,   PRIMARY KEY (usuario_id, comentario_id)  
 );
 

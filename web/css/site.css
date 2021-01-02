@@ -121,7 +121,7 @@ p, h1, h2, h3, h4, h5, h6, label {
 }
 
 #logo {
-    width: 10%;
+    width: 7%;
     height: auto;
 }
 
@@ -143,6 +143,11 @@ p, h1, h2, h3, h4, h5, h6, label {
     color: #fff;
     background-color: #007bff;
     bottom: 35%;
+}
+
+#logo-login {
+    width: 15%;
+    height: auto;
 }
 
 .ir-arriba{

@@ -28,7 +28,7 @@ $this->title = 'Editar usuario ' . $model->log_us;
                 <img src="icons/bio.svg" id="bio">
             </div>
             <div class="col-9">
-                <?= $form->field($model, 'bio')->input(['maxlength' => true, 'value' => $model->bio])->label(false) ?>
+                <?= $form->field($model, 'bio')->textarea(['maxlength' => true, 'value' => $model->bio])->label(false) ?>
             </div>
         </div>
         <div class="row location">

@@ -15,6 +15,8 @@ use yii\bootstrap4\ButtonDropdown;
 $this->title = 'Perfil de ' . $usuario->log_us;
 $text = Seguidores::siguiendo($usuario->id) ? 'Siguiendo' : 'Seguir';
 $seguir = Url::to(['seguidores/follow']);
+$cc = Comentarios::find()->where(['usuario_id' => $usuario->id])->count();
+$cc--;
 $js1 = <<<EOT
 var boton = $("#siguiendo");
 var sg = $("#sg");
@@ -79,6 +81,19 @@ $save = Url::to(['comsave/save']);
 ?>
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="row com">
+            <div class="col-1">
+                <a href="<?= Url::to(Yii::$app->request->referrer); ?>">
+                    <img src="icons/hacia-atras.png" id="flecha">
+                </a>
+            </div>
+            <div class="col-10 d-flex justify-content-left">
+                <h4><?= $usuario->log_us ?></h4>
+            </div>
+            <div class="col-4" style="margin-left: 8%;">
+                <small><?= $cc ?> comentarios publicados</small>
+            </div>
+        </div>
         <div class="row user">
             <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center align-self-center text-center">
                 <img src="<?= $usuario->url_img ?>" id="perfil">
@@ -108,7 +123,7 @@ $save = Url::to(['comsave/save']);
                 <img src="icons/bio.svg" id="bio">
             </div>
             <div class="col-8">
-                <p><?= $usuario->bio ?></p>
+                <?= Html::tag('p', Html::encode($usuario->bio), ['class' => 'card-text']) ?>
             </div>
         </div>
         <div class="row location">
@@ -116,7 +131,7 @@ $save = Url::to(['comsave/save']);
                 <img src="icons/location.svg" id="location">
             </div>
             <div class="col-8">
-                <p><?= $usuario->ubi ?></p>
+                <small><?= $usuario->ubi ?></small>
             </div>
         </div>
         <div class="row sg">
@@ -131,12 +146,12 @@ $save = Url::to(['comsave/save']);
                 </a>
             </div>
             <div class="col-3 d-flex justify-content-center">
-                <a href="<?= Url::to(['seguidores/follows', 'id' => $usuario->id]); ?>">
+                <a href="<?= Url::to(['seguidores/followers', 'id' => $usuario->id]); ?>">
                     <p><?= Seguidores::find()->where(['seguidor_id' => $usuario->id])->count() ?></p>
                 </a>
             </div>
             <div class="col-3">
-                <a href="<?= Url::to(['seguidores/follows', 'id' => $usuario->id]); ?>">
+                <a href="<?= Url::to(['seguidores/followers', 'id' => $usuario->id]); ?>">
                     <h5>Seguidos</h5>
                 </a>
             </div>
@@ -329,6 +344,7 @@ $save = Url::to(['comsave/save']);
                                             </div>
                                             <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
                                                 <div class="card-body">
+                                                    <?= Html::tag('p', Html::encode($citado->text), ['class' => 'card-text']) ?>
                                                     <p class="card-text"><?= $citado->text ?></p>
                                                 </div>
                                             </a>
@@ -545,7 +561,7 @@ $save = Url::to(['comsave/save']);
                                             </div>
                                             <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
                                                 <div class="card-body">
-                                                    <p class="card-text"><?= $citado->text ?></p>
+                                                    <?= Html::tag('p', Html::encode($citado->text), ['class' => 'card-text']) ?>
                                                 </div>
                                             </a>
                                         </div>

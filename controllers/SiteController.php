@@ -96,22 +96,34 @@ class SiteController extends Controller
 
     public function actionBusqueda()
     {
-        $usuarios = new ActiveDataProvider([
-            'query' => Usuarios::find()->where('1=0'),
-        ]);
-        $comentarios = new ActiveDataProvider([
-            'query' => Comentarios::find()->where('1=0'),
-        ]);
+        $usuarios = Usuarios::find()->where('1=0');
+        $comentarios = Comentarios::find()->where('1=0');
+        $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+
+        $countU = 0;
+        $countC = 0;
+
+        if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
+            Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
+            return $this->redirect(['comentarios/view', 'id' => $publicacion->id]);
+        }
 
         if (($cadena = Yii::$app->request->get('cadena', ''))) {
-            $usuarios->query->where(['ilike', 'log_us', $cadena]);
-            $comentarios->query->where(['ilike', 'text', $cadena]);
+            $usuarios = Usuarios::find()->where(['ilike', 'log_us', $cadena])->all();
+            $countU = Usuarios::find()->where(['ilike', 'log_us', $cadena])->count();
+            $comentarios = Comentarios::find()->where(['ilike', 'text', $cadena])->all();
+            $countC = Comentarios::find()->where(['ilike', 'text', $cadena])->count();
         }
 
         return $this->render('busqueda', [
             'usuarios' => $usuarios,
             'comentarios' => $comentarios,
+            'publicacion' => $publicacion,
+            'actual' => $actual,
             'cadena' => $cadena,
+            'countU' => $countU,
+            'countC' => $countC,
         ]);
     }
 
@@ -142,8 +154,16 @@ class SiteController extends Controller
                 ], true);
     
                 $body = <<<EOT
-                    <h2>Pulsa el siguiente enlace para confirmar la cuenta de correo.<h2>
-                    <a href="$url">Confirmar cuenta</a>
+                    <div class='wrap'>
+                        <div class='container'>
+                            <div class='row com'>
+                                <div class='col-12'>
+                                    <h2>Bienvenido a <img src='icons/logodavo2.png'></h2>
+                                    <a href="$url">Confirmar cuenta</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 EOT;
                 $this->enviarMail($body, $newUser->email);
                 Yii::$app->session->setFlash('success', 'Se ha creado el usuario correctamente.');

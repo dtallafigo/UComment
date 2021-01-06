@@ -12,10 +12,10 @@ $this->title = 'Login';
 ?>
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6" style="background-color: #36294C; padding: 2%;">
+    <div class="row com">
+        <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="col-12">
-                <h1>Iniciar Sesion</h1>
+                <h2>Iniciar sesion en <img src="icons/logodavo2.png" alt="logo" id="logo-login"></h2>
             </div>
             <div class="col-12">
                 <?php $form = ActiveForm::begin([
@@ -33,27 +33,25 @@ $this->title = 'Login';
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6" style="background-color: #36294C; padding: 2%;">
+        <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="col-12">
-                <div class="col-12">
-                    <h1>Unete a Ucomment</h1>
-                </div>
-                <div class="col-12">
-                    <?php $form = ActiveForm::begin([
-                        'layout' => 'horizontal',
-                        'fieldConfig' => [
-                            'horizontalCssClasses' => ['wrapper' => 'col-lg-12'],
-                        ],
-                    ]); ?>
+                <h2>Unete a <img src="icons/logodavo2.png" alt="logo" id="logo-login"></h2>
+            </div>
+            <div class="col-12">
+                <?php $form = ActiveForm::begin([
+                    'layout' => 'horizontal',
+                    'fieldConfig' => [
+                        'horizontalCssClasses' => ['wrapper' => 'col-lg-12'],
+                    ],
+                ]); ?>
 
-                    <?= $form->field($usuario, 'log_us')->textInput()->hint('Introduce tu nombre de ususario.')->label('Usuario') ?>
-                    <?= $form->field($usuario, 'password')->passwordInput()->hint('Introduce tu contraseña.')->label('Contraseña') ?>
-                    <?= $form->field($usuario, 'password_repeat')->passwordInput()->hint('Introduce de nuevo tu contraseña.')->label('Repetir contraseña') ?>
-                    <?= $form->field($usuario, 'email')->input('email')->hint('Introduce un email valido.')->label('Email') ?>
-                    <?= Html::submitButton('Registrar', ['class' => 'log-button']) ?>
+                <?= $form->field($usuario, 'log_us')->textInput()->hint('Introduce tu nombre de ususario.')->label('Usuario') ?>
+                <?= $form->field($usuario, 'email')->input('email')->hint('Introduce un email valido.')->label('Email') ?>
+                <?= $form->field($usuario, 'password')->passwordInput()->hint('Introduce tu contraseña.')->label('Contraseña') ?>
+                <?= $form->field($usuario, 'password_repeat')->passwordInput()->hint('Introduce de nuevo tu contraseña.')->label('Repetir contraseña') ?>
+                <?= Html::submitButton('Registrar', ['class' => 'log-button']) ?>
 
-                    <?php ActiveForm::end(); ?>
-                </div>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>

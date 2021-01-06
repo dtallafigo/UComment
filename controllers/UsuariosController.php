@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Likes;
+use yii\filters\AccessControl;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -22,6 +23,17 @@ class UsuariosController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['view', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -58,7 +70,7 @@ class UsuariosController extends Controller
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
         $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-        $misLikes = Likes::find()->where(['usuario_id' => $id])->limit(5)->all();
+        $misLikes = Likes::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(20)->all();
 
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');

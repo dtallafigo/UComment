@@ -15,6 +15,8 @@ use yii\bootstrap4\ButtonDropdown;
 $this->title = 'Perfil de ' . $usuario->log_us;
 $text = Seguidores::siguiendo($usuario->id) ? 'Siguiendo' : 'Seguir';
 $seguir = Url::to(['seguidores/follow']);
+$cc = Comentarios::find()->where(['usuario_id' => $usuario->id])->count();
+$cc--;
 $js1 = <<<EOT
 var boton = $("#siguiendo");
 var sg = $("#sg");
@@ -79,6 +81,19 @@ $save = Url::to(['comsave/save']);
 ?>
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-9">
+        <div class="row com">
+            <div class="col-1">
+                <a href="<?= Url::to(Yii::$app->request->referrer); ?>">
+                    <img src="icons/hacia-atras.png" id="flecha">
+                </a>
+            </div>
+            <div class="col-10 d-flex justify-content-left">
+                <h4><?= $usuario->log_us ?></h4>
+            </div>
+            <div class="col-4" style="margin-left: 8%;">
+                <small><?= $cc ?> comentarios publicados</small>
+            </div>
+        </div>
         <div class="row user">
             <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center align-self-center text-center">
                 <img src="<?= $usuario->url_img ?>" id="perfil">
@@ -108,7 +123,7 @@ $save = Url::to(['comsave/save']);
                 <img src="icons/bio.svg" id="bio">
             </div>
             <div class="col-8">
-                <p><?= $usuario->bio ?></p>
+                <?= Html::tag('p', Html::encode($usuario->bio), ['class' => 'card-text']) ?>
             </div>
         </div>
         <div class="row location">
@@ -116,7 +131,7 @@ $save = Url::to(['comsave/save']);
                 <img src="icons/location.svg" id="location">
             </div>
             <div class="col-8">
-                <p><?= $usuario->ubi ?></p>
+                <small><?= $usuario->ubi ?></small>
             </div>
         </div>
         <div class="row sg">
@@ -131,12 +146,12 @@ $save = Url::to(['comsave/save']);
                 </a>
             </div>
             <div class="col-3 d-flex justify-content-center">
-                <a href="<?= Url::to(['seguidores/follows', 'id' => $usuario->id]); ?>">
+                <a href="<?= Url::to(['seguidores/followers', 'id' => $usuario->id]); ?>">
                     <p><?= Seguidores::find()->where(['seguidor_id' => $usuario->id])->count() ?></p>
                 </a>
             </div>
             <div class="col-3">
-                <a href="<?= Url::to(['seguidores/follows', 'id' => $usuario->id]); ?>">
+                <a href="<?= Url::to(['seguidores/followers', 'id' => $usuario->id]); ?>">
                     <h5>Seguidos</h5>
                 </a>
             </div>
@@ -224,11 +239,8 @@ $save = Url::to(['comsave/save']);
                                                     <div class="col-2 d-flex justify-content-center">
                                                         <img src="<?= $user->url_img ?>" id="citado">
                                                     </div>
-                                                    <div class="col-4 d-flex justify-content-left">
-                                                        <p class="center"><?= $user->log_us ?></p>
-                                                    </div>
-                                                    <div class="col-6 d-flex justify-content-center">
-                                                        <p class="center"><?= $comentario->fecha($comentario->created_at) ?></p>
+                                                    <div class="col-10 d-flex justify-content-left">
+                                                        <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,11 +292,8 @@ $save = Url::to(['comsave/save']);
                                                     <div class="col-2 d-flex justify-content-center">
                                                         <img src="<?= $user->url_img ?>" id="citado">
                                                     </div>
-                                                    <div class="col-4 d-flex justify-content-left">
-                                                        <p class="center"><?= $user->log_us ?></p>
-                                                    </div>
-                                                    <div class="col-6 d-flex justify-content-center">
-                                                        <p class="center"><?= $comentario->fecha($comentario->created_at) ?></p>
+                                                    <div class="col-10 d-flex justify-content-left">
+                                                        <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -310,11 +319,8 @@ $save = Url::to(['comsave/save']);
                                         <div class="col-1 d-flex justify-content-center">
                                             <img src="<?= $user->url_img ?>" id="fcom">
                                         </div>
-                                        <div class="col-7">
-                                            <p class="center"><?= $user->log_us ?></p>
-                                        </div>
-                                        <div class="col-4">
-                                            <p class="center"><?= $comentario->fecha($comentario->created_at) ?></p>
+                                        <div class="col-10 d-flex justify-content-left">
+                                            <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -329,18 +335,16 @@ $save = Url::to(['comsave/save']);
                                                     <div class="col-2 d-flex justify-content-right">
                                                         <img src="<?= $uc->url_img ?>" id="citado">
                                                     </div>
-                                                    <div class="col-4 d-flex justify-content-left">
+                                                    <div class="col-10 d-flex justify-content-left">
                                                         <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
-                                                            <p class="center"><?= $uc->log_us ?></p>
+                                                            <p class="center"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
                                                         </a>
-                                                    </div>
-                                                    <div class="col-6 d-flex justify-content-center">
-                                                        <p class="center"><?= $citado->fecha($citado->created_at) ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
                                                 <div class="card-body">
+                                                    <?= Html::tag('p', Html::encode($citado->text), ['class' => 'card-text']) ?>
                                                     <p class="card-text"><?= $citado->text ?></p>
                                                 </div>
                                             </a>
@@ -383,7 +387,7 @@ $save = Url::to(['comsave/save']);
                     $comentario = Comentarios::findOne(['id' => $coml->comentario_id]);
                     $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
                     $likes = <<<EOT
-                            var boton = $("#like$comentario->id");
+                            var boton = $("#likepl$comentario->id");
                             boton.click(function(event) {
                                 event.preventDefault();
                                 $.ajax({
@@ -393,12 +397,12 @@ $save = Url::to(['comsave/save']);
                                         'comentario_id': $comentario->id
                                     },
                                     success: function (data, code, jqXHR) {
-                                        var countlike$comentario->id = document.getElementById("countLike$comentario->id");
-                                        countlike$comentario->id.innerHTML = data[1];
+                                        var countlikepl$comentario->id = document.getElementById("countLikepl$comentario->id");
+                                        countlikepl$comentario->id.innerHTML = data[1];
                                         if (data[0]) {
-                                            document.getElementById("icon$comentario->id").src="icons/like.svg";
+                                            document.getElementById("iconpl$comentario->id").src="icons/like.svg";
                                         } else {
-                                            document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                                            document.getElementById("iconpl$comentario->id").src="icons/dislike.svg";
                                         }
                                     }
                                 });
@@ -429,7 +433,7 @@ $save = Url::to(['comsave/save']);
                             EOT;
                     $this->registerJs($fav);
                     ?>
-                    <div class="modal" id="respuesta<?= $comentario->id ?>">
+                    <div class="modal" id="respuestapl<?= $comentario->id ?>">
                         <div class="modal-dialog">
                             <header class="modal-header">
                                 <img src="<?= $actual->url_img ?>" id="inicio">
@@ -452,11 +456,8 @@ $save = Url::to(['comsave/save']);
                                                     <div class="col-2 d-flex justify-content-center">
                                                         <img src="<?= $user->url_img ?>" id="citado">
                                                     </div>
-                                                    <div class="col-4 d-flex justify-content-left">
-                                                        <p class="center"><?= $user->log_us ?></p>
-                                                    </div>
-                                                    <div class="col-6 d-flex justify-content-center">
-                                                        <p class="center"><?= $comentario->fecha($comentario->created_at) ?></p>
+                                                    <div class="col-10 d-flex justify-content-left">
+                                                        <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -482,7 +483,7 @@ $save = Url::to(['comsave/save']);
                             </section>
                         </div>
                     </div>
-                    <div class="modal" id="citado<?= $comentario->id ?>">
+                    <div class="modal" id="citadopl<?= $comentario->id ?>">
                         <div class="modal-dialog">
                             <header class="modal-header">
                                 <img src="<?= $actual->url_img ?>" id="inicio">
@@ -508,11 +509,8 @@ $save = Url::to(['comsave/save']);
                                                     <div class="col-2 d-flex justify-content-center">
                                                         <img src="<?= $user->url_img ?>" id="citado">
                                                     </div>
-                                                    <div class="col-4 d-flex justify-content-left">
-                                                        <p class="center"><?= $user->log_us ?></p>
-                                                    </div>
-                                                    <div class="col-6 d-flex justify-content-center">
-                                                        <p class="center"><?= $comentario->fecha($comentario->created_at) ?></p>
+                                                    <div class="col-10 d-flex justify-content-left">
+                                                        <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -538,11 +536,8 @@ $save = Url::to(['comsave/save']);
                                         <div class="col-1 d-flex justify-content-center">
                                             <img src="<?= $user->url_img ?>" id="fcom">
                                         </div>
-                                        <div class="col-7">
-                                            <p class="center"><?= $user->log_us ?></p>
-                                        </div>
-                                        <div class="col-4">
-                                            <p class="center"><?= $comentario->fecha($comentario->created_at) ?></p>
+                                        <div class="col-10 d-flex justify-content-left">
+                                            <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -557,19 +552,16 @@ $save = Url::to(['comsave/save']);
                                                     <div class="col-2 d-flex justify-content-right">
                                                         <img src="<?= $uc->url_img ?>" id="citado">
                                                     </div>
-                                                    <div class="col-4 d-flex justify-content-left">
+                                                    <div class="col-10 d-flex justify-content-left">
                                                         <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
-                                                            <p class="center"><?= $uc->log_us ?></p>
+                                                            <p class="center"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
                                                         </a>
-                                                    </div>
-                                                    <div class="col-6 d-flex justify-content-center">
-                                                        <p class="center"><?= $citado->fecha($citado->created_at) ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
                                                 <div class="card-body">
-                                                    <p class="card-text"><?= $citado->text ?></p>
+                                                    <?= Html::tag('p', Html::encode($citado->text), ['class' => 'card-text']) ?>
                                                 </div>
                                             </a>
                                         </div>
@@ -578,22 +570,22 @@ $save = Url::to(['comsave/save']);
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-3 d-flex justify-content-center">
-                                            <a class="open-modal" data-open="respuesta<?= $comentario->id ?>">
+                                            <a class="open-modal" data-open="respuestapl<?= $comentario->id ?>">
                                                 <img src="icons/respuesta.svg" class="icon" id="answer">
                                             </a>
                                             <p class="count"><?= $comentario->getComentarios()->count(); ?></p>
                                         </div>
                                         <div class="col-3 d-flex justify-content-center">
-                                            <a class="open-modal" data-open="citado<?= $comentario->id ?>">
+                                            <a class="open-modal" data-open="citadopl<?= $comentario->id ?>">
                                                 <img src="icons/citado.svg" class="icon" id="citar">
                                             </a>
                                             <p class="count"><?= $comentario->getCitados()->count(); ?></p>
                                         </div>
                                         <div class="col-3 d-flex justify-content-center">
-                                            <a id="like<?= $comentario->id ?>" class="heart">
-                                                <img src="<?= Likes::like($comentario->id) ? 'icons/like.svg' : 'icons/dislike.svg' ?>" class="icon" id="icon<?= $comentario->id ?>">
+                                            <a id="likepl<?= $comentario->id ?>" class="heart">
+                                                <img src="<?= Likes::like($comentario->id) ? 'icons/like.svg' : 'icons/dislike.svg' ?>" class="icon" id="iconpl<?= $comentario->id ?>">
                                             </a>
-                                            <p id="countLike<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
+                                            <p id="countLikepl<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                         </div>
                                         <div class="col-3">
 

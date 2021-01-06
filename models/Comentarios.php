@@ -109,8 +109,8 @@ class Comentarios extends \yii\db\ActiveRecord
             return $interval->format('%im');
         } elseif ($interval->format('%d') < 1) {
             return $interval->format('%Hh');
-        } elseif ($interval->format('%d') > 1) {
-            return $cf->format('d-m-Y');
+        } else {
+            return $cf->format('d-m-y');
         }
     }
 

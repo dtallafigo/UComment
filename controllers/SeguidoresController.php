@@ -80,10 +80,12 @@ class SeguidoresController extends Controller
     public function actionFollowers($id)
     {
         $seguidores = Seguidores::find()->where(['seguido_id' => $id])->all();
+        $seguidos = Seguidores::find()->where(['seguidor_id' => $id])->all();
         $ua = Usuarios::findOne(['id' => $id]);
 
         return $this->render('followers', [
             'seguidores' => $seguidores,
+            'seguidos' => $seguidos,
             'ua' => $ua,
         ]);
     }

@@ -2,7 +2,7 @@
 
 return [
     'adminEmail' => 'yiicomment@gmail.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'senderEmail' => 'yiicomment@gmail.com',
+    'senderName' => 'yiicomment@gmail.com',
     'smtpUsername' => 'yiicomment@gmail.com',
 ];

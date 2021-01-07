@@ -70,19 +70,19 @@ VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)
         ('antonio', 'antonio@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('damian', 'damian@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');
 
-INSERT INTO comentarios (usuario_id, text, respuesta, citado, img, created_at)
-VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('1', 'Segundo comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('1', 'Tercero comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('1', 'Cuarto comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('1', 'Quinto comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('1', 'Sexto comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('2', 'Primer comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('2', 'Segundo comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('2', 'Tercero comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('2', 'Cuarto comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('2', 'Quinto comentario.', NULL, NULL, NULL, '31-12-2020'),
-        ('2', 'Sexto comentario.', NULL, NULL, NULL, '31-12-2020');
+INSERT INTO comentarios (usuario_id, text, respuesta, citado, img)
+VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL),
+        ('1', 'Segundo comentario.', NULL, NULL, NULL),
+        ('1', 'Tercero comentario.', NULL, NULL, NULL),
+        ('1', 'Cuarto comentario.', NULL, NULL, NULL),
+        ('1', 'Quinto comentario.', NULL, NULL, NULL),
+        ('1', 'Sexto comentario.', NULL, NULL, NULL),
+        ('2', 'Primer comentario.', NULL, NULL, NULL),
+        ('2', 'Segundo comentario.', NULL, NULL, NULL),
+        ('2', 'Tercero comentario.', NULL, NULL, NULL),
+        ('2', 'Cuarto comentario.', NULL, NULL, NULL),
+        ('2', 'Quinto comentario.', NULL, NULL, NULL),
+        ('2', 'Sexto comentario.', NULL, NULL, NULL);
 
 INSERT INTO seguidores (seguido_id, seguidor_id)
 VALUES ('3', '1'),

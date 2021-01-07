@@ -86,26 +86,6 @@ class ComentariosController extends Controller
     }
 
     /**
-     * Updates an existing Comentarios model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
      * Deletes an existing Comentarios model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -114,9 +94,18 @@ class ComentariosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $comentario = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        if ($comentario->usuario_id == Yii::$app->user->id || $comentario->usuario_id == '1') {
+            $comentario->delete();
+            Yii::$app->session->setFlash('success', 'Se ha eliminado tu comentario.');
+            return $this->goBack();
+        } else {
+            Yii::$app->session->setFlash('error', 'Debe ser el propietario del comentario para eliminarlo.');
+            return $this->goBack();
+        }
+
+        return $this->goBack();
     }
 
     /**

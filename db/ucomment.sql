@@ -28,8 +28,8 @@ CREATE TABLE comentarios
     ,   usuario_id      BIGINT          NOT NULL REFERENCES usuarios (id) ON DELETE CASCADE
     ,   text            varchar(280)    NOT NULL 
     ,   created_at      TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
-    ,   respuesta       BIGINT          REFERENCES comentarios (id) ON DELETE CASCADE
-    ,   citado          BIGINT          REFERENCES comentarios (id) ON DELETE CASCADE
+    ,   respuesta       BIGINT          REFERENCES comentarios (id) ON DELETE SET NULL
+    ,   citado          BIGINT          REFERENCES comentarios (id) ON DELETE SET NULL
     ,   img             varchar(2048)
 );
 

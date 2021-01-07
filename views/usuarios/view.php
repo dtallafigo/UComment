@@ -319,9 +319,23 @@ $save = Url::to(['comsave/save']);
                                         <div class="col-1 d-flex justify-content-center">
                                             <img src="<?= $user->url_img ?>" id="fcom">
                                         </div>
-                                        <div class="col-10 d-flex justify-content-left">
+                                        <div class="col-6 d-flex justify-content-left">
                                             <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                         </div>
+                                        <?php if ($comentario->usuario_id == Yii::$app->user->id) : ?>
+                                            <div class="col-4 d-flex flex-row-reverse">
+                                                <?= ButtonDropdown::widget([
+                                                    'options' => ['class' => 'delete-comment'],
+                                                    'direction' => 'left',
+                                                    'label' => ' ···',
+                                                    'dropdown' => [
+                                                        'items' => [
+                                                            Html::beginForm(['/comentarios/delete', 'id' => $comentario->id], 'post') . Html::img('icons/papelera.png', ['id' => 'papelera']) . Html::submitButton('Eliminar comentario', ['class' => 'eliminar-comentario']) . Html::endForm()
+                                                        ],
+                                                    ]
+                                                ]) ?>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="card-body">

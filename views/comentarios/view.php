@@ -6,6 +6,7 @@ use app\models\Usuarios;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
+use yii\bootstrap4\ButtonDropdown;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
@@ -202,9 +203,23 @@ $this->registerJs($likes1);
                             <div class="col-2 d-flex justify-content-center">
                                 <img src="<?= $uco->url_img ?>" alt="" style="width: 50px; height: auto;">
                             </div>
-                            <div class="col-10 d-flex justify-content-left">
+                            <div class="col-6 d-flex justify-content-left">
                                 <p class="center"><?= $uco->log_us ?> · <?= $original->fecha($original->created_at) ?></p>
                             </div>
+                            <?php if ($original->usuario_id == Yii::$app->user->id) : ?>
+                                <div class="col-4 d-flex flex-row-reverse">
+                                    <?= ButtonDropdown::widget([
+                                        'options' => ['class' => 'delete-comment'],
+                                        'direction' => 'left',
+                                        'label' => ' ···',
+                                        'dropdown' => [
+                                            'items' => [
+                                                Html::beginForm(['/comentarios/delete', 'id' => $original->id], 'post') . Html::img('icons/papelera.png', ['id' => 'papelera']) . Html::submitButton('Eliminar comentario', ['class' => 'eliminar-comentario']) . Html::endForm()
+                                            ],
+                                        ]
+                                    ]) ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="card-body">
@@ -366,11 +381,23 @@ $this->registerJs($likes1);
                             <div class="col-2 d-flex justify-content-center">
                                 <img src="<?= $userA->url_img ?>" alt="" style="width: 50px; height: auto;">
                             </div>
-                            <div class="col-6 justify-content-left">
-                                <div class="col-10 d-flex justify-content-left">
-                                    <p class="center"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
-                                </div>
+                            <div class="col-6 d-flex justify-content-left">
+                                <p class="center"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
                             </div>
+                            <?php if ($model->usuario_id == Yii::$app->user->id) : ?>
+                                <div class="col-4 d-flex flex-row-reverse">
+                                    <?= ButtonDropdown::widget([
+                                        'options' => ['class' => 'delete-comment'],
+                                        'direction' => 'left',
+                                        'label' => ' ···',
+                                        'dropdown' => [
+                                            'items' => [
+                                                Html::beginForm(['/comentarios/delete', 'id' => $model->id], 'post') . Html::img('icons/papelera.png', ['id' => 'papelera']) . Html::submitButton('Eliminar comentario', ['class' => 'eliminar-comentario']) . Html::endForm()
+                                            ],
+                                        ]
+                                    ]) ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="col-12" style="margin-top: 3%;">
                                 <small>Respuesta a <a href="<?= Url::to(['usuarios/view', 'id' => $uco->id]); ?>"><?= $uco->log_us ?></a></small>
                             </div>
@@ -530,11 +557,8 @@ $this->registerJs($likes1);
                                                 <div class="col-2 d-flex justify-content-center">
                                                     <img src="<?= $userA->url_img ?>" id="citado">
                                                 </div>
-                                                <div class="col-4 d-flex justify-content-left">
-                                                    <p class="card-title"><?= $userA->log_us ?></p>
-                                                </div>
-                                                <div class="col-6 d-flex justify-content-center">
-                                                    <p><?= $model->fecha($model->created_at) ?></p>
+                                                <div class="col-6 d-flex justify-content-left">
+                                                    <p class="card-title"><?= $userA->log_us ?> . <?= $model->fecha($model->created_at) ?></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -555,17 +579,28 @@ $this->registerJs($likes1);
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-2 d-flex justify-content-center">
                                     <img src="<?= $userA->url_img ?>" alt="" style="width: 50px; height: auto;">
                                 </div>
                                 <div class="col-6 justify-content-left">
                                     <a href="<?= Url::to(['usuarios/view', 'id' => $userA->id]); ?>" id="link_name">
-                                        <h3><?= $userA->log_us ?></h3>
+                                        <h5><?= $userA->log_us ?> . <?= $model->fecha($model->created_at) ?></h5>
                                     </a>
                                 </div>
-                                <div class="col-4">
-                                    <p><?= $model->fecha($model->created_at) ?></p>
-                                </div>
+                                <?php if ($model->usuario_id == Yii::$app->user->id) : ?>
+                                    <div class="col-4 d-flex flex-row-reverse">
+                                        <?= ButtonDropdown::widget([
+                                            'options' => ['class' => 'delete-comment'],
+                                            'direction' => 'left',
+                                            'label' => ' ···',
+                                            'dropdown' => [
+                                                'items' => [
+                                                    Html::beginForm(['/comentarios/delete', 'id' => $model->id], 'post') . Html::img('icons/papelera.png', ['id' => 'papelera']) . Html::submitButton('Eliminar comentario', ['class' => 'eliminar-comentario']) . Html::endForm()
+                                                ],
+                                            ]
+                                        ]) ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12" style="margin-top: 3%;">
                                 <p><?= $model->text ?></p>
@@ -578,16 +613,13 @@ $this->registerJs($likes1);
                                 <div class="card" style="margin-bottom: 2%;">
                                     <div class="card-header">
                                         <div class="row">
-                                            <div class="col-2 d-flex justify-content-center">
+                                            <div class="col-1 d-flex justify-content-center">
                                                 <img src="<?= $uc->url_img ?>" id="citado">
                                             </div>
-                                            <div class="col-2 d-flex justify-content-left">
+                                            <div class="col-6 d-flex justify-content-left">
                                                 <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
-                                                    <p class="card-title"><?= $uc->log_us ?></p>
+                                                    <p class="card-title"><?= $uc->log_us ?> . <?= $citado->fecha($citado->created_at) ?></p>
                                                 </a>
-                                            </div>
-                                            <div class="col-8 d-flex justify-content-center">
-                                                <p><?= $citado->fecha($citado->created_at) ?></p>
                                             </div>
                                         </div>
                                     </div>

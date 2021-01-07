@@ -26,6 +26,32 @@ small {
     color: gray;
 }
 
+#sugerido-img {
+    width: 2rem;
+}
+
+.s {
+    border-bottom: solid 1px #515480;
+}
+
+@media (max-width: 992px) { 
+    .b {
+        margin-top: 10%;
+    }
+    .g {
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 768px) { 
+    .b {
+        margin-top: 10%;
+    }
+    .g {
+        margin-top: 10%;
+    }
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

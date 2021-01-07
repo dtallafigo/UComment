@@ -68,7 +68,11 @@ VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('ricardo', 'ricardo99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('antonio', 'antonio@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
-        ('damian', 'damian@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');
+        ('damian', 'damian@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('jaime', 'jaime@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('martin', 'martin@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('chuso', 'chuso@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+        ('cheto', 'cheto@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');
 
 INSERT INTO comentarios (usuario_id, text, respuesta, citado, img)
 VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL),

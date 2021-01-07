@@ -79,7 +79,7 @@ $this->registerJs($js2);
 $like = Url::to(['likes/like']);
 $save = Url::to(['comsave/save']);
 ?>
-<div class="row">
+<div class="row g">
     <div class="col-sm-12 col-md-12 col-lg-9">
         <div class="row com">
             <div class="col-1">
@@ -612,6 +612,24 @@ $save = Url::to(['comsave/save']);
                 <?php endforeach; ?>
             </div>
         </div>
-
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-3 b">
+        <div class="card">
+            <div class="card-header d-flex justify-content-center">
+                <h5>Usuarios Sugeridos</h5>
+            </div>
+            <?php foreach($sugeridos as $sugerido) : ?>
+                <div class="card-body s">
+                    <div class="row">
+                        <div class="col-2 d-flex justify-content-center">
+                            <img src="<?= $sugerido->url_img ?>" id="sugerido-img">
+                        </div>
+                        <div class="col-4 d-flex justify-content-center">
+                            <p class="center"><?= $sugerido->log_us ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ; ?>
+        </div>
     </div>
 </div>

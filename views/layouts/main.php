@@ -28,6 +28,7 @@ EOT;
 $this->registerJs($js2);
 ?>
 <?php $this->beginPage() ?>
+
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>

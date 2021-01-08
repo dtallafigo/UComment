@@ -71,6 +71,15 @@ class UsuariosController extends Controller
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
         $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
         $misLikes = Likes::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(20)->all();
+        $all = Usuarios::find()->all();
+        $sugeridos = [];
+        for ($i = 0; $i < 3; $i++) {
+            $random = rand(0, count($all)-1);
+            if ($all[$random]->id == Yii::$app->user->id) {
+                return;
+            }
+            array_push($sugeridos, $all[$random]);
+        }
 
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
@@ -84,6 +93,7 @@ class UsuariosController extends Controller
             'publicacion' => $publicacion,
             'actual' => $actual,
             'ml' => $misLikes,
+            'sugeridos' => $sugeridos,
         ]);
     }
 

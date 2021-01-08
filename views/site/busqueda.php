@@ -48,7 +48,7 @@ document.addEventListener("keyup", e => {
 EOT;
 $this->registerJs($js2);
 ?>
-<div class="row com">
+<div class="row com g">
 
     <div class="col-12">
         <p>Busca por usuarios o comentario.</p>

@@ -14,8 +14,8 @@ $this->title = 'Seguidores de ' . $ua->log_us;
 \yii\web\YiiAsset::register($this);
 $seguir = Url::to(['seguidores/follow']);
 ?>
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-9">
+<div class="row g">
+    <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="row com">
             <div class="col-1">
                 <a href="<?= Url::to(Yii::$app->request->referrer); ?>">

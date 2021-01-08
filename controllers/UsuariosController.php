@@ -75,7 +75,7 @@ class UsuariosController extends Controller
         $sugeridos = [];
         for ($i = 0; $i < 3; $i++) {
             $random = rand(0, count($all)-1);
-            if ($random == Yii::$app->user->id) {
+            if ($all[$random]->id == Yii::$app->user->id) {
                 return;
             }
             array_push($sugeridos, $all[$random]);

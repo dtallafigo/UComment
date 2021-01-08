@@ -13,8 +13,8 @@ $this->title = 'likes de ' . $ucl->log_us;
 \yii\web\YiiAsset::register($this);
 $seguir = Url::to(['seguidores/follow']);
 ?>
-<div class="row">
-    <div class="col-9">
+<div class="row g">
+    <div class="col-12">
         <div class="row com">
             <div class="col-12">
                 <h1>Likes de <?= $ucl->log_us ?></h1>

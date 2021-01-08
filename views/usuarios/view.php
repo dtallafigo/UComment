@@ -16,7 +16,11 @@ $this->title = 'Perfil de ' . $usuario->log_us;
 $text = Seguidores::siguiendo($usuario->id) ? 'Siguiendo' : 'Seguir';
 $seguir = Url::to(['seguidores/follow']);
 $cc = Comentarios::find()->where(['usuario_id' => $usuario->id])->count();
-$cc--;
+if ($cc == 0) {
+    $cc = 0;
+} else {
+    $cc--;
+}
 $js1 = <<<EOT
 var boton = $("#siguiendo");
 var sg = $("#sg");
@@ -80,7 +84,7 @@ $like = Url::to(['likes/like']);
 $save = Url::to(['comsave/save']);
 ?>
 <div class="row g">
-    <div class="col-sm-12 col-md-12 col-lg-9">
+    <div class="col-sm-12 col-md-12 col-lg-8">
         <div class="row com">
             <div class="col-1">
                 <a href="<?= Url::to(Yii::$app->request->referrer); ?>">
@@ -101,16 +105,16 @@ $save = Url::to(['comsave/save']);
             <div class="col-sm-12 col-md-8 col-lg-8">
                 <h2 class="usuario"><?= $usuario->log_us ?></h2>
                 <?php if ($usuario->id != Yii::$app->user->id) : ?>
-                    <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow', 'id' => 'siguiendo']) ?>
+                    <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow follow-flex', 'id' => 'siguiendo']) ?>
                 <?php else : ?>
-                    <?= Html::a('Editar', ['usuarios/update', 'id' => Yii::$app->user->id], ['class' => 'follow']) ?>
+                    <?= Html::a('Editar', ['usuarios/update', 'id' => Yii::$app->user->id], ['class' => 'follow follow-flex']) ?>
                     <?= ButtonDropdown::widget([
                         'options' => ['class' => 'delete'],
                         'direction' => 'left',
                         'label' => '···',
                         'dropdown' => [
                             'items' => [
-                                Html::beginForm(['/usuarios/delete', 'id' => Yii::$app->user->id], 'post') . Html::submitButton('Borrar cuenta', ['class' => 'btn btn-danger']) . Html::endForm()
+                                Html::beginForm(['/usuarios/delete', 'id' => Yii::$app->user->id], 'post') . Html::img('icons/eliminar.png', ['id' => 'borrar-cuenta']) . Html::submitButton('Borrar cuenta', ['class' => 'eliminar-comentario']) . Html::endForm()
                             ],
                         ]
                     ]) ?>
@@ -613,23 +617,55 @@ $save = Url::to(['comsave/save']);
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-3 b">
+    <div class="col-sm-12 col-md-12 col-lg-4 b">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
                 <h5>Usuarios Sugeridos</h5>
             </div>
-            <?php foreach($sugeridos as $sugerido) : ?>
+            <?php foreach ($sugeridos as $sugerido) : ?>
+                <?php
+                $textS = Seguidores::siguiendo($sugerido->id) ? 'Siguiendo' : 'Seguir';
+                $jsS = <<<EOT
+                var boton = $("#us$sugerido->id");
+                boton.click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        method: 'GET',
+                        url: '$seguir',
+                        data: {
+                            'seguido_id': $sugerido->id
+                        },
+                        success: function (data, code, jqXHR) {
+                            var text = ''
+                            if (data[0])
+                                text = 'Siguiendo'
+                            else
+                                text = 'Seguir'
+                
+                            var us$sugerido->id = document.getElementById("us$sugerido->id")
+                            us$sugerido->id.innerHTML = text;
+                    }
+                    });
+                });
+                EOT;
+                $this->registerJs($jsS);
+                ?>
                 <div class="card-body s">
                     <div class="row">
                         <div class="col-2 d-flex justify-content-center">
                             <img src="<?= $sugerido->url_img ?>" id="sugerido-img">
                         </div>
-                        <div class="col-4 d-flex justify-content-center">
-                            <p class="center"><?= $sugerido->log_us ?></p>
+                        <div class="col-4 d-flex justify-content-left">
+                            <a href="<?= Url::to(['usuarios/view', 'id' => $sugerido->id]); ?>">
+                                <p class="center"><?= $sugerido->log_us ?></p>
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex flex-row">
+                            <?= Html::a($textS, ['seguidores/follow', 'seguido_id' => $sugerido->id], ['class' => 'sbutton', 'id' => 'us' . $sugerido->id]) ?>
                         </div>
                     </div>
                 </div>
-            <?php endforeach ; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

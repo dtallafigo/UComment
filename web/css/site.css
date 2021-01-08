@@ -50,6 +50,14 @@ small {
     .g {
         margin-top: 10%;
     }
+    .follow {
+        margin-left: 20%;
+    }
+
+    .delete > .btn{
+        position: absolute;
+        top: 50%;
+    }
 }
 
 .wrap {
@@ -392,6 +400,11 @@ a.desc:after {
     color: black;
 }
 
+#borrar-cuenta {
+    margin: 1%;
+    width: 17%;
+}
+
 .follow {
     text-decoration: none;
     display: inline-block;
@@ -423,6 +436,10 @@ a.desc:after {
     color: #fff;
 }
 
+.delete .btn {
+    color: #fff;
+}
+
 .eliminar-comentario {
     display: inline-block;
     font-weight: 400;
@@ -445,7 +462,7 @@ a.desc:after {
 }
 
 .dropdown-menu {
-    min-width: 12.5rem;
+    min-width: 12.375rem;
     background-color: #7E4DBA;
     border-color: gray;
     box-shadow: 2px 2px 1px #26172B;
@@ -564,6 +581,23 @@ a.desc:after {
     background-color:#26172B;
     border: 1px solid #515480;
     bottom: 35%;
+}
+
+.sbutton {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 280;
+    text-align: center;
+    padding: 0.225rem 0.55rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    position: absolute;
+    color: #fff;
+    background-color:#7E4DBA;
+    border: 1px solid #515480;
+    bottom: 16%;
+    left: 80%;
 }
 
 /* View de Usuarios */

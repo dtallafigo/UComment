@@ -7,6 +7,7 @@ use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\ButtonDropdown;
+use app\models\Seguidores;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
@@ -15,6 +16,7 @@ $this->title = $model->id;
 \yii\web\YiiAsset::register($this);
 $userA = Usuarios::findOne(['id' => $model->usuario_id]);
 $userB = Usuarios::findOne(['id' => Yii::$app->user->id]);
+$seguir = Url::to(['seguidores/follow']);
 $js2 = <<<'EOT'
 const openEls = document.querySelectorAll("[data-open]");
 const closeEls = document.querySelectorAll("[data-close]");
@@ -72,8 +74,8 @@ $.ajax({
 EOT;
 $this->registerJs($likes1);
 ?>
-<div class="row">
-    <div class="col-9">
+<div class="row g">
+    <div class="col-sm-12 col-md-12 col-lg-8">
         <?php if ($model->respuesta) : ?>
             <?php
             $original = Comentarios::findOne(['id' => $model->respuesta]);
@@ -417,13 +419,10 @@ $this->registerJs($likes1);
                                             <div class="col-2 d-flex justify-content-center">
                                                 <img src="<?= $uc->url_img ?>" id="citado">
                                             </div>
-                                            <div class="col-2 d-flex justify-content-left">
+                                            <div class="col-8 d-flex justify-content-left">
                                                 <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
-                                                    <p class="card-title"><?= $uc->log_us ?></p>
+                                                    <p class="card-title"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
                                                 </a>
-                                            </div>
-                                            <div class="col-8 d-flex justify-content-center">
-                                                <p><?= $citado->fecha($citado->created_at) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -477,202 +476,299 @@ $this->registerJs($likes1);
                         </div>
                     </div>
                 </div>
-            <?php else : ?>
-                <div class="modal" id="respuesta<?= $model->id ?>">
-                    <div class="modal-dialog">
-                        <header class="modal-header">
-                            <img src="<?= $userB->url_img ?>" id="inicio">
-                            <h4><?= $userB->log_us ?></h4>
-                            <button class="close-modal" aria-label="close modal" data-close>
-                                ✕
-                            </button>
-                        </header>
-                        <section class="modal-content">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <h4>Responder Comentario</h2>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <div class="row">
-                                                <div class="col-2 d-flex justify-content-center">
-                                                    <img src="<?= $userA->url_img ?>" id="citado">
-                                                </div>
-                                                <div class="col-4 d-flex justify-content-left">
-                                                    <p class="card-title"><?= $userA->log_us ?></p>
-                                                </div>
-                                                <div class="col-6 d-flex justify-content-center">
-                                                    <p><?= $model->fecha($model->created_at) ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text"><?= $model->text ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="card" style="margin-top: 3%;">
-                                        <div class="card-body">
-                                            <?php $form = ActiveForm::begin(); ?>
-                                            <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...'])->label(false) ?>
-                                            <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $model->id])->label(false); ?>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12" style="margin-top: 3%;">
-                                            <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
-                                            <?php ActiveForm::end(); ?>
-                                        </div>
-                                    </div>
+            </div>
+        <?php else : ?>
+            <div class="modal" id="respuesta<?= $model->id ?>">
+                <div class="modal-dialog">
+                    <header class="modal-header">
+                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <h4><?= $userB->log_us ?></h4>
+                        <button class="close-modal" aria-label="close modal" data-close>
+                            ✕
+                        </button>
+                    </header>
+                    <section class="modal-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <h4>Responder Comentario</h2>
                                 </div>
                             </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="modal" id="citado<?= $model->id ?>">
-                    <div class="modal-dialog">
-                        <header class="modal-header">
-                            <img src="<?= $userB->url_img ?>" id="inicio">
-                            <h4><?= $userB->log_us ?></h4>
-                            <button class="close-modal" aria-label="close modal" data-close>
-                                ✕
-                            </button>
-                        </header>
-                        <section class="modal-content">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <h4>Citar Comentario</h2>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <?php $form = ActiveForm::begin(); ?>
-                                    <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...'])->label(false) ?>
-                                    <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $model->id])->label(false); ?>
-                                    <div class="card" style="margin-top: 2%;">
-                                        <div class="card-header">
-                                            <div class="row">
-                                                <div class="col-2 d-flex justify-content-center">
-                                                    <img src="<?= $userA->url_img ?>" id="citado">
-                                                </div>
-                                                <div class="col-6 d-flex justify-content-left">
-                                                    <p class="card-title"><?= $userA->log_us ?> . <?= $model->fecha($model->created_at) ?></p>
-                                                </div>
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-2 d-flex justify-content-center">
+                                                <img src="<?= $userA->url_img ?>" id="citado">
+                                            </div>
+                                            <div class="col-8 d-flex justify-content-left">
+                                                <p class="card-title"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
                                             </div>
                                         </div>
-                                        <div class="card-body">
-                                            <p class="card-text"><?= $model->text ?></p>
-                                        </div>
                                     </div>
-                                    <div style="margin-top: 4%;">
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $model->text ?></p>
+                                    </div>
+                                </div>
+                                <div class="card" style="margin-top: 3%;">
+                                    <div class="card-body">
+                                        <?php $form = ActiveForm::begin(); ?>
+                                        <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...'])->label(false) ?>
+                                        <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $model->id])->label(false); ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="margin-top: 3%;">
                                         <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
                                         <?php ActiveForm::end(); ?>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="row com justify-content-center">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-2 d-flex justify-content-center">
-                                    <img src="<?= $userA->url_img ?>" alt="" style="width: 50px; height: auto;">
-                                </div>
-                                <div class="col-6 justify-content-left">
-                                    <a href="<?= Url::to(['usuarios/view', 'id' => $userA->id]); ?>" id="link_name">
-                                        <h5><?= $userA->log_us ?> . <?= $model->fecha($model->created_at) ?></h5>
-                                    </a>
-                                </div>
-                                <?php if ($model->usuario_id == Yii::$app->user->id) : ?>
-                                    <div class="col-4 d-flex flex-row-reverse">
-                                        <?= ButtonDropdown::widget([
-                                            'options' => ['class' => 'delete-comment'],
-                                            'direction' => 'left',
-                                            'label' => ' ···',
-                                            'dropdown' => [
-                                                'items' => [
-                                                    Html::beginForm(['/comentarios/delete', 'id' => $model->id], 'post') . Html::img('icons/papelera.png', ['id' => 'papelera']) . Html::submitButton('Eliminar comentario', ['class' => 'eliminar-comentario']) . Html::endForm()
-                                                ],
-                                            ]
-                                        ]) ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12" style="margin-top: 3%;">
-                                <p><?= $model->text ?></p>
-                            </div>
                         </div>
-                        <?php if ($model->citado) : ?>
-                            <?php $citado = Comentarios::find()->where(['id' => $model->citado])->one(); ?>
-                            <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
+                    </section>
+                </div>
+            </div>
+            <div class="modal" id="citado<?= $model->id ?>">
+                <div class="modal-dialog">
+                    <header class="modal-header">
+                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <h4><?= $userB->log_us ?></h4>
+                        <button class="close-modal" aria-label="close modal" data-close>
+                            ✕
+                        </button>
+                    </header>
+                    <section class="modal-content">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <h4>Citar Comentario</h2>
+                                </div>
+                            </div>
                             <div class="card-body">
-                                <div class="card" style="margin-bottom: 2%;">
+                                <?php $form = ActiveForm::begin(); ?>
+                                <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...'])->label(false) ?>
+                                <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $model->id])->label(false); ?>
+                                <div class="card" style="margin-top: 2%;">
                                     <div class="card-header">
                                         <div class="row">
-                                            <div class="col-1 d-flex justify-content-center">
-                                                <img src="<?= $uc->url_img ?>" id="citado">
+                                            <div class="col-2 d-flex justify-content-center">
+                                                <img src="<?= $userA->url_img ?>" id="citado">
                                             </div>
                                             <div class="col-6 d-flex justify-content-left">
-                                                <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
-                                                    <p class="card-title"><?= $uc->log_us ?> . <?= $citado->fecha($citado->created_at) ?></p>
-                                                </a>
+                                                <p class="card-title"><?= $userA->log_us ?> . <?= $model->fecha($model->created_at) ?></p>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>" id="comentario">
-                                        <div class="card-body">
-                                            <p class="card-text"><?= $citado->text ?></p>
-                                        </div>
-                                    </a>
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $model->text ?></p>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endif; ?>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-3 d-flex justify-content-center">
-                                    <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
-                                </div>
-                                <div class="col-3 d-flex justify-content-center">
-                                    <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
-                                </div>
-                                <div class="col-3 d-flex justify-content-center">
-                                    <a href="<?= Url::to(['likes/view', 'comentario_id' => $model->id]); ?>" id="link_like">
-                                        <p id="countLike<?= $model->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $model->id])->count() ?> Likes</p>
-                                    </a>
-                                </div>
-                                <div class="col-3">
-
+                                <div style="margin-top: 4%;">
+                                    <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+                                    <?php ActiveForm::end(); ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <div class="row">
-                                <div class="col-3 d-flex justify-content-center">
-                                    <a class="open-modal" data-open="respuesta<?= $model->id ?>">
-                                        <img src="icons/respuesta.svg" class="icon" id="answer">
-                                    </a>
-                                </div>
-                                <div class="col-3 d-flex justify-content-center">
-                                    <a class="open-modal" data-open="citado<?= $model->id ?>">
-                                        <img src="icons/citado.svg" class="icon" id="citar">
-                                    </a>
-                                </div>
-                                <div class="col-3 d-flex justify-content-center">
-                                    <a id="like<?= $model->id ?>" class="heart">
-                                        <img src="<?= Likes::like($model->id) ? 'icons/like.svg' : 'icons/dislike.svg' ?>" class="icon" id="icon<?= $model->id ?>">
-                                    </a>
-                                </div>
-                                <div class="col-3">
-
-                                </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row com justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2 d-flex justify-content-center">
+                                <img src="<?= $userA->url_img ?>" alt="" style="width: 50px; height: auto;">
                             </div>
+                            <div class="col-6 justify-content-left">
+                                <a href="<?= Url::to(['usuarios/view', 'id' => $userA->id]); ?>" id="link_name">
+                                    <h5><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></h5>
+                                </a>
+                            </div>
+                            <?php if ($model->usuario_id == Yii::$app->user->id) : ?>
+                                <div class="col-4 d-flex flex-row-reverse">
+                                    <?= ButtonDropdown::widget([
+                                        'options' => ['class' => 'delete-comment'],
+                                        'direction' => 'left',
+                                        'label' => ' ···',
+                                        'dropdown' => [
+                                            'items' => [
+                                                Html::beginForm(['/comentarios/delete', 'id' => $model->id], 'post') . Html::img('icons/papelera.png', ['id' => 'papelera']) . Html::submitButton('Eliminar comentario', ['class' => 'eliminar-comentario']) . Html::endForm()
+                                            ],
+                                        ]
+                                    ]) ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-12" style="margin-top: 3%;">
+                            <p><?= $model->text ?></p>
+                        </div>
+                    </div>
+                    <?php if ($model->citado) : ?>
+                        <?php $citado = Comentarios::find()->where(['id' => $model->citado])->one(); ?>
+                        <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
+                        <div class="card-body">
+                            <div class="card" style="margin-bottom: 2%;">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-1 d-flex justify-content-center">
+                                            <img src="<?= $uc->url_img ?>" id="citado">
+                                        </div>
+                                        <div class="col-6 d-flex justify-content-left">
+                                            <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
+                                                <p class="card-title"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>" id="comentario">
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $citado->text ?></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-3 d-flex justify-content-center">
+                                <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center">
+                                <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center">
+                                <a href="<?= Url::to(['likes/view', 'comentario_id' => $model->id]); ?>" id="link_like">
+                                    <p id="countLike<?= $model->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $model->id])->count() ?> Likes</p>
+                                </a>
+                            </div>
+                            <div class="col-3">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-3 d-flex justify-content-center">
+                                <a class="open-modal" data-open="respuesta<?= $model->id ?>">
+                                    <img src="icons/respuesta.svg" class="icon" id="answer">
+                                </a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center">
+                                <a class="open-modal" data-open="citado<?= $model->id ?>">
+                                    <img src="icons/citado.svg" class="icon" id="citar">
+                                </a>
+                            </div>
+                            <div class="col-3 d-flex justify-content-center">
+                                <a id="like<?= $model->id ?>" class="heart">
+                                    <img src="<?= Likes::like($model->id) ? 'icons/like.svg' : 'icons/dislike.svg' ?>" class="icon" id="icon<?= $model->id ?>">
+                                </a>
+                            </div>
+                            <div class="col-3">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-4 b">
+        <?php
+        $textS = Seguidores::siguiendo($userComment->id) ? 'Siguiendo' : 'Seguir';
+        $jsS = <<<EOT
+        var boton = $("#us$userComment->id");
+        boton.click(function(event) {
+            event.preventDefault();
+            $.ajax({
+                method: 'GET',
+                url: '$seguir',
+                data: {
+                    'seguido_id': $userComment->id
+                },
+                success: function (data, code, jqXHR) {
+                    var text = ''
+                    if (data[0])
+                        text = 'Siguiendo'
+                    else
+                        text = 'Seguir'
+        
+                    var us$userComment->id = document.getElementById("us$userComment->id")
+                    us$userComment->id.innerHTML = text;
+            }
+            });
+        });
+        EOT;
+        $this->registerJs($jsS);
+        ?>
+        <div class="card">
+            <div class="card-header d-flex justify-content-center">
+                <h5>Personas de interes</h5>
+            </div>
+            <div class="card-body s">
+                <div class="row">
+                    <div class="col-2 d-flex justify-content-center">
+                        <img src="<?= $userComment->url_img ?>" id="sugerido-img">
+                    </div>
+                    <div class="col-4 d-flex justify-content-left">
+                        <a href="<?= Url::to(['usuarios/view', 'id' => $userComment->id]); ?>">
+                            <p class="center"><?= $userComment->log_us ?></p>
+                        </a>
+                    </div>
+                    <div class="col-2 d-flex flex-row">
+                        <?php if ($userComment->id != Yii::$app->user->id) : ?>
+                            <?= Html::a($textS, ['seguidores/follow', 'seguido_id' => $userComment->id], ['class' => 'sbutton', 'id' => 'us' . $userComment->id]) ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <?php $answer = Comentarios::find()->where(['id' => $model->respuesta])->one(); ?>
+            <?php if ($model->respuesta && $answer->usuario_id != $userComment->id) : ?>
+                <?php
+                $userRespuesta = Usuarios::find()->where(['id' => $answer->usuario_id])->one();
+                $textS = Seguidores::siguiendo($userRespuesta->id) ? 'Siguiendo' : 'Seguir';
+                $jsS = <<<EOT
+                var boton = $("#ur$userRespuesta->id");
+                boton.click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        method: 'GET',
+                        url: '$seguir',
+                        data: {
+                            'seguido_id': $userRespuesta->id
+                        },
+                        success: function (data, code, jqXHR) {
+                            var text = ''
+                            if (data[0])
+                                text = 'Siguiendo'
+                            else
+                                text = 'Seguir'
+                
+                            var ur$userRespuesta->id = document.getElementById("ur$userRespuesta->id")
+                            ur$userRespuesta->id.innerHTML = text;
+                    }
+                    });
+                });
+                EOT;
+                $this->registerJs($jsS);
+                ?>
+                <div class="card-body s">
+                    <div class="row">
+                        <div class="col-2 d-flex justify-content-center">
+                            <img src="<?= $userRespuesta->url_img ?>" id="sugerido-img">
+                        </div>
+                        <div class="col-4 d-flex justify-content-left">
+                            <a href="<?= Url::to(['usuarios/view', 'id' => $userRespuesta->id]); ?>">
+                                <p class="center"><?= $userRespuesta->log_us ?></p>
+                            </a>
+                        </div>
+                        <div class="col-2 d-flex flex-row">
+                            <?php if ($userRespuesta->id != Yii::$app->user->id) : ?>
+                                <?= Html::a($textS, ['seguidores/follow', 'seguido_id' => $userRespuesta->id], ['class' => 'sbutton', 'id' => 'ur' . $userRespuesta->id]) ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
-            </div>
+        </div>
     </div>
+</div>

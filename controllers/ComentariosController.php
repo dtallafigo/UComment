@@ -8,6 +8,7 @@ use app\models\ComentariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
 
 /**
  * ComentariosController implements the CRUD actions for Comentarios model.
@@ -55,6 +56,8 @@ class ComentariosController extends Controller
     public function actionView($id)
     {
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+        $model = $this->findModel($id);
+        $userComment = Usuarios::find()->where(['id' => $model->usuario_id])->one();
 
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
@@ -62,8 +65,9 @@ class ComentariosController extends Controller
         }
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'publicacion' => $publicacion,
+            'userComment' => $userComment,
         ]);
     }
 

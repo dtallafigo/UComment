@@ -337,7 +337,7 @@ a.desc:after {
     width: 80%;
     height: auto;
     border-radius: 5px;
-    background: var(--#36294C);
+    background: #36294C;
     overflow: auto;
     cursor: default;
     border: 1px solid;
@@ -372,6 +372,17 @@ a.desc:after {
 
 .sg a {
     display: inline-block;
+}
+
+.small {
+    position: absolute;
+    bottom: 17%;
+    left: 25%;
+    background-color: #26172B;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 4px;
+    margin-left: 5%;
 }
 
 #perfil {

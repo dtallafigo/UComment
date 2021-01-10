@@ -112,7 +112,13 @@ class SiteController extends Controller
         if (($cadena = Yii::$app->request->get('cadena', ''))) {
             $usuarios = Usuarios::find()->where(['ilike', 'log_us', $cadena])->all();
             $countU = Usuarios::find()->where(['ilike', 'log_us', $cadena])->count();
+            $ids = [];
+            for ($i = 0; $i < count($usuarios); $i++) {
+                array_push($ids, $usuarios[$i]->id);
+            }
+            $usuariosComment = Comentarios::find()->where(['IN', 'usuario_id', $ids])->all();
             $comentarios = Comentarios::find()->where(['ilike', 'text', $cadena])->all();
+            $comentarios = array_merge($comentarios, $usuariosComment);
             $countC = Comentarios::find()->where(['ilike', 'text', $cadena])->count();
         }
 

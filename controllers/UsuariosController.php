@@ -12,6 +12,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Likes;
 use yii\filters\AccessControl;
+use yii\data\Pagination;
 
 require '../web/uploads3.php';
 
@@ -72,8 +73,24 @@ class UsuariosController extends Controller
         $usuario = Usuarios::findOne(['id' => $id]);
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
-        $comentarios = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-        $misLikes = Likes::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC])->limit(20)->all();
+        $queryC = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC]);
+        $countC = $queryC->count();
+        $paginationC = new Pagination([
+            'totalCount' => $countC,
+            'pageSize' => 10
+        ]);
+        $comentarios = $queryC->offset($paginationC->offset)
+            ->limit($paginationC->limit)
+            ->all();
+        $queryL = Likes::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC]);
+        $countL = $queryL->count();
+        $paginationL = new Pagination([
+            'totalCount' => $countL,
+            'pageSize' => 10
+        ]);
+        $misLikes = $queryL->offset($paginationL->offset)
+        ->limit($paginationL->limit)
+        ->all();
         $all = Usuarios::find()->all();
         $sugeridos = [];
         for ($i = 0; $i < 3; $i++) {
@@ -94,10 +111,11 @@ class UsuariosController extends Controller
         }
 
         if ($publicacion->load(Yii::$app->request->post())) {
-            if (!empty($_FILES)) {
+            if (file_exists($_FILES['Comentarios']['name']['url_img'])) {
                 uploadComentario($publicacion);
                 $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
             }
+
             if ($publicacion->save()) {
                 Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
                 return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
@@ -113,6 +131,8 @@ class UsuariosController extends Controller
             'ml' => $misLikes,
             'sugeridos' => $sugeridos,
             'getRelacionados' => $getRelacionados,
+            'paginationC' => $paginationC,
+            'paginationL' => $paginationL,
         ]);
     }
 

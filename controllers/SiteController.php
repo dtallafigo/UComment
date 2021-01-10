@@ -119,6 +119,7 @@ class SiteController extends Controller
             $usuariosComment = Comentarios::find()->where(['IN', 'usuario_id', $ids])->all();
             $comentarios = Comentarios::find()->where(['ilike', 'text', $cadena])->all();
             $comentarios = array_merge($comentarios, $usuariosComment);
+            $this->arraySortBy($comentarios, 'created_at');
             $countC = Comentarios::find()->where(['ilike', 'text', $cadena])->count();
         }
 
@@ -131,6 +132,16 @@ class SiteController extends Controller
             'countU' => $countU,
             'countC' => $countC,
         ]);
+    }
+
+    public function arraySortBy(&$arrIni, $col, $order = SORT_DESC)
+    {
+        $arrAux = [];
+        foreach ($arrIni as $key => $row) {
+            $arrAux[$key] = is_object($row) ? $arrAux[$key] = $row->$col : $row[$col];
+            $arrAux[$key] = strtolower($arrAux[$key]);
+        }
+        array_multisort($arrAux, $order, $arrIni);
     }
 
     /**

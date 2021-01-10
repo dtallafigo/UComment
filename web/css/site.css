@@ -538,16 +538,43 @@ a.desc:after {
 #inicio {
     width: 35px;
     height: auto;
+    border-radius: 30em;
+}
+
+.pagination {
+    margin: 0;
+    align-content: center;
+}
+
+.page-link {
+    background-color: #7E4DBA;
+    color: #fff;
+}
+
+.page-item.active .page-link {
+    background-color: #653b98;
+    border: 1px solid #dee2e6;
+}
+
+.nav-link {
+    font-weight: bolder;
+}
+
+.page-item.disabled .page-link {
+    background-color: #653b98;
+
 }
 
 #fcom {
     width: 35px;
     height: auto;
+    border-radius: 30em;
 }
 
 #citado {
     width: 35px;
     height: auto;
+    border-radius: 30em;
 }
 
 #papelera {

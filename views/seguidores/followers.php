@@ -70,7 +70,7 @@ $seguir = Url::to(['seguidores/follow']);
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-center">
-                                        <img src="<?= $userR->url_img ?>" alt="" style="width: 90px; height: auto;">
+                                        <img src="<?= s3GetUrl($userR->url_img, 'ucomment') ?>" alt="" style="width: 90px; height: auto; border-radius: 30em;">
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-lg-6">
                                         <?php if (Seguidores::findOne(['seguido_id' => Yii::$app->user->id, 'seguidor_id' => $userR->id])) : ?>
@@ -127,7 +127,7 @@ $seguir = Url::to(['seguidores/follow']);
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-center">
-                                        <img src="<?= $userS->url_img ?>" alt="" style="width: 90px; height: auto;">
+                                        <img src="<?= s3GetUrl($userS->url_img, 'ucomment') ?>" alt="" style="width: 90px; height: auto; border-radius: 30em;">
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-lg-6">
                                         <?php if (Seguidores::findOne(['seguido_id' => Yii::$app->user->id, 'seguidor_id' => $userS->id])) : ?>

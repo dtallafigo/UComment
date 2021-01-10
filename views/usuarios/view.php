@@ -8,6 +8,7 @@ use app\models\Seguidores;
 use app\models\Usuarios;
 use app\models\Likes;
 use yii\bootstrap4\ButtonDropdown;
+use yii\bootstrap4\LinkPager;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -185,6 +186,7 @@ $save = Url::to(['comsave/save']);
         </div>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+                <?php \yii\widgets\Pjax::begin(['timeout' => 10000]) ?>
                 <?php foreach ($comentarios as $comentario) : ?>
                     <?php
                     $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
@@ -434,8 +436,17 @@ $save = Url::to(['comsave/save']);
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <?php \yii\widgets\Pjax::end() ?>
+                <div class="row com">
+                    <div class="col-12 d-flex justify-content-center">
+                        <?= LinkPager::widget([
+                            'pagination' => $paginationC
+                        ]); ?>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade shadow" id="nav-likes" role="tabpanel" aria-labelledby="nav-likes-tab">
+                <?php \yii\widgets\Pjax::begin(['timeout' => 10000]) ?>
                 <?php foreach ($ml as $coml) : ?>
                     <?php
                     $comentario = Comentarios::findOne(['id' => $coml->comentario_id]);
@@ -686,6 +697,14 @@ $save = Url::to(['comsave/save']);
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <?php \yii\widgets\Pjax::end() ?>
+                <div class="row com">
+                    <div class="col-12 d-flex justify-content-center">
+                        <?= LinkPager::widget([
+                            'pagination' => $paginationL
+                        ]); ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

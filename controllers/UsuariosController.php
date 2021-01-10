@@ -114,7 +114,21 @@ class UsuariosController extends Controller
     {
         $usuario = Usuarios::findOne(['id' => $id]);
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
+
+        $getSeguidores = $actual->getSeguidos()->select('seguido_id')->column();
+        $getRelacionados = Seguidores::find()->where(['IN', 'seguidor_id', $getSeguidores])->andWhere(['seguido_id' => $usuario->id])->all();
+        $getIds = [];
+
+        for ($i = 0; $i < count($getRelacionados); $i++) {
+            $idUser = $getRelacionados[$i]->seguidor_id;
+            array_push($getIds, $idUser);
+        }
         
+        $getUsuarios = Usuarios::find()->where(['IN', 'id', $getIds])->all();
+
+        return $this->render('relacionados', [
+            'getUsuarios' => $getUsuarios,
+        ]);
     }
 
 

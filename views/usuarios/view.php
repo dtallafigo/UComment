@@ -104,7 +104,7 @@ $save = Url::to(['comsave/save']);
                 <img src="<?= $usuario->url_img ?>" id="perfil">
             </div>
             <div class="col-sm-12 col-md-8 col-lg-8">
-                <?php if (Seguidores::siguiendo($usuario->id)) : ?>
+                <?php if (Seguidores::find()->where(['seguidor_id' => $usuario->id])->andWhere(['seguido_id' => Yii::$app->user->id])->one()) : ?>
                     <h2 class="usuario"><?= $usuario->log_us ?></h2><small class="small">Te sigue</small>
                 <?php else : ?>
                     <h2 class="usuario"><?= $usuario->log_us ?></h2>
@@ -168,7 +168,9 @@ $save = Url::to(['comsave/save']);
             <?php if ($getRelacionados != null) : ?>
                 <div class="row sg">
                     <div class="col-12 d-flex justify-content-center">
-                        <p>Hay cuentas que sigues que siguen a este usuario.</p>
+                        <a href="<?= Url::to(['usuarios/relacionados', 'id' => $usuario->id]); ?>">
+                            <p class="s-relacionados">Hay cuentas que sigues que siguen a este usuario.</p>
+                        </a>
                     </div>
                 </div>
             <?php endif; ?>

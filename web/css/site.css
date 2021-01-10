@@ -611,6 +611,10 @@ a.desc:after {
     left: 80%;
 }
 
+.s-relacionados {
+    margin: 0;
+}
+
 /* View de Usuarios */
 
 /* Login */

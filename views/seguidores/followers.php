@@ -74,9 +74,7 @@ $seguir = Url::to(['seguidores/follow']);
                                     </div>
                                     <div class="col-sm-4 col-md-4 col-lg-6">
                                         <?php if (Seguidores::findOne(['seguido_id' => Yii::$app->user->id, 'seguidor_id' => $userR->id])) : ?>
-                                            <small>Te sigue</small>
-                                        <?php else : ?>
-
+                                            <small class="small-var">Te sigue</small>
                                         <?php endif; ?>
                                         <a href="<?= Url::to(['usuarios/view', 'id' => $userR->id]); ?>">
                                             <h4><?= $userR->log_us ?></h4>

@@ -10,6 +10,8 @@ use app\models\Likes;
 use yii\bootstrap4\ActiveForm;
 use app\models\Comentarios;
 
+require '../web/uploads3.php';
+
 $this->title = 'UComment: Busqueda';
 $id = Yii::$app->user->id;
 $seguir = Url::to(['seguidores/follow']);
@@ -110,7 +112,7 @@ $this->registerJs($js2);
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-center">
-                                    <img src="<?= $user->url_img ?>" alt="" style="width: 90px; height: auto;">
+                                    <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" alt="" style="width: 90px; height: auto;">
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-6">
                                     <?php if (Seguidores::findOne(['seguido_id' => Yii::$app->user->id, 'seguidor_id' => $user->id])) : ?>
@@ -188,7 +190,7 @@ $this->registerJs($js2);
                 <div class="modal" id="respuesta<?= $comentario->id ?>">
                     <div class="modal-dialog">
                         <header class="modal-header">
-                            <img src="<?= $actual->url_img ?>" id="inicio">
+                            <img src="<?= s3GetUrl($actual->url_img, 'ucomment') ?>" id="inicio">
                             <h4><?= $actual->log_us ?></h4>
                             <button class="close-modal" aria-label="close modal" data-close>
                                 ✕
@@ -206,7 +208,7 @@ $this->registerJs($js2);
                                         <div class="card-header">
                                             <div class="row">
                                                 <div class="col-2 d-flex justify-content-center">
-                                                    <img src="<?= $user->url_img ?>" id="citado">
+                                                    <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="citado">
                                                 </div>
                                                 <div class="col-10 d-flex justify-content-left">
                                                     <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
@@ -238,7 +240,7 @@ $this->registerJs($js2);
                 <div class="modal" id="citado<?= $comentario->id ?>">
                     <div class="modal-dialog">
                         <header class="modal-header">
-                            <img src="<?= $actual->url_img ?>" id="inicio">
+                            <img src="<?= s3GetUrl($actual->url_img, 'ucomment') ?>" id="inicio">
                             <h4><?= $actual->log_us ?></h4>
                             <button class="close-modal" aria-label="close modal" data-close>
                                 ✕
@@ -259,7 +261,7 @@ $this->registerJs($js2);
                                         <div class="card-header">
                                             <div class="row">
                                                 <div class="col-2 d-flex justify-content-center">
-                                                    <img src="<?= $user->url_img ?>" id="citado">
+                                                    <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="citado">
                                                 </div>
                                                 <div class="col-10 d-flex justify-content-left">
                                                     <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
@@ -286,7 +288,7 @@ $this->registerJs($js2);
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-1 d-flex justify-content-center">
-                                        <img src="<?= $user->url_img ?>" id="fcom">
+                                        <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="fcom">
                                     </div>
                                     <div class="col-10 d-flex justify-content-left">
                                         <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>

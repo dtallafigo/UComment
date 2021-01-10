@@ -40,6 +40,7 @@ class Comentarios extends \yii\db\ActiveRecord
             [['citado'], 'integer'],
             [['created_at'], 'safe'],
             [['text'], 'string', 'max' => 280],
+            [['url_img'], 'string', 'max' => 2048],
             [['respuesta'], 'exist', 'skipOnError' => true, 'targetClass' => Comentarios::className(), 'targetAttribute' => ['respuesta' => 'id']],
             [['citado'], 'exist', 'skipOnError' => true, 'targetClass' => Comentarios::className(), 'targetAttribute' => ['citado' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
@@ -58,6 +59,7 @@ class Comentarios extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'respuesta' => 'Respuesta',
             'citado' => 'Citado',
+            'url_img' => 'Url Img',
         ];
     }
 
@@ -122,5 +124,12 @@ class Comentarios extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id']);
+    }
+
+    public function url($text)
+    {
+        $text = html_entity_decode($text);
+        $text = preg_replace("/((http|https|www)[^\s]+)/", '<a href="$1">$0</a>', $text);
+        return $text;
     }
 }

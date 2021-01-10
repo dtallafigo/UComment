@@ -14,10 +14,11 @@ $this->title = 'Editar usuario ' . $model->log_us;
         <div class="row user">
             <div class="col-sm-12 col-md-4 col-lg-4">
             <?php $form = ActiveForm::begin(); ?>
-                <img src="<?= $model->url_img ?>" id="perfil">
+                <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" id="perfil">
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <?= $form->field($model, 'log_us', ['options' => ['class' => 'edit-log_us']])->input(['maxlength' => true, 'value' => $model->log_us])->label(false) ?>
+                <?= $form->field($model, 'url_img', ['options' => ['class' => 'file-input']])->fileInput()->label(false) ?>
             </div>
             <div class="col-4">
                 <?= Html::submitButton('Editar', ['class' => 'edit']) ?>   

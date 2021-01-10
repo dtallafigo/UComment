@@ -139,15 +139,6 @@ small {
     z-index:2;
 }
 
-a {
-    color: #1C1210;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #1C1210;
-}
-
 .bio {
     background-color:#36294C;
     box-shadow: 5px 10px#7E4DBA;
@@ -164,10 +155,35 @@ a:hover {
 }
 
 .center {
-    position: absolute;
-    display: inline;
-    top: 20%;
+    margin: 0;
 }
+
+.img{
+    margin:10px auto;
+    border-radius:5px;
+    border: 1px solid #999;
+    padding:13px;
+    width:100%;
+    height:auto;
+    }
+  .img img{
+    width: 100%;
+  }
+  @media all and (min-width: 500px) and (max-width: 1000px)
+  {  
+  .img{
+    margin:20px auto;
+    border-radius:5px;
+    border: 1px solid #999;
+    padding:13px;
+    width:100%;
+    height:auto;
+    
+    }
+  }
+  .img img{
+     width:100%;
+  }
 
 .com {
     background-color:#36294C;
@@ -393,7 +409,7 @@ a.desc:after {
     margin: 0 auto;
     margin-top: 10%;
     border: solid;
-    border-radius: 100%;
+    border-radius: 30em;
 }
 
 .user {
@@ -409,7 +425,7 @@ a.desc:after {
 #comentario {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
-    color: black;
+    color: #fff;
 }
 
 #borrar-cuenta {
@@ -614,6 +630,15 @@ a.desc:after {
 
 .s-relacionados {
     margin: 0;
+}
+
+.file-input {
+    position: relative;
+    top: 50%;
+}
+
+#usuarios-url_img {
+    color: #fff;
 }
 
 /* View de Usuarios */

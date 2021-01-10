@@ -13,6 +13,8 @@ use yii\filters\VerbFilter;
 use app\models\Likes;
 use yii\filters\AccessControl;
 
+require '../web/uploads3.php';
+
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
  */
@@ -91,11 +93,15 @@ class UsuariosController extends Controller
             array_push($getIds, $idUser);
         }
 
-        $getUsuariosRelacionados = Usuarios::find()->where(['IN', 'id', $getIds])->all();
-
-        if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
-            Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
-            return $this->redirect(['comentarios/view', 'id' => $publicacion->id]);
+        if ($publicacion->load(Yii::$app->request->post())) {
+            if (!empty($_FILES)) {
+                uploadComentario($publicacion);
+                $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
+            }
+            if ($publicacion->save()) {
+                Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            }
         }
 
         return $this->render('view', [
@@ -143,8 +149,15 @@ class UsuariosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if (!empty($_FILES)) {
+                uploadImagen($model);
+                $model->url_img = $_FILES['Usuarios']['name']['url_img'];
+            }
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['usuarios/view', 'id' => $model['id']]);
+            }
         }
 
         return $this->render('update', [

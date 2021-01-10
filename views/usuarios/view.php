@@ -82,6 +82,7 @@ EOT;
 $this->registerJs($js2);
 $like = Url::to(['likes/like']);
 $save = Url::to(['comsave/save']);
+
 ?>
 <div class="row g">
     <div class="col-sm-12 col-md-12 col-lg-8">
@@ -103,7 +104,11 @@ $save = Url::to(['comsave/save']);
                 <img src="<?= $usuario->url_img ?>" id="perfil">
             </div>
             <div class="col-sm-12 col-md-8 col-lg-8">
-                <h2 class="usuario"><?= $usuario->log_us ?></h2>
+                <?php if (Seguidores::find()->where(['seguidor_id' => $usuario->id])->andWhere(['seguido_id' => Yii::$app->user->id])->one()) : ?>
+                    <h2 class="usuario"><?= $usuario->log_us ?></h2><small class="small">Te sigue</small>
+                <?php else : ?>
+                    <h2 class="usuario"><?= $usuario->log_us ?></h2>
+                <?php endif; ?>
                 <?php if ($usuario->id != Yii::$app->user->id) : ?>
                     <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow follow-flex', 'id' => 'siguiendo']) ?>
                 <?php else : ?>
@@ -119,7 +124,6 @@ $save = Url::to(['comsave/save']);
                         ]
                     ]) ?>
                 <?php endif; ?>
-
             </div>
         </div>
         <div class="row bio">
@@ -160,6 +164,17 @@ $save = Url::to(['comsave/save']);
                 </a>
             </div>
         </div>
+        <?php if ($usuario->id != $actual->id) : ?>
+            <?php if ($getRelacionados != null) : ?>
+                <div class="row sg">
+                    <div class="col-12 d-flex justify-content-center">
+                        <a href="<?= Url::to(['usuarios/relacionados', 'id' => $usuario->id]); ?>">
+                            <p class="s-relacionados">Hay cuentas que sigues que siguen a este usuario.</p>
+                        </a>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
         <div class="row pt">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -363,7 +378,6 @@ $save = Url::to(['comsave/save']);
                                             <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
                                                 <div class="card-body">
                                                     <?= Html::tag('p', Html::encode($citado->text), ['class' => 'card-text']) ?>
-                                                    <p class="card-text"><?= $citado->text ?></p>
                                                 </div>
                                             </a>
                                         </div>
@@ -642,8 +656,10 @@ $save = Url::to(['comsave/save']);
                             else
                                 text = 'Seguir'
                 
-                            var us$sugerido->id = document.getElementById("us$sugerido->id")
+                            var us$sugerido->id = document.getElementById("us$sugerido->id");
                             us$sugerido->id.innerHTML = text;
+                            var sg = document.getElementById("sg");
+                            sg.innerHTML = data[1];
                     }
                     });
                 });

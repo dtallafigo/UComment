@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Comentarios;
 use Yii;
 use app\models\Usuarios;
+use app\models\Seguidores;
 use app\models\UsuariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -81,6 +82,17 @@ class UsuariosController extends Controller
             array_push($sugeridos, $all[$random]);
         }
 
+        $getSeguidores = $actual->getSeguidos()->select('seguido_id')->column();
+        $getRelacionados = Seguidores::find()->where(['IN', 'seguidor_id', $getSeguidores])->andWhere(['seguido_id' => $usuario->id])->all();
+        $getIds = [];
+
+        for ($i = 0; $i < count($getRelacionados); $i++) {
+            $idUser = $getRelacionados[$i]->seguidor_id;
+            array_push($getIds, $idUser);
+        }
+
+        $getUsuariosRelacionados = Usuarios::find()->where(['IN', 'id', $getIds])->all();
+
         if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
             return $this->redirect(['comentarios/view', 'id' => $publicacion->id]);
@@ -94,6 +106,28 @@ class UsuariosController extends Controller
             'actual' => $actual,
             'ml' => $misLikes,
             'sugeridos' => $sugeridos,
+            'getRelacionados' => $getRelacionados,
+        ]);
+    }
+
+    public function actionRelacionados($id)
+    {
+        $usuario = Usuarios::findOne(['id' => $id]);
+        $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
+
+        $getSeguidores = $actual->getSeguidos()->select('seguido_id')->column();
+        $getRelacionados = Seguidores::find()->where(['IN', 'seguidor_id', $getSeguidores])->andWhere(['seguido_id' => $usuario->id])->all();
+        $getIds = [];
+
+        for ($i = 0; $i < count($getRelacionados); $i++) {
+            $idUser = $getRelacionados[$i]->seguidor_id;
+            array_push($getIds, $idUser);
+        }
+        
+        $getUsuarios = Usuarios::find()->where(['IN', 'id', $getIds])->all();
+
+        return $this->render('relacionados', [
+            'getUsuarios' => $getUsuarios,
         ]);
     }
 

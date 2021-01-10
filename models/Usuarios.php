@@ -135,4 +135,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Comentarios::className(), ['usuario_id' => 'id']);
     }
+
+    public function getSeguidos()
+    {
+        return $this->hasMany(Seguidores::className(), ['seguidor_id' => 'id']);
+    }
 }

@@ -10,8 +10,6 @@ use app\models\Likes;
 use yii\bootstrap4\ActiveForm;
 use app\models\Comentarios;
 
-require '../web/uploads3.php';
-
 $this->title = 'UComment: Busqueda';
 $id = Yii::$app->user->id;
 $seguir = Url::to(['seguidores/follow']);

@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at',
             'respuesta',
             'citado',
-            'img',
+            'url_img',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

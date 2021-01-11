@@ -12,6 +12,10 @@ use app\models\Usuarios;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use app\models\Comentarios;
+use yii\data\Pagination;
+use app\models\Seguidores;
+
+require '../web/uploads3.php';
 
 class SiteController extends Controller
 {
@@ -70,26 +74,65 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $idActual = Yii::$app->user->id;
-        $publicar = new Comentarios(['usuario_id' => $idActual]);
+        $usuario = Usuarios::findOne(['id' => $idActual]);
+        $publicacion = new Comentarios(['usuario_id' => $idActual]);
+        $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $model = Usuarios::findOne(['id' => $idActual]);
+        $ids = $model->getSeguidos()->select('seguido_id')->column();
+        array_push($ids, $idActual);
+        $query = Comentarios::find()->where(['IN', 'usuario_id', $ids])->orderBy(['created_at' => SORT_DESC]);
+        $count = $query->count();
 
-        if ($publicar->load(Yii::$app->request->post())) {
+        $pagination = new Pagination([
+            'totalCount' => $count,
+            'pageSize' => 5
+        ]);
+
+        $comentarios = $query->offset($pagination->offset)
+                ->limit($pagination->limit)
+                ->all();
+        
+        if ($publicacion->load(Yii::$app->request->post())) {
             if ($_FILES['Comentarios']['name']['url_img'] == null) {
-                $publicar->save();
+                $publicacion->save();
                 Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
-                return $this->redirect(['comentarios/view', 'id' => $publicar['id']]);
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
             } else {
-                uploadComentario($publicar);
-                $publicar->url_img = $_FILES['Comentarios']['name']['url_img'];
-                $publicar->save();
+                uploadComentario($publicacion);
+                $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
+                $publicacion->save();
                 Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
-                return $this->redirect(['comentarios/view', 'id' => $publicar['id']]);
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
             }
+        }
+
+        $all = Usuarios::find()->all();
+        $sugeridos = [];
+        for ($i = 0; $i < 3; $i++) {
+            $random = rand(0, count($all)-1);
+            if ($all[$random]->id == Yii::$app->user->id) {
+                return;
+            }
+            array_push($sugeridos, $all[$random]);
+        }
+
+        $getSeguidores = $actual->getSeguidos()->select('seguido_id')->column();
+        $getRelacionados = Seguidores::find()->where(['IN', 'seguidor_id', $getSeguidores])->andWhere(['seguido_id' => $usuario->id])->all();
+        $getIds = [];
+
+        for ($i = 0; $i < count($getRelacionados); $i++) {
+            $idUser = $getRelacionados[$i]->seguidor_id;
+            array_push($getIds, $idUser);
         }
         
         return $this->render('index', [
-            'publicar' => $publicar,
+            'publicacion' => $publicacion,
             'model' => $model,
+            'comentarios' => $comentarios,
+            'actual' => $actual,
+            'pagination' => $pagination,
+            'sugeridos' => $sugeridos,
+            'usuario' => $usuario,
         ]);
     }
 
@@ -107,14 +150,14 @@ class SiteController extends Controller
         $usuarios = Usuarios::find()->where('1=0');
         $comentarios = Comentarios::find()->where('1=0');
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
-        $publicar = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
 
         $countU = 0;
         $countC = 0;
 
-        if ($publicar->load(Yii::$app->request->post()) && $publicar->save()) {
+        if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
             Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
-            return $this->redirect(['comentarios/view', 'id' => $publicar->id]);
+            return $this->redirect(['comentarios/view', 'id' => $publicacion->id]);
         }
 
         if (($cadena = Yii::$app->request->get('cadena', ''))) {
@@ -134,7 +177,7 @@ class SiteController extends Controller
         return $this->render('busqueda', [
             'usuarios' => $usuarios,
             'comentarios' => $comentarios,
-            'publicar' => $publicar,
+            'publicar' => $publicacion,
             'actual' => $actual,
             'cadena' => $cadena,
             'countU' => $countU,

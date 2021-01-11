@@ -287,4 +287,16 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
+    public function actionCookie()
+    {
+        $cookies = Yii::$app->response->cookies;
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'aceptar',
+            'value' => '1',
+            'expire' => time() + 3600 * 24 * 365,
+            'domain' => '',
+        ]));
+        return $this->goBack();
+    }
 }

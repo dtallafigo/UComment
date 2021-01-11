@@ -7,38 +7,28 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ComentariosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comentarios';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Admin comentarios';
 ?>
-<div class="comentarios-index">
-
+<div class="row com">
     <h1><?= Html::encode($this->title) ?></h1>
+    <div class="col-12">
+        <?php Pjax::begin(); ?>
 
-    <p>
-        <?= Html::a('Create Comentarios', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-    <?php Pjax::begin(); ?>
-    <?php var_dump($respuestas) ?>
+                'text',
+                'created_at',
+                'url_img',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {delete}'],
+            ],
+        ]); ?>
 
-            'id',
-            'usuario_id',
-            'text',
-            'created_at',
-            'respuesta',
-            'citado',
-            'url_img',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-    <?php Pjax::end(); ?>
-
+        <?php Pjax::end(); ?>
+    </div>
 </div>

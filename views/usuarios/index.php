@@ -7,40 +7,28 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\UsuariosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Usuarios';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Admin usuarios';
 ?>
-<div class="usuarios-index">
+<div class="row com">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Usuarios', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="col-12">
+        <?php Pjax::begin(); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                'log_us',
+                'email:email',
+                'url_img',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'log_us',
-            'email:email',
-            'password',
-            'rol',
-            //'auth_key',
-            //'url_img:url',
-            //'bio',
-            //'ubi',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-    <?php Pjax::end(); ?>
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+        <?php Pjax::end(); ?>
+    </div>
 
 </div>

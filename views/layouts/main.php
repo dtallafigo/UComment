@@ -78,7 +78,17 @@ $this->registerJs($js2);
                 'url' => ['/usuarios/view', 'id' => Yii::$app->user->id]
             ],
             [
-                'label'=> 'Usuarios',
+                'label' => 'Usuarios',
+                'url' => ['/usuarios/index'],
+                'visible' => Yii::$app->user->isGuest ? false : (Yii::$app->user->id == 1)
+            ],
+            [
+                'label' => 'Comentarios',
+                'url' => ['/comentarios/index'],
+                'visible' => Yii::$app->user->isGuest ? false : (Yii::$app->user->id == 1)
+            ],
+            [
+                'label'=> Yii::$app->user->isGuest ? 'Usuarios' : Yii::$app->user->identity->log_us,
                 'items' => [
                     Yii::$app->user->isGuest ? (
                         ['label' => 'Login', 
@@ -92,7 +102,7 @@ $this->registerJs($js2);
                         . Html::endForm()
                         ),
                     ],
-                ],
+            ],
         ]
     ]);
     NavBar::end();

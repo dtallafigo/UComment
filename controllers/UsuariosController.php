@@ -172,11 +172,15 @@ class UsuariosController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            if (!empty($_FILES)) {
+            if ($_FILES['Usuarios']['name']['url_img'] == null) {
+                $model->url_img = $model->getOldAttribute('url_img');
+                $model->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['usuarios/view', 'id' => $model['id']]);
+            } else {
                 uploadImagen($model);
                 $model->url_img = $_FILES['Usuarios']['name']['url_img'];
-            }
-            if ($model->save()) {
+                $model->save();
                 Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
                 return $this->redirect(['usuarios/view', 'id' => $model['id']]);
             }

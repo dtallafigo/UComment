@@ -146,6 +146,7 @@ $this->registerJs($likes1);
                                         <?php $form = ActiveForm::begin(); ?>
                                         <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...'])->label(false) ?>
                                         <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $original->id])->label(false); ?>
+                                        <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -179,6 +180,7 @@ $this->registerJs($likes1);
                                 <?php $form = ActiveForm::begin(); ?>
                                 <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...'])->label(false) ?>
                                 <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $original->id])->label(false); ?>
+                                <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
                                 <div class="card" style="margin-top: 2%;">
                                     <div class="card-header">
                                         <div class="row">
@@ -343,6 +345,7 @@ $this->registerJs($likes1);
                                         <?php $form = ActiveForm::begin(); ?>
                                         <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...'])->label(false) ?>
                                         <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $model->id])->label(false); ?>
+                                        <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -376,6 +379,7 @@ $this->registerJs($likes1);
                                 <?php $form = ActiveForm::begin(); ?>
                                 <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...'])->label(false) ?>
                                 <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $model->id])->label(false); ?>
+                                <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
                                 <div class="card" style="margin-top: 2%;">
                                     <div class="card-header">
                                         <div class="row">
@@ -410,7 +414,7 @@ $this->registerJs($likes1);
                     <div class="card-body">
                         <div class="row">
                             <div class="col-2 d-flex justify-content-center">
-                                <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" alt="" style="width: 50px; height: auto;">
+                                <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" alt="" id="fcom">
                             </div>
                             <div class="col-6 d-flex justify-content-left">
                                 <p class="center"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
@@ -554,6 +558,7 @@ $this->registerJs($likes1);
                                         <?php $form = ActiveForm::begin(); ?>
                                         <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...'])->label(false) ?>
                                         <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $model->id])->label(false); ?>
+                                        <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -587,6 +592,7 @@ $this->registerJs($likes1);
                                 <?php $form = ActiveForm::begin(); ?>
                                 <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...'])->label(false) ?>
                                 <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $model->id])->label(false); ?>
+                                <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
                                 <div class="card" style="margin-top: 2%;">
                                     <div class="card-header">
                                         <div class="row">

@@ -10,6 +10,10 @@ p, h1, h2, h3, h4, h5, h6, label, pre {
     font-family: 'Poppins', sans-serif;
 }
 
+.footer {
+    background-color: #343a40 !important;
+}
+
 .card-body p {
     white-space: pre-wrap;
 }
@@ -27,7 +31,9 @@ small {
 }
 
 #sugerido-img {
-    width: 2rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 150px;
 }
 
 .s {
@@ -35,13 +41,13 @@ small {
 }
 
 @media (max-width: 992px) { 
+    .b {
+        margin-top: 10%;
+    }
 }
 
 @media (max-width: 768px) { 
     .b {
-        margin-top: 10%;
-    }
-    .g {
         margin-top: 10%;
     }
     .follow {
@@ -51,6 +57,11 @@ small {
     .delete > .btn{
         position: absolute;
         top: 50%;
+    }
+
+    #logo {
+        width: 150px;
+        height: 150px;
     }
 }
 
@@ -123,8 +134,8 @@ small {
 }
 
 #logo {
-    width: 7%;
-    height: 7%;
+    width: 50px;
+    height: auto;
 }
 
 .ir-arriba{
@@ -137,15 +148,6 @@ small {
     bottom:10px;
     right:10px;
     z-index:2;
-}
-
-a {
-    color: #1C1210;
-}
-
-a:hover {
-    text-decoration: none;
-    color: #1C1210;
 }
 
 .bio {
@@ -164,10 +166,35 @@ a:hover {
 }
 
 .center {
-    position: absolute;
-    display: inline;
-    top: 20%;
+    margin: 3% 0 0 0;
 }
+
+.img{
+    margin:10px auto;
+    border-radius:5px;
+    border: 1px solid #999;
+    padding:13px;
+    width:100%;
+    height:auto;
+    }
+  .img img{
+    width: 100%;
+  }
+  @media all and (min-width: 500px) and (max-width: 1000px)
+  {  
+  .img{
+    margin:20px auto;
+    border-radius:5px;
+    border: 1px solid #999;
+    padding:13px;
+    width:100%;
+    height:auto;
+    
+    }
+  }
+  .img img{
+     width:100%;
+  }
 
 .com {
     background-color:#36294C;
@@ -328,8 +355,8 @@ a.desc:after {
 
 .modal-dialog {
     position: relative;
-    width: 80%;
-    height: auto;
+    width: auto;
+    height: 80%;
     border-radius: 5px;
     background: #36294C;
     overflow: auto;
@@ -387,13 +414,11 @@ a.desc:after {
 }
 
 #perfil {
-    width: 200px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    margin-top: 10%;
+    width: 150px;
+    height: 150px;
+    margin: 10% 0 0 0;
     border: solid;
-    border-radius: 100%;
+    border-radius: 150px;
 }
 
 .user {
@@ -409,7 +434,7 @@ a.desc:after {
 #comentario {
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
-    color: black;
+    color: #fff;
 }
 
 #borrar-cuenta {
@@ -520,18 +545,53 @@ a.desc:after {
 }
 
 #inicio {
-    width: 35px;
-    height: auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 150px;
+}
+
+.pagination {
+    margin: 0;
+    align-content: center;
+}
+
+.page-link {
+    background-color: #7E4DBA;
+    color: #fff;
+}
+
+.page-item.active .page-link {
+    background-color: #653b98;
+    border: 1px solid #dee2e6;
+}
+
+.nav-link {
+    font-weight: bolder;
+}
+
+.foto-header {
+    width: 100px;
+    height: 100px;
+    border-radius: 150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.page-item.disabled .page-link {
+    background-color: #653b98;
+
 }
 
 #fcom {
-    width: 35px;
-    height: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 150px;
 }
 
 #citado {
-    width: 35px;
-    height: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 150px;
 }
 
 #papelera {
@@ -614,6 +674,15 @@ a.desc:after {
 
 .s-relacionados {
     margin: 0;
+}
+
+.file-input {
+    position: relative;
+    top: 50%;
+}
+
+#usuarios-url_img {
+    color: #fff;
 }
 
 /* View de Usuarios */

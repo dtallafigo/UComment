@@ -57,6 +57,7 @@ $this->registerJs($js);
     <section class="modal-content">
         <?php $form = ActiveForm::begin(); ?>
             <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',]) ?>
+            <?= $form->field($publicar, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
             <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
         <?php ActiveForm::end(); ?>
     </section>

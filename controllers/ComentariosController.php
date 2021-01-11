@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Usuarios;
 
+require '../web/uploads3.php';
+
 /**
  * ComentariosController implements the CRUD actions for Comentarios model.
  */
@@ -59,9 +61,18 @@ class ComentariosController extends Controller
         $model = $this->findModel($id);
         $userComment = Usuarios::find()->where(['id' => $model->usuario_id])->one();
 
-        if ($publicacion->load(Yii::$app->request->post()) && $publicacion->save()) {
-            Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
-            return $this->redirect(['comentarios/view', 'id' => $publicacion->id]);
+        if ($publicacion->load(Yii::$app->request->post())) {
+            if ($_FILES['Comentarios']['name']['url_img'] == null) {
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            } else {
+                uploadComentario($publicacion);
+                $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            }
         }
 
         return $this->render('view', [

@@ -12,6 +12,8 @@ use yii\web\Response;
 use app\models\Usuarios;
 use app\models\Comentarios;
 
+require '../web/uploads3.php';
+
 /**
  * LikesController implements the CRUD actions for Likes model.
  */

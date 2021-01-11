@@ -1,9 +1,6 @@
 ------------------------------
 -- Archivo de base de datos --
 ------------------------------
-
-CREATE EXTENSION pgcrypto;
-
 DROP TABLE IF EXISTS usuarios CASCADE;
 
 CREATE TABLE usuarios
@@ -15,7 +12,7 @@ CREATE TABLE usuarios
     ,   rol                 varchar(255)    DEFAULT 'user'
     ,   auth_key            varchar(255)
     ,   token               varchar(32)
-    ,   url_img             varchar(2048)   DEFAULT 'user/user.svg'
+    ,   url_img             varchar(2048)   DEFAULT 'user.svg'
     ,   bio                 varchar(280)    DEFAULT 'Hola!'
     ,   ubi                 varchar(50)     
 );
@@ -30,7 +27,7 @@ CREATE TABLE comentarios
     ,   created_at      TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
     ,   respuesta       BIGINT          REFERENCES comentarios (id) ON DELETE SET NULL
     ,   citado          BIGINT          REFERENCES comentarios (id) ON DELETE SET NULL
-    ,   img             varchar(2048)
+    ,   url_img         varchar(2048)
 );
 
 DROP TABLE IF EXISTS seguidores CASCADE;
@@ -66,7 +63,6 @@ CREATE TABLE comsave
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', ''),
-        ('ricardo', 'ricardo99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('antonio', 'antonio@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('damian', 'damian@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('jaime', 'jaime@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
@@ -74,19 +70,22 @@ VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)
         ('chuso', 'chuso@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('cheto', 'cheto@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');
 
-INSERT INTO comentarios (usuario_id, text, respuesta, citado, img)
-VALUES  ('1', 'Primer comentario.', NULL, NULL, NULL),
-        ('1', 'Segundo comentario.', NULL, NULL, NULL),
-        ('1', 'Tercero comentario.', NULL, NULL, NULL),
-        ('1', 'Cuarto comentario.', NULL, NULL, NULL),
-        ('1', 'Quinto comentario.', NULL, NULL, NULL),
-        ('1', 'Sexto comentario.', NULL, NULL, NULL),
-        ('2', 'Primer comentario.', NULL, NULL, NULL),
-        ('2', 'Segundo comentario.', NULL, NULL, NULL),
-        ('2', 'Tercero comentario.', NULL, NULL, NULL),
-        ('2', 'Cuarto comentario.', NULL, NULL, NULL),
-        ('2', 'Quinto comentario.', NULL, NULL, NULL),
-        ('2', 'Sexto comentario.', NULL, NULL, NULL);
+INSERT INTO usuarios (log_us, email, password, rol, auth_key, ubi)
+VALUES  ('Vandal', 'Vandal@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '', 'https://vandal.elespanol.com/');
+
+INSERT INTO comentarios (usuario_id, text, respuesta, citado)
+VALUES  ('1', 'Primer comentario.', NULL, NULL),
+        ('1', 'Segundo comentario.', NULL, NULL),
+        ('1', 'Tercero comentario.', NULL, NULL),
+        ('1', 'Cuarto comentario.', NULL, NULL),
+        ('1', 'Quinto comentario.', NULL, NULL),
+        ('1', 'Sexto comentario.', NULL, NULL),
+        ('2', 'Primer comentario.', NULL, NULL),
+        ('2', 'Segundo comentario.', NULL, NULL),
+        ('2', 'Tercero comentario.', NULL, NULL),
+        ('2', 'Cuarto comentario.', NULL, NULL),
+        ('2', 'Quinto comentario.', NULL, NULL),
+        ('2', 'Sexto comentario.', NULL, NULL);
 
 INSERT INTO seguidores (seguido_id, seguidor_id)
 VALUES ('3', '1'),

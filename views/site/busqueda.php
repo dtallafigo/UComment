@@ -10,6 +10,8 @@ use app\models\Likes;
 use yii\bootstrap4\ActiveForm;
 use app\models\Comentarios;
 
+require '../web/uploads3.php';
+
 $this->title = 'UComment: Busqueda';
 $id = Yii::$app->user->id;
 $seguir = Url::to(['seguidores/follow']);
@@ -110,7 +112,7 @@ $this->registerJs($js2);
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-center">
-                                    <img src="<?= $user->url_img ?>" alt="" style="width: 90px; height: auto;">
+                                    <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" alt="" class="foto-header">
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-6">
                                     <?php if (Seguidores::findOne(['seguido_id' => Yii::$app->user->id, 'seguidor_id' => $user->id])) : ?>
@@ -121,7 +123,7 @@ $this->registerJs($js2);
                                     <a href="<?= Url::to(['usuarios/view', 'id' => $user->id]); ?>">
                                         <h4><?= $user->log_us ?></h4>
                                     </a>
-                                    <?= Html::tag('p', Html::encode($user->bio), ['class' => 'card-text']) ?>
+                                    <p class="card-text"><?= $user->url($user->bio) ?></p>
                                 </div>
                                 <?php if ($user->id != Yii::$app->user->id) : ?>
                                     <div class="col-sm-2 col-md-4 col-lg-2 d-flex justify-content-center">
@@ -188,7 +190,7 @@ $this->registerJs($js2);
                 <div class="modal" id="respuesta<?= $comentario->id ?>">
                     <div class="modal-dialog">
                         <header class="modal-header">
-                            <img src="<?= $actual->url_img ?>" id="inicio">
+                            <img src="<?= s3GetUrl($actual->url_img, 'ucomment') ?>" id="inicio">
                             <h4><?= $actual->log_us ?></h4>
                             <button class="close-modal" aria-label="close modal" data-close>
                                 ✕
@@ -206,22 +208,27 @@ $this->registerJs($js2);
                                         <div class="card-header">
                                             <div class="row">
                                                 <div class="col-2 d-flex justify-content-center">
-                                                    <img src="<?= $user->url_img ?>" id="citado">
+                                                    <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="citado">
                                                 </div>
                                                 <div class="col-10 d-flex justify-content-left">
-                                                    <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
+                                                    <p class="card-text"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
+                                            <p class="card-text"><?= $comentario->url($comentario->text) ?></p>
+                                            <?php if ($comentario->url_img) : ?>
+                                                <div class="col-12 d-flex justify-content-right img">
+                                                    <img src="<?= s3GetUrl($comentario->url_img, 'ucomment') ?>" alt="">
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="card" style="margin-top: 3%;">
                                         <div class="card-body">
                                             <?php $form = ActiveForm::begin(); ?>
-                                            <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',])->label(false) ?>
-                                            <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                                            <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',])->label(false) ?>
+                                            <?= $form->field($publicar, 'respuesta')->hiddenInput(['value' => $comentario->id])->label(false); ?>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -238,7 +245,7 @@ $this->registerJs($js2);
                 <div class="modal" id="citado<?= $comentario->id ?>">
                     <div class="modal-dialog">
                         <header class="modal-header">
-                            <img src="<?= $actual->url_img ?>" id="inicio">
+                            <img src="<?= s3GetUrl($actual->url_img, 'ucomment') ?>" id="inicio">
                             <h4><?= $actual->log_us ?></h4>
                             <button class="close-modal" aria-label="close modal" data-close>
                                 ✕
@@ -253,21 +260,26 @@ $this->registerJs($js2);
                                 </div>
                                 <div class="card-body">
                                     <?php $form = ActiveForm::begin(); ?>
-                                    <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...',])->label(false) ?>
-                                    <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                                    <?= $form->field($publicar, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...',])->label(false) ?>
+                                    <?= $form->field($publicar, 'citado')->hiddenInput(['value' => $comentario->id])->label(false); ?>
                                     <div class="card" style="margin-top: 2%;">
                                         <div class="card-header">
                                             <div class="row">
                                                 <div class="col-2 d-flex justify-content-center">
-                                                    <img src="<?= $user->url_img ?>" id="citado">
+                                                    <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="citado">
                                                 </div>
                                                 <div class="col-10 d-flex justify-content-left">
-                                                    <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
+                                                    <p class="card-text"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
+                                            <p class="card-text"><?= $comentario->url($comentario->text); ?></p>
+                                            <?php if ($comentario->url_img) : ?>
+                                                <div class="col-12 d-flex justify-content-right img">
+                                                    <img src="<?= s3GetUrl($comentario->url_img, 'ucomment') ?>" alt="">
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div style="margin-top: 4%;">
@@ -286,15 +298,20 @@ $this->registerJs($js2);
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-1 d-flex justify-content-center">
-                                        <img src="<?= $user->url_img ?>" id="fcom">
+                                        <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="fcom">
                                     </div>
                                     <div class="col-10 d-flex justify-content-left">
-                                        <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
+                                        <p class="card-text"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <?= Html::tag('p', Html::encode($comentario->text), ['class' => 'card-text']) ?>
+                                <p class="card-text"><?= $comentario->url($comentario->text); ?></p>
+                                <?php if ($comentario->url_img) : ?>
+                                    <div class="col-12 d-flex justify-content-right img">
+                                        <img src="<?= s3GetUrl($comentario->url_img, 'ucomment') ?>" alt="">
+                                    </div>
+                                <?php endif; ?>
                                 <?php if ($comentario->citado) : ?>
                                     <?php $citado = Comentarios::find()->where(['id' => $comentario->citado])->one(); ?>
                                     <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
@@ -306,15 +323,19 @@ $this->registerJs($js2);
                                                 </div>
                                                 <div class="col-10 d-flex justify-content-left">
                                                     <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
-                                                        <p class="center"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
+                                                        <p class="card-text"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
                                             <div class="card-body">
-                                                <?= Html::tag('p', Html::encode($citado->text), ['class' => 'card-text']) ?>
-                                                <p class="card-text"><?= $citado->text ?></p>
+                                                <p class="card-text"><?= $citado->url($citado->text); ?></p>
+                                                <?php if ($citado->url_img) : ?>
+                                                    <div class="col-12 d-flex justify-content-right img">
+                                                        <img src="<?= s3GetUrl($citado->url_img, 'ucomment') ?>" alt="">
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
                                         </a>
                                     </div>

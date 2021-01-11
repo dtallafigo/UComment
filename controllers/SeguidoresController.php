@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use app\models\Usuarios;
 
+require '../web/uploads3.php';
+
 /**
  * SeguidoresController implements the CRUD actions for Seguidores model.
  */

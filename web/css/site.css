@@ -251,6 +251,14 @@ small {
     background-color: #36294C;
 }
 
+.table th, .table td{
+    color: #fff;
+}
+
+#comentarios-url_img {
+    color: #fff;
+}
+
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;

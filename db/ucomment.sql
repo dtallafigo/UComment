@@ -61,7 +61,7 @@ CREATE TABLE comsave
 );
 
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
-VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
+VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'admin', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('antonio', 'antonio@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('damian', 'damian@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),

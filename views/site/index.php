@@ -74,7 +74,7 @@ $save = Url::to(['comsave/save']);
 							<?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
 						</div>
 						<div class="col-12 d-flex flex-row-reverse">
-							<?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+							<?= Html::submitButton('Publicar', ['class' => 'log-button']) ?>
 							<?php ActiveForm::end(); ?>
 						</div>
 					</div>
@@ -178,8 +178,8 @@ $save = Url::to(['comsave/save']);
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-12" style="margin-top: 3%;">
-										<?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+									<div class="col-12 d-flex flex-row-reverse" style="margin-top: 3%;">
+										<?= Html::submitButton('Publicar', ['class' => 'log-button']) ?>
 										<?php ActiveForm::end(); ?>
 									</div>
 								</div>
@@ -229,8 +229,8 @@ $save = Url::to(['comsave/save']);
 										<?php endif; ?>
 									</div>
 								</div>
-								<div style="margin-top: 4%;">
-									<?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+								<div class="d-flex flex-row-reverse" style="margin-top: 4%;">
+									<?= Html::submitButton('Publicar', ['class' => 'log-button']) ?>
 									<?php ActiveForm::end(); ?>
 								</div>
 							</div>

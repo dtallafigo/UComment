@@ -107,7 +107,7 @@ $this->registerJs($likes1);
             <div class="modal" id="respuesta<?= $original->id ?>">
                 <div class="modal-dialog">
                     <header class="modal-header">
-                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" id="inicio">
                         <h4><?= $userB->log_us ?></h4>
                         <button class="close-modal" aria-label="close modal" data-close>
                             ✕
@@ -125,7 +125,7 @@ $this->registerJs($likes1);
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-2 d-flex justify-content-center">
-                                                <img src="<?= $uco->url_img ?>" id="citado">
+                                                <img src="<?= s3GetUrl($uco->url_img, 'ucomment') ?>" id="citado">
                                             </div>
                                             <div class="col-10 d-flex justify-content-left">
                                                 <p class="center"><?= $uco->log_us ?> · <?= $original->fecha($original->created_at) ?></p>
@@ -133,7 +133,12 @@ $this->registerJs($likes1);
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <p><?= $original->text ?></p>
+                                        <p><?= $original->url($original->text) ?></p>
+                                        <?php if ($original->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($original->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="card" style="margin-top: 3%;">
@@ -157,7 +162,7 @@ $this->registerJs($likes1);
             <div class="modal" id="citado<?= $original->id ?>">
                 <div class="modal-dialog">
                     <header class="modal-header">
-                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" id="inicio">
                         <h4><?= $userB->log_us ?></h4>
                         <button class="close-modal" aria-label="close modal" data-close>
                             ✕
@@ -178,7 +183,7 @@ $this->registerJs($likes1);
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-2 d-flex justify-content-center">
-                                                <img src="<?= $uco->url_img ?>" id="citado">
+                                                <img src="<?= s3GetUrl($uco->url_img, 'ucomment') ?>" id="citado">
                                             </div>
                                             <div class="col-10 d-flex justify-content-left">
                                                 <p class="center"><?= $uco->log_us ?> · <?= $original->fecha($original->created_at) ?></p>
@@ -186,7 +191,12 @@ $this->registerJs($likes1);
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $original->text ?></p>
+                                        <p class="card-text"><?= $original->url($original->text) ?></p>
+                                        <?php if ($original->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($original->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div style="margin-top: 4%;">
@@ -203,7 +213,7 @@ $this->registerJs($likes1);
                     <div class="card-header">
                         <div class="row">
                             <div class="col-2 d-flex justify-content-center">
-                                <img src="<?= $uco->url_img ?>" alt="" style="width: 50px; height: auto;">
+                                <img src="<?= s3GetUrl($uco->url_img, 'ucomment') ?>" alt="" id="fcom">
                             </div>
                             <div class="col-6 d-flex justify-content-left">
                                 <p class="center"><?= $uco->log_us ?> · <?= $original->fecha($original->created_at) ?></p>
@@ -227,7 +237,12 @@ $this->registerJs($likes1);
                     <div class="card-body">
                         <a href="<?= Url::to(['comentarios/view', 'id' => $original->id]); ?>">
                             <div class="col-12">
-                                <p><?= $original->text ?></p>
+                                <p class="card-text"><?= $original->url($original->text) ?></p>
+                                <?php if ($original->url_img) : ?>
+                                    <div class="col-12 d-flex justify-content-right img">
+                                        <img src="<?= s3GetUrl($original->url_img, 'ucomment') ?>" alt="">
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </a>
                     </div>
@@ -248,7 +263,12 @@ $this->registerJs($likes1);
                                 </div>
                                 <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>" id="comentario">
                                     <div class="card-body">
-                                        <p class="card-text"><?= $citado->text ?></p>
+                                        <p class="card-text"><?= $citado->url($citado->text) ?></p>
+                                        <?php if ($citado->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($citado->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </a>
                             </div>
@@ -284,7 +304,7 @@ $this->registerJs($likes1);
             <div class="modal" id="respuesta<?= $model->id ?>">
                 <div class="modal-dialog">
                     <header class="modal-header">
-                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" id="inicio">
                         <h4><?= $userB->log_us ?></h4>
                         <button class="close-modal" aria-label="close modal" data-close>
                             ✕
@@ -302,7 +322,7 @@ $this->registerJs($likes1);
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-2 d-flex justify-content-center">
-                                                <img src="<?= $userA->url_img ?>" id="citado">
+                                                <img src="<?= s3GetUrl($userA->url_img, 'ucomment') ?>" id="citado">
                                             </div>
                                             <div class="col-10 d-flex justify-content-left">
                                                 <p class="center"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
@@ -310,7 +330,12 @@ $this->registerJs($likes1);
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $model->text ?></p>
+                                        <p class="card-text"><?= $model->url($model->text) ?></p>
+                                        <?php if ($model->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="card" style="margin-top: 3%;">
@@ -334,7 +359,7 @@ $this->registerJs($likes1);
             <div class="modal" id="citado<?= $model->id ?>">
                 <div class="modal-dialog">
                     <header class="modal-header">
-                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" id="inicio">
                         <h4><?= $userB->log_us ?></h4>
                         <button class="close-modal" aria-label="close modal" data-close>
                             ✕
@@ -355,7 +380,7 @@ $this->registerJs($likes1);
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-2 d-flex justify-content-center">
-                                                <img src="<?= $userA->url_img ?>" id="citado">
+                                                <img src="<?= s3GetUrl($userA->url_img, 'ucomment') ?>" id="citado">
                                             </div>
                                             <div class="col-10 d-flex justify-content-left">
                                                 <p class="center"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
@@ -363,7 +388,12 @@ $this->registerJs($likes1);
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $model->text ?></p>
+                                        <p class="card-text"><?= $model->url($model->text) ?></p>
+                                        <?php if ($model->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div style="margin-top: 4%;">
@@ -376,12 +406,11 @@ $this->registerJs($likes1);
                 </div>
             </div>
             <div class="row com justify-content-center">
-
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-2 d-flex justify-content-center">
-                                <img src="<?= $userA->url_img ?>" alt="" style="width: 50px; height: auto;">
+                                <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" alt="" style="width: 50px; height: auto;">
                             </div>
                             <div class="col-6 d-flex justify-content-left">
                                 <p class="center"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
@@ -405,7 +434,12 @@ $this->registerJs($likes1);
                             </div>
                             <div class="col-12" style="margin-top: 3%; margin-bottom: 3%;">
                                 <a href="<?= Url::to(['comentarios/view', 'id' => $model->id]); ?>">
-                                    <p class="card-text"><?= $model->text ?></p>
+                                    <p class="card-text"><?= $model->url($model->text) ?></p>
+                                    <?php if ($model->url_img) : ?>
+                                        <div class="col-12 d-flex justify-content-right img">
+                                            <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" alt="">
+                                        </div>
+                                    <?php endif; ?>
                                 </a>
                             </div>
                         </div>
@@ -481,7 +515,7 @@ $this->registerJs($likes1);
             <div class="modal" id="respuesta<?= $model->id ?>">
                 <div class="modal-dialog">
                     <header class="modal-header">
-                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" id="inicio">
                         <h4><?= $userB->log_us ?></h4>
                         <button class="close-modal" aria-label="close modal" data-close>
                             ✕
@@ -499,7 +533,7 @@ $this->registerJs($likes1);
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-2 d-flex justify-content-center">
-                                                <img src="<?= $userA->url_img ?>" id="citado">
+                                                <img src="<?= s3GetUrl($userA->url_img, 'ucomment') ?>" id="citado">
                                             </div>
                                             <div class="col-8 d-flex justify-content-left">
                                                 <p class="card-title"><?= $userA->log_us ?> · <?= $model->fecha($model->created_at) ?></p>
@@ -507,7 +541,12 @@ $this->registerJs($likes1);
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $model->text ?></p>
+                                        <p class="card-text"><?= $model->url($model->text) ?></p>
+                                        <?php if ($model->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="card" style="margin-top: 3%;">
@@ -531,7 +570,7 @@ $this->registerJs($likes1);
             <div class="modal" id="citado<?= $model->id ?>">
                 <div class="modal-dialog">
                     <header class="modal-header">
-                        <img src="<?= $userB->url_img ?>" id="inicio">
+                        <img src="<?= s3GetUrl($userB->url_img, 'ucomment') ?>" id="inicio">
                         <h4><?= $userB->log_us ?></h4>
                         <button class="close-modal" aria-label="close modal" data-close>
                             ✕
@@ -552,7 +591,7 @@ $this->registerJs($likes1);
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-2 d-flex justify-content-center">
-                                                <img src="<?= $userA->url_img ?>" id="citado">
+                                                <img src="<?= s3GetUrl($userA->url_img, 'ucomment') ?>" id="citado">
                                             </div>
                                             <div class="col-6 d-flex justify-content-left">
                                                 <p class="card-title"><?= $userA->log_us ?> . <?= $model->fecha($model->created_at) ?></p>
@@ -560,7 +599,12 @@ $this->registerJs($likes1);
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $model->text ?></p>
+                                        <p class="card-text"><?= $model->url($model->text) ?></p>
+                                        <?php if ($model->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div style="margin-top: 4%;">
@@ -577,7 +621,7 @@ $this->registerJs($likes1);
                     <div class="card-body">
                         <div class="row">
                             <div class="col-2 d-flex justify-content-center">
-                                <img src="<?= $userA->url_img ?>" alt="" style="width: 50px; height: auto;">
+                                <img src="<?= s3GetUrl($userA->url_img, 'ucomment') ?>" alt="" id="fcom">
                             </div>
                             <div class="col-6 justify-content-left">
                                 <a href="<?= Url::to(['usuarios/view', 'id' => $userA->id]); ?>" id="link_name">
@@ -600,7 +644,12 @@ $this->registerJs($likes1);
                             <?php endif; ?>
                         </div>
                         <div class="col-12" style="margin-top: 3%;">
-                            <p><?= $model->text ?></p>
+                            <p><?= $model->url($model->text) ?></p>
+                            <?php if ($model->url_img) : ?>
+                                <div class="col-12 d-flex justify-content-right img">
+                                    <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" alt="">
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php if ($model->citado) : ?>
@@ -611,7 +660,7 @@ $this->registerJs($likes1);
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-1 d-flex justify-content-center">
-                                            <img src="<?= $uc->url_img ?>" id="citado">
+                                            <img src="<?= s3GetUrl($uc->url_img, 'ucomment') ?>" id="citado">
                                         </div>
                                         <div class="col-6 d-flex justify-content-left">
                                             <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
@@ -622,7 +671,12 @@ $this->registerJs($likes1);
                                 </div>
                                 <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>" id="comentario">
                                     <div class="card-body">
-                                        <p class="card-text"><?= $citado->text ?></p>
+                                        <p class="card-text"><?= $citado->url($citado->text) ?></p>
+                                        <?php if ($citado->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($citado->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </a>
                             </div>
@@ -707,7 +761,7 @@ $this->registerJs($likes1);
             <div class="card-body s">
                 <div class="row">
                     <div class="col-2 d-flex justify-content-center">
-                        <img src="<?= $userComment->url_img ?>" id="sugerido-img">
+                        <img src="<?= s3GetUrl($userComment->url_img, 'ucomment') ?>" id="sugerido-img">
                     </div>
                     <div class="col-4 d-flex justify-content-left">
                         <a href="<?= Url::to(['usuarios/view', 'id' => $userComment->id]); ?>">

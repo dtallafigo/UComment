@@ -54,7 +54,7 @@ $seguir = Url::to(['seguidores/follow']);
                     <div class="card-header">
                         <div class="row">
                             <div class="col-2 d-flex justify-content-center">
-                                <img src="<?= $user->url_img ?>" alt="" style="width: 90px; height: auto;">
+                                <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" alt="" class="foto-header">
                             </div>
                             <div class="col-6">
                                 <?php if (Seguidores::findOne(['seguido_id' => Yii::$app->user->id, 'seguidor_id' => $user->id])) : ?>
@@ -65,7 +65,7 @@ $seguir = Url::to(['seguidores/follow']);
                                 <a href="<?= Url::to(['usuarios/view', 'id' => $user->id]); ?>">
                                     <h4><?= $user->log_us ?></h4>
                                 </a>
-                                <p><?= $user->bio ?></p>
+                                <p class="card-text"><?= $user->url($user->bio) ?></p>
                             </div>
                             <?php if ($user->id != Yii::$app->user->id) : ?>
                                 <div class="col-4 d-flex justify-content-center">

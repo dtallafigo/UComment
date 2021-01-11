@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Usuarios;
 
+require '../web/uploads3.php';
+
 /**
  * ComentariosController implements the CRUD actions for Comentarios model.
  */

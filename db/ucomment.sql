@@ -63,13 +63,15 @@ CREATE TABLE comsave
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', ''),
-        ('ricardo', 'ricardo99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('antonio', 'antonio@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('damian', 'damian@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('jaime', 'jaime@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('martin', 'martin@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('chuso', 'chuso@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', ''),
         ('cheto', 'cheto@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '');
+
+INSERT INTO usuarios (log_us, email, password, rol, auth_key, ubi)
+VALUES  ('Vandal', 'Vandal@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'user', '', 'https://vandal.elespanol.com/');
 
 INSERT INTO comentarios (usuario_id, text, respuesta, citado)
 VALUES  ('1', 'Primer comentario.', NULL, NULL),

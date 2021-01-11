@@ -111,13 +111,15 @@ class UsuariosController extends Controller
         }
 
         if ($publicacion->load(Yii::$app->request->post())) {
-            if (file_exists($_FILES['Comentarios']['name']['url_img'])) {
+            if ($_FILES['Comentarios']['name']['url_img'] == null) {
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            } else {
                 uploadComentario($publicacion);
                 $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
-            }
-
-            if ($publicacion->save()) {
-                Yii::$app->session->setFlash('success', 'Se ha publicado tu comentario.');
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
                 return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
             }
         }

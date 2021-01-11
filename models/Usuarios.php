@@ -140,4 +140,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Seguidores::className(), ['seguidor_id' => 'id']);
     }
+
+    public function url($text)
+    {
+        $text = html_entity_decode($text);
+        $text = preg_replace("/((http|https|www)[^\s]+)/", '<a href="$1">$0</a>', $text);
+        return $text;
+    }
 }

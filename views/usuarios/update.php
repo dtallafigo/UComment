@@ -3,6 +3,7 @@
 use app\models\Seguidores;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
@@ -10,10 +11,20 @@ use yii\bootstrap4\Html;
 $this->title = 'Editar usuario ' . $model->log_us;
 ?>
 <div class="row">
-    <div class="col-9" style="border: 1px solid;">
+    <div class="col-12" style="border: 1px solid;">
+        <div class="row com">
+            <div class="col-1">
+                <a href="<?= Url::to(Yii::$app->request->referrer); ?>">
+                    <img src="icons/hacia-atras.png" id="flecha">
+                </a>
+            </div>
+            <div class="col-10 d-flex justify-content-left">
+                <h4 style="margin: 1% 0 0 0;">Editar perfil</h4>
+            </div>
+        </div>
         <div class="row user">
             <div class="col-sm-12 col-md-4 col-lg-4">
-            <?php $form = ActiveForm::begin(); ?>
+                <?php $form = ActiveForm::begin(); ?>
                 <img src="<?= s3GetUrl($model->url_img, 'ucomment') ?>" id="perfil">
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -21,7 +32,7 @@ $this->title = 'Editar usuario ' . $model->log_us;
                 <?= $form->field($model, 'url_img', ['options' => ['class' => 'file-input']])->fileInput()->label(false) ?>
             </div>
             <div class="col-4">
-                <?= Html::submitButton('Editar', ['class' => 'edit']) ?>   
+                <?= Html::submitButton('Editar', ['class' => 'edit']) ?>
             </div>
         </div>
         <div class="row bio">

@@ -181,61 +181,62 @@ $save = Url::to(['comsave/save']);
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-comments-tab" data-toggle="tab" href="#nav-comments" role="tab" aria-controls="nav-comments" aria-selected="true">Mis Comentarios</a>
                     <a class="nav-item nav-link" id="nav-likes-tab" data-toggle="tab" href="#nav-likes" role="tab" aria-controls="nav-likes" aria-selected="false">Likes</a>
+                    <a class="nav-item nav-link" id="nav-imagenes-tab" data-toggle="tab" href="#nav-imagenes" role="tab" aria-controls="nav-imagenes" aria-selected="false">Imagenes</a>
                 </div>
             </nav>
         </div>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
-                <?php if (count($comentarios) > 1) : ?>
+                <?php if (count($comentarios) > 0) : ?>
                     <?php \yii\widgets\Pjax::begin(['timeout' => 10000]) ?>
                     <?php foreach ($comentarios as $comentario) : ?>
                         <?php
                         $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
                         $likes = <<<EOT
-                    var boton = $("#like$comentario->id");
-                    boton.click(function(event) {
-                        event.preventDefault();
-                        $.ajax({
-                            method: 'GET',
-                            url: '$like',
-                            data: {
-                                'comentario_id': $comentario->id
-                            },
-                            success: function (data, code, jqXHR) {
-                                var countlike$comentario->id = document.getElementById("countLike$comentario->id");
-                                countlike$comentario->id.innerHTML = data[1];
-                                if (data[0]) {
-                                    document.getElementById("icon$comentario->id").src="icons/like.svg";
-                                } else {
-                                    document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                        var boton = $("#like$comentario->id");
+                        boton.click(function(event) {
+                            event.preventDefault();
+                            $.ajax({
+                                method: 'GET',
+                                url: '$like',
+                                data: {
+                                    'comentario_id': $comentario->id
+                                },
+                                success: function (data, code, jqXHR) {
+                                    var countlike$comentario->id = document.getElementById("countLike$comentario->id");
+                                    countlike$comentario->id.innerHTML = data[1];
+                                    if (data[0]) {
+                                        document.getElementById("icon$comentario->id").src="icons/like.svg";
+                                    } else {
+                                        document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                                    }
                                 }
-                            }
+                            });
                         });
-                    });
                     EOT;
                         $this->registerJs($likes);
                         $fav = <<<EOT
-                    var boton = $("#save$comentario->id");
-                    boton.click(function(event) {
-                        event.preventDefault();
-                        $.ajax({
-                            method: 'GET',
-                            url: '$save',
-                            data: {
-                                'comentario_id': $comentario->id
-                            },
-                            success: function (data, code, jqXHR) {
-                                var text = '';
-                                if (data[0])
-                                    text = 'NotSave'
-                                else
-                                    text = 'Save'
-                                var save$comentario->id = document.getElementById("save$comentario->id");
-                                save$comentario->id.innerHTML = text;
-                            }
+                        var boton = $("#save$comentario->id");
+                        boton.click(function(event) {
+                            event.preventDefault();
+                            $.ajax({
+                                method: 'GET',
+                                url: '$save',
+                                data: {
+                                    'comentario_id': $comentario->id
+                                },
+                                success: function (data, code, jqXHR) {
+                                    var text = '';
+                                    if (data[0])
+                                        text = 'NotSave'
+                                    else
+                                        text = 'Save'
+                                    var save$comentario->id = document.getElementById("save$comentario->id");
+                                    save$comentario->id.innerHTML = text;
+                                }
+                            });
                         });
-                    });
-                    EOT;
+                        EOT;
                         $this->registerJs($fav);
                         ?>
                         <div class="modal" id="respuesta<?= $comentario->id ?>">
@@ -454,7 +455,7 @@ $save = Url::to(['comsave/save']);
                 <?php endif; ?>
             </div>
             <div class="tab-pane fade shadow" id="nav-likes" role="tabpanel" aria-labelledby="nav-likes-tab">
-                <?php if (count($ml) > 1) : ?>
+                <?php if (count($ml) > 0) : ?>
                     <?php \yii\widgets\Pjax::begin(['timeout' => 10000]) ?>
                     <?php foreach ($ml as $coml) : ?>
                         <?php
@@ -721,6 +722,275 @@ $save = Url::to(['comsave/save']);
                         </div>
                     </div>
                 <?php endif; ?>
+            </div>
+            <div class="tab-pane fade shadow" id="nav-imagenes" role="tabpanel" aria-labelledby="nav-imagenes-tab">
+                <?php \yii\widgets\Pjax::begin(['timeout' => 10000]) ?>
+                <?php if (count($cfotos) > 0) : ?>
+                    <?php foreach ($cfotos as $coml) : ?>
+                        <?php
+                        $comentario = Comentarios::findOne(['id' => $coml->id]);
+                        $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
+                        $likes = <<<EOT
+                        var boton = $("#likepf$comentario->id");
+                        boton.click(function(event) {
+                            event.preventDefault();
+                            $.ajax({
+                                method: 'GET',
+                                url: '$like',
+                                data: {
+                                    'comentario_id': $comentario->id
+                                },
+                                success: function (data, code, jqXHR) {
+                                    var countlikepf$comentario->id = document.getElementById("countlikepf$comentario->id");
+                                    countlikepf$comentario->id.innerHTML = data[1];
+                                    if (data[0]) {
+                                        document.getElementById("iconpl$comentario->id").src="icons/like.svg";
+                                    } else {
+                                        document.getElementById("iconpl$comentario->id").src="icons/dislike.svg";
+                                    }
+                                }
+                            });
+                        });
+                        EOT;
+                        $this->registerJs($likes);
+                        $fav = <<<EOT
+                        var boton = $("#save$comentario->id");
+                        boton.click(function(event) {
+                            event.preventDefault();
+                            $.ajax({
+                                method: 'GET',
+                                url: '$save',
+                                data: {
+                                    'comentario_id': $comentario->id
+                                },
+                                success: function (data, code, jqXHR) {
+                                    var text = '';
+                                    if (data[0])
+                                        text = 'NotSave'
+                                    else
+                                        text = 'Save'
+                                    var save$comentario->id = document.getElementById("save$comentario->id");
+                                    save$comentario->id.innerHTML = text;
+                                }
+                            });
+                        });
+                        EOT;
+                        $this->registerJs($fav);
+                        ?>
+                        <div class="modal" id="respuestapl<?= $comentario->id ?>">
+                            <div class="modal-dialog">
+                                <header class="modal-header">
+                                    <img src="<?= s3GetUrl($actual->url_img, 'ucomment') ?>" id="inicio">
+                                    <h4><?= $actual->log_us ?></h4>
+                                    <button class="close-modal" aria-label="close modal" data-close>
+                                        ✕
+                                    </button>
+                                </header>
+                                <section class="modal-content">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <h4>Responder Comentario</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="row">
+                                                        <div class="col-2 d-flex justify-content-center">
+                                                            <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="citado">
+                                                        </div>
+                                                        <div class="col-10 d-flex justify-content-left">
+                                                            <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text"><?= $comentario->url($comentario->text); ?></p>
+                                                    <?php if ($comentario->url_img) : ?>
+                                                        <div class="col-12 d-flex justify-content-right img">
+                                                            <img src="<?= s3GetUrl($comentario->url_img, 'ucomment') ?>" alt="">
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                            <div class="card" style="margin-top: 3%;">
+                                                <div class="card-body">
+                                                    <?php $form = ActiveForm::begin(); ?>
+                                                    <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Publica algo...',])->label(false) ?>
+                                                    <?= $form->field($publicacion, 'respuesta')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                                                    <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="margin-top: 3%;">
+                                                    <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+                                                    <?php ActiveForm::end(); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="modal" id="citadopl<?= $comentario->id ?>">
+                            <div class="modal-dialog">
+                                <header class="modal-header">
+                                    <img src="<?= s3GetUrl($actual->url_img, 'ucomment') ?>" id="inicio">
+                                    <h4><?= $actual->log_us ?></h4>
+                                    <button class="close-modal" aria-label="close modal" data-close>
+                                        ✕
+                                    </button>
+                                </header>
+                                <section class="modal-content">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <h4>Citar Comentario</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <?php $form = ActiveForm::begin(); ?>
+                                            <?= $form->field($publicacion, 'text')->textarea(['maxlength' => true, 'placeholder' => 'Cita este comentario...',])->label(false) ?>
+                                            <?= $form->field($publicacion, 'citado')->hiddenInput(['value' => $comentario->id])->label(false); ?>
+                                            <?= $form->field($publicacion, 'url_img', ['options' => ['class' => '']])->fileInput()->label(false) ?>
+                                            <div class="card" style="margin-top: 2%;">
+                                                <div class="card-header">
+                                                    <div class="row">
+                                                        <div class="col-2 d-flex justify-content-center">
+                                                            <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="citado">
+                                                        </div>
+                                                        <div class="col-10 d-flex justify-content-left">
+                                                            <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text"><?= $comentario->url($comentario->text); ?></p>
+                                                    <?php if ($comentario->url_img) : ?>
+                                                        <div class="col-12 d-flex justify-content-right img">
+                                                            <img src="<?= s3GetUrl($comentario->url_img, 'ucomment') ?>" alt="">
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                            <div style="margin-top: 4%;">
+                                                <?= Html::submitButton('Publicar', ['class' => 'btn btn-primary']) ?>
+                                                <?php ActiveForm::end(); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </section>
+                            </div>
+                        </div>
+                        <div class="row com justify-content-center">
+                            <div class="card">
+                                <a href="<?= Url::to(['comentarios/view', 'id' => $comentario['id']]); ?>" id="comentario">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-1 d-flex justify-content-center">
+                                                <img src="<?= s3GetUrl($user->url_img, 'ucomment') ?>" id="fcom">
+                                            </div>
+                                            <div class="col-6 d-flex justify-content-left">
+                                                <p class="center"><?= $user->log_us ?> · <?= $comentario->fecha($comentario->created_at) ?></p>
+                                            </div>
+                                            <?php if ($comentario->usuario_id == Yii::$app->user->id) : ?>
+                                                <div class="col-4 d-flex flex-row-reverse">
+                                                    <?= ButtonDropdown::widget([
+                                                        'options' => ['class' => 'delete-comment'],
+                                                        'direction' => 'left',
+                                                        'label' => ' ···',
+                                                        'dropdown' => [
+                                                            'items' => [
+                                                                Html::beginForm(['/comentarios/delete', 'id' => $comentario->id], 'post') . Html::img('icons/papelera.png', ['id' => 'papelera']) . Html::submitButton('Eliminar comentario', ['class' => 'eliminar-comentario']) . Html::endForm()
+                                                            ],
+                                                        ]
+                                                    ]) ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $comentario->url($comentario->text); ?></p>
+                                        <?php if ($comentario->url_img) : ?>
+                                            <div class="col-12 d-flex justify-content-right img">
+                                                <img src="<?= s3GetUrl($comentario->url_img, 'ucomment') ?>" alt="">
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ($comentario->citado) : ?>
+                                            <?php $citado = Comentarios::find()->where(['id' => $comentario->citado])->one(); ?>
+                                            <?php $uc = Usuarios::find()->where(['id' => $citado->usuario_id])->one(); ?>
+                                            <div class="card" style="margin-top: 2%;">
+                                                <div class="card-header">
+                                                    <div class="row">
+                                                        <div class="col-2 d-flex justify-content-right">
+                                                            <img src="<?= s3GetUrl($uc->url_img, 'ucomment') ?>" id="citado">
+                                                        </div>
+                                                        <div class="col-10 d-flex justify-content-left">
+                                                            <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
+                                                                <p class="center"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="<?= Url::to(['comentarios/view', 'id' => $citado->id]); ?>">
+                                                    <div class="card-body">
+                                                        <p class="card-text"><?= $citado->url($citado->text); ?></p>
+                                                        <?php if ($citado->url_img) : ?>
+                                                            <div class="col-12 d-flex justify-content-right img">
+                                                                <img src="<?= s3GetUrl($citado->url_img, 'ucomment') ?>" alt="">
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-3 d-flex justify-content-center">
+                                                <a class="open-modal" data-open="respuestapl<?= $comentario->id ?>">
+                                                    <img src="icons/respuesta.svg" class="icon" id="answer">
+                                                </a>
+                                                <p class="count"><?= $comentario->getComentarios()->count(); ?></p>
+                                            </div>
+                                            <div class="col-3 d-flex justify-content-center">
+                                                <a class="open-modal" data-open="citadopl<?= $comentario->id ?>">
+                                                    <img src="icons/citado.svg" class="icon" id="citar">
+                                                </a>
+                                                <p class="count"><?= $comentario->getCitados()->count(); ?></p>
+                                            </div>
+                                            <div class="col-3 d-flex justify-content-center">
+                                                <a id="likepf<?= $comentario->id ?>" class="heart">
+                                                    <img src="<?= Likes::like($comentario->id) ? 'icons/like.svg' : 'icons/dislike.svg' ?>" class="icon" id="iconpl<?= $comentario->id ?>">
+                                                </a>
+                                                <p id="countlikepf<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
+                                            </div>
+                                            <div class="col-3">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="row com">
+                        <div class="col-12 d-flex justify-content-center">
+                            <h2 class="center">Aqui no hay nada que ver.</h2>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php \yii\widgets\Pjax::end() ?>
+                <div class="row com">
+                    <div class="col-12 d-flex justify-content-center">
+                        <?= LinkPager::widget([
+                            'pagination' => $paginationF
+                        ]); ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

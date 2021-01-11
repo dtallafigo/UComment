@@ -73,6 +73,7 @@ class UsuariosController extends Controller
         $usuario = Usuarios::findOne(['id' => $id]);
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+
         $queryC = Comentarios::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC]);
         $countC = $queryC->count();
         $paginationC = new Pagination([
@@ -82,6 +83,7 @@ class UsuariosController extends Controller
         $comentarios = $queryC->offset($paginationC->offset)
             ->limit($paginationC->limit)
             ->all();
+        
         $queryL = Likes::find()->where(['usuario_id' => $id])->orderBy(['created_at' => SORT_DESC]);
         $countL = $queryL->count();
         $paginationL = new Pagination([
@@ -91,6 +93,17 @@ class UsuariosController extends Controller
         $misLikes = $queryL->offset($paginationL->offset)
         ->limit($paginationL->limit)
         ->all();
+
+        $queryF = Comentarios::find()->andWhere(['usuario_id' => $id])->andWhere(['<>', 'url_img', ''])->orderBy(['created_at' => SORT_DESC]);
+        $countF = $queryF->count();
+        $paginationF = new Pagination([
+            'totalCount' => $countF,
+            'pageSize' => 10
+        ]);
+        $cfotos = $queryF->offset($paginationF->offset)
+        ->limit($paginationF->limit)
+        ->all();
+
         $all = Usuarios::find()->all();
         $sugeridos = [];
         for ($i = 0; $i < 3; $i++) {
@@ -131,10 +144,12 @@ class UsuariosController extends Controller
             'publicacion' => $publicacion,
             'actual' => $actual,
             'ml' => $misLikes,
+            'cfotos' => $cfotos,
             'sugeridos' => $sugeridos,
             'getRelacionados' => $getRelacionados,
             'paginationC' => $paginationC,
             'paginationL' => $paginationL,
+            'paginationF' => $paginationF,
         ]);
     }
 

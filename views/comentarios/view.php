@@ -12,10 +12,10 @@ use app\models\Seguidores;
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
 
-$this->title = $model->id;
-\yii\web\YiiAsset::register($this);
 $userA = Usuarios::findOne(['id' => $model->usuario_id]);
 $userB = Usuarios::findOne(['id' => Yii::$app->user->id]);
+$this->title = $userB->log_us . ' en UComment';
+\yii\web\YiiAsset::register($this);
 $seguir = Url::to(['seguidores/follow']);
 $js2 = <<<'EOT'
 const openEls = document.querySelectorAll("[data-open]");
@@ -74,8 +74,18 @@ $.ajax({
 EOT;
 $this->registerJs($likes1);
 ?>
-<div class="row g">
+<div class="row">
     <div class="col-sm-12 col-md-12 col-lg-8">
+        <div class="row com">
+            <div class="col-1">
+                <a href="<?= Url::to(Yii::$app->request->referrer); ?>">
+                    <img src="icons/hacia-atras.png" id="flecha">
+                </a>
+            </div>
+            <div class="col-10">
+                <h4>Comentar</h4>
+            </div>
+        </div>
         <?php if ($model->respuesta) : ?>
             <?php
             $original = Comentarios::findOne(['id' => $model->respuesta]);

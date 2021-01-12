@@ -9,7 +9,7 @@ use app\models\Usuarios;
 use app\models\Likes;
 use yii\bootstrap4\ButtonDropdown;
 
-$this->title = 'Respuestas';
+$this->title = 'Citados';
 $js2 = <<<EOT
 const openEls = document.querySelectorAll("[data-open]");
 const closeEls = document.querySelectorAll("[data-close]");

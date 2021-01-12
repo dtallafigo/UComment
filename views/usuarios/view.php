@@ -83,7 +83,6 @@ EOT;
 $this->registerJs($js2);
 $like = Url::to(['likes/like']);
 $save = Url::to(['comsave/save']);
-
 ?>
 <div class="row g">
     <div class="col-sm-12 col-md-12 col-lg-8">

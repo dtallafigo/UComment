@@ -35,6 +35,7 @@ class Seguidores extends \yii\db\ActiveRecord
             [['seguidor_id', 'seguido_id'], 'unique', 'targetAttribute' => ['seguidor_id', 'seguido_id']],
             [['seguidor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['seguidor_id' => 'id']],
             [['seguido_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['seguido_id' => 'id']],
+            [['created_at'], 'safe'],
         ];
     }
 

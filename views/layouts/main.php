@@ -80,6 +80,10 @@ $this->registerJs($js2);
                     'url' => ['/usuarios/view', 'id' => Yii::$app->user->id]
                 ],
                 [
+                    'label' => 'Notificaciones',
+                    'url' => ['/site/notificaciones', 'id' => Yii::$app->user->id]
+                ],
+                [
                     'label' => 'Usuarios',
                     'url' => ['/usuarios/index'],
                     'visible' => Yii::$app->user->isGuest ? false : (Yii::$app->user->id == 1)

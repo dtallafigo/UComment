@@ -7,6 +7,7 @@ use Yii;
 use app\models\Usuarios;
 use app\models\Seguidores;
 use app\models\UsuariosSearch;
+use app\models\Bloqueados;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -29,10 +30,10 @@ class UsuariosController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['view', 'delete'],
+                'only' => ['view', 'delete', 'index', 'update'],
                 'rules' => [
                     [
-                        'actions' => ['view', 'delete'],
+                        'actions' => ['view', 'delete', 'index', 'update'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -48,11 +49,15 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Lists all Usuarios models.
+     * Lista de todos los usuarios para admin.
      * @return mixed
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->id != 1) {
+            return $this->goBack();
+        }
+
         $searchModel = new UsuariosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -63,13 +68,27 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Displays a single Usuarios model.
+     * Vista de usuarios.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $bloquear1 = Bloqueados::find()->where([
+            'bloqueado' => $id,
+            'usuario' => Yii::$app->user->id
+        ])->one();
+
+        $bloquear2 = Bloqueados::find()->where([
+            'bloqueado' => Yii::$app->user->id,
+            'usuario' => $id,
+        ])->one();
+
+        if ($bloquear1 || $bloquear2) {
+            return $this->redirect(['bloqueados/view', 'id' => $id]);
+        }
+
         $usuario = Usuarios::findOne(['id' => $id]);
         $actual = Usuarios::findOne(['id' => Yii::$app->user->id]);
         $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
@@ -110,6 +129,11 @@ class UsuariosController extends Controller
             $random = rand(0, count($all)-1);
             if ($all[$random]->id == Yii::$app->user->id) {
                 return;
+            }
+            for ($j = 0; $j < count($sugeridos); $j++) {
+                if ($all[$random]->id == $sugeridos[$j]->id) {
+                    return;
+                }
             }
             array_push($sugeridos, $all[$random]);
         }
@@ -153,6 +177,12 @@ class UsuariosController extends Controller
         ]);
     }
 
+     /**
+     * Vista de usuarios relacionados.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionRelacionados($id)
     {
         $usuario = Usuarios::findOne(['id' => $id]);
@@ -176,14 +206,16 @@ class UsuariosController extends Controller
 
 
     /**
-     * Updates an existing Usuarios model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Editar a un usuario que este requistrado y logueado.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
+        if ($id != Yii::$app->user->id) {
+            return $this->goBack();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {

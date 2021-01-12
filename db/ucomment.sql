@@ -60,6 +60,15 @@ CREATE TABLE comsave
     ,   PRIMARY KEY (usuario_id, comentario_id)  
 );
 
+DROP TABLE IF EXISTS bloqueados CASCADE;
+
+CREATE TABLE bloqueados
+(
+    usuario     BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
+  , bloqueado   BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
+  , PRIMARY KEY (usuario, bloqueado)
+);
+
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'admin', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', ''),

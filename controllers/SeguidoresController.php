@@ -92,17 +92,6 @@ class SeguidoresController extends Controller
         ]);
     }
 
-    public function actionFollows($id)
-    {
-        $seguidos = Seguidores::find()->where(['seguidor_id' => $id])->all();
-        $ua = Usuarios::findOne(['id' => $id]);
-
-        return $this->render('follows', [
-            'seguidos' => $seguidos,
-            'ua' => $ua,
-        ]);
-    }
-
 
 
     /**

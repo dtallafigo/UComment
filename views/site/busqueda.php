@@ -9,6 +9,7 @@ use app\models\Usuarios;
 use app\models\Likes;
 use yii\bootstrap4\ActiveForm;
 use app\models\Comentarios;
+use app\models\Comsave;
 
 $this->title = 'UComment: Busqueda';
 $id = Yii::$app->user->id;
@@ -48,7 +49,7 @@ document.addEventListener("keyup", e => {
 EOT;
 $this->registerJs($js2);
 ?>
-<div class="row com g">
+<div class="row com">
 
     <div class="col-12">
         <p>Busca por usuarios o comentario.</p>
@@ -172,13 +173,11 @@ $this->registerJs($js2);
                                 'comentario_id': $comentario->id
                             },
                             success: function (data, code, jqXHR) {
-                                var text = '';
-                                if (data[0])
-                                    text = 'NotSave'
-                                else
-                                    text = 'Save'
-                                var save$comentario->id = document.getElementById("save$comentario->id");
-                                save$comentario->id.innerHTML = text;
+                                if (data[0]) {
+                                    document.getElementById("fav$comentario->id").src="icons/save.png";
+                                } else {
+                                    document.getElementById("fav$comentario->id").src="icons/not-save.png";
+                                }
                             }
                         });
                     });
@@ -317,7 +316,7 @@ $this->registerJs($js2);
                                         <div class="card-header">
                                             <div class="row">
                                                 <div class="col-2 d-flex justify-content-right">
-                                                    <img src="<?= $uc->url_img ?>" id="citado">
+                                                    <img src="<?= s3GetUrl($uc->url_img, 'ucomment') ?>" id="citado">
                                                 </div>
                                                 <div class="col-10 d-flex justify-content-left">
                                                     <a href="<?= Url::to(['usuarios/view', 'id' => $uc->id]); ?>">
@@ -359,8 +358,10 @@ $this->registerJs($js2);
                                         </a>
                                         <p id="countLike<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                     </div>
-                                    <div class="col-3">
-
+                                    <div class="col-3 d-flex justify-content-center">
+                                        <a id="save<?= $comentario->id ?>" class="heart">
+                                            <img src="<?= Comsave::fav($comentario->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $comentario->id ?>">
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -72,16 +72,20 @@ $this->registerJs($js2);
                     'url' => ['/site/index']
                 ],
                 [
-                    'label' => 'Busqueda',
-                    'url' => ['/site/busqueda']
-                ],
-                [
                     'label' => 'Perfil',
                     'url' => ['/usuarios/view', 'id' => Yii::$app->user->id]
                 ],
                 [
                     'label' => 'Notificaciones',
                     'url' => ['/site/notificaciones', 'id' => Yii::$app->user->id]
+                ],
+                [
+                    'label' => 'Busqueda',
+                    'url' => ['/site/busqueda']
+                ],
+                [
+                    'label' => 'Favoritos',
+                    'url' => ['/comentarios/save', 'id' => Yii::$app->user->id]
                 ],
                 [
                     'label' => 'Chat',

@@ -9,6 +9,7 @@ use app\models\Usuarios;
 use app\models\Likes;
 use yii\bootstrap4\ButtonDropdown;
 use yii\bootstrap4\LinkPager;
+use app\models\Comsave;
 
 $this->title = 'UComment';
 $seguir = Url::to(['seguidores/follow']);
@@ -109,27 +110,25 @@ $save = Url::to(['comsave/save']);
 			EOT;
 			$this->registerJs($likes);
 			$fav = <<<EOT
-      var boton = $("#save$comentario->id");
-      boton.click(function(event) {
-          event.preventDefault();
-          $.ajax({
-              method: 'GET',
-              url: '$save',
-              data: {
-                  'comentario_id': $comentario->id
-              },
-              success: function (data, code, jqXHR) {
-                  var text = '';
-                  if (data[0])
-                      text = 'NotSave'
-                  else
-                      text = 'Save'
-                  var save$comentario->id = document.getElementById("save$comentario->id");
-                  save$comentario->id.innerHTML = text;
-              }
-          });
-      });
-      EOT;
+			var boton = $("#save$comentario->id");
+			boton.click(function(event) {
+				event.preventDefault();
+				$.ajax({
+					method: 'GET',
+					url: '$save',
+					data: {
+						'comentario_id': $comentario->id
+					},
+					success: function (data, code, jqXHR) {
+						if (data[0]) {
+							document.getElementById("fav$comentario->id").src="icons/save.png";
+						} else {
+							document.getElementById("fav$comentario->id").src="icons/not-save.png";
+						}
+					}
+				});
+			});
+			EOT;
 			$this->registerJs($fav);
 			?>
 			<div class="modal" id="respuesta<?= $comentario->id ?>">
@@ -323,8 +322,10 @@ $save = Url::to(['comsave/save']);
 								</a>
 								<p id="countLike<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
 							</div>
-							<div class="col-3">
-
+							<div class="col-3 d-flex justify-content-center">
+								<a id="save<?= $comentario->id ?>" class="heart">
+									<img src="<?= Comsave::fav($comentario->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $comentario->id ?>">
+								</a>
 							</div>
 						</div>
 					</div>

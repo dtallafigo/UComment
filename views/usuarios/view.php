@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Comentarios;
+use app\models\Comsave;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
@@ -202,27 +203,27 @@ $save = Url::to(['comsave/save']);
                         <?php
                         $user = Usuarios::findOne(['id' => $comentario->usuario_id]);
                         $likes = <<<EOT
-                        var boton = $("#like$comentario->id");
-                        boton.click(function(event) {
-                            event.preventDefault();
-                            $.ajax({
-                                method: 'GET',
-                                url: '$like',
-                                data: {
-                                    'comentario_id': $comentario->id
-                                },
-                                success: function (data, code, jqXHR) {
-                                    var countlike$comentario->id = document.getElementById("countLike$comentario->id");
-                                    countlike$comentario->id.innerHTML = data[1];
-                                    if (data[0]) {
-                                        document.getElementById("icon$comentario->id").src="icons/like.svg";
-                                    } else {
-                                        document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                            var boton = $("#like$comentario->id");
+                            boton.click(function(event) {
+                                event.preventDefault();
+                                $.ajax({
+                                    method: 'GET',
+                                    url: '$like',
+                                    data: {
+                                        'comentario_id': $comentario->id
+                                    },
+                                    success: function (data, code, jqXHR) {
+                                        var countlike$comentario->id = document.getElementById("countLike$comentario->id");
+                                        countlike$comentario->id.innerHTML = data[1];
+                                        if (data[0]) {
+                                            document.getElementById("icon$comentario->id").src="icons/like.svg";
+                                        } else {
+                                            document.getElementById("icon$comentario->id").src="icons/dislike.svg";
+                                        }
                                     }
-                                }
+                                });
                             });
-                        });
-                    EOT;
+                        EOT;
                         $this->registerJs($likes);
                         $fav = <<<EOT
                         var boton = $("#save$comentario->id");
@@ -235,13 +236,11 @@ $save = Url::to(['comsave/save']);
                                     'comentario_id': $comentario->id
                                 },
                                 success: function (data, code, jqXHR) {
-                                    var text = '';
-                                    if (data[0])
-                                        text = 'NotSave'
-                                    else
-                                        text = 'Save'
-                                    var save$comentario->id = document.getElementById("save$comentario->id");
-                                    save$comentario->id.innerHTML = text;
+                                    if (data[0]) {
+                                        document.getElementById("fav$comentario->id").src="icons/save.png";
+                                    } else {
+                                        document.getElementById("fav$comentario->id").src="icons/not-save.png";
+                                    }
                                 }
                             });
                         });
@@ -439,8 +438,10 @@ $save = Url::to(['comsave/save']);
                                             </a>
                                             <p id="countLike<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                         </div>
-                                        <div class="col-3">
-
+                                        <div class="col-3 d-flex justify-content-center">
+                                            <a id="save<?= $comentario->id ?>" class="heart">
+                                                <img src="<?= Comsave::fav($comentario->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $comentario->id ?>">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -494,7 +495,7 @@ $save = Url::to(['comsave/save']);
                     EOT;
                         $this->registerJs($likes);
                         $fav = <<<EOT
-                    var boton = $("#save$comentario->id");
+                    var boton = $("#savepl$comentario->id");
                     boton.click(function(event) {
                         event.preventDefault();
                         $.ajax({
@@ -504,13 +505,11 @@ $save = Url::to(['comsave/save']);
                                 'comentario_id': $comentario->id
                             },
                             success: function (data, code, jqXHR) {
-                                var text = '';
-                                if (data[0])
-                                    text = 'NotSave'
-                                else
-                                    text = 'Save'
-                                var save$comentario->id = document.getElementById("save$comentario->id");
-                                save$comentario->id.innerHTML = text;
+                                if (data[0]) {
+                                    document.getElementById("favpl$comentario->id").src="icons/save.png";
+                                } else {
+                                    document.getElementById("favpl$comentario->id").src="icons/not-save.png";
+                                }
                             }
                         });
                     });
@@ -707,8 +706,10 @@ $save = Url::to(['comsave/save']);
                                                 </a>
                                                 <p id="countLikepl<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                             </div>
-                                            <div class="col-3">
-
+                                            <div class="col-3 d-flex justify-content-center">
+                                                <a id="savepl<?= $comentario->id ?>" class="heart">
+                                                    <img src="<?= Comsave::fav($comentario->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="favpl<?= $comentario->id ?>">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -763,7 +764,7 @@ $save = Url::to(['comsave/save']);
                         EOT;
                         $this->registerJs($likes);
                         $fav = <<<EOT
-                        var boton = $("#save$comentario->id");
+                        var boton = $("#savepf$comentario->id");
                         boton.click(function(event) {
                             event.preventDefault();
                             $.ajax({
@@ -773,13 +774,11 @@ $save = Url::to(['comsave/save']);
                                     'comentario_id': $comentario->id
                                 },
                                 success: function (data, code, jqXHR) {
-                                    var text = '';
-                                    if (data[0])
-                                        text = 'NotSave'
-                                    else
-                                        text = 'Save'
-                                    var save$comentario->id = document.getElementById("save$comentario->id");
-                                    save$comentario->id.innerHTML = text;
+                                    if (data[0]) {
+                                        document.getElementById("favpf$comentario->id").src="icons/save.png";
+                                    } else {
+                                        document.getElementById("favpf$comentario->id").src="icons/not-save.png";
+                                    }
                                 }
                             });
                         });
@@ -976,8 +975,10 @@ $save = Url::to(['comsave/save']);
                                                 </a>
                                                 <p id="countlikepf<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                             </div>
-                                            <div class="col-3">
-
+                                            <div class="col-3 d-flex justify-content-center">
+                                                <a id="savepf<?= $comentario->id ?>" class="heart">
+                                                    <img src="<?= Comsave::fav($comentario->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="favpf<?= $comentario->id ?>">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

@@ -189,4 +189,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Mensajes::className(), ['id_sender' => 'id'])->inverseOf('sender');
     }
+
+    public function getFavoritos()
+    {
+        return $this->hasMany(Comsave::className(), ['usuario_id' => 'id']);
+    }
 }

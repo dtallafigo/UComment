@@ -8,6 +8,7 @@ use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\ButtonDropdown;
 use app\models\Seguidores;
+use app\models\Comsave;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
@@ -16,6 +17,7 @@ $userA = Usuarios::findOne(['id' => $model->usuario_id]);
 $userB = Usuarios::findOne(['id' => Yii::$app->user->id]);
 $this->title = $userB->log_us . ' en UComment';
 \yii\web\YiiAsset::register($this);
+$save = Url::to(['comsave/save']);
 $seguir = Url::to(['seguidores/follow']);
 $js2 = <<<'EOT'
 const openEls = document.querySelectorAll("[data-open]");
@@ -73,6 +75,27 @@ $.ajax({
 });
 EOT;
 $this->registerJs($likes1);
+$fav = <<<EOT
+var boton = $("#save$model->id");
+boton.click(function(event) {
+    event.preventDefault();
+    $.ajax({
+        method: 'GET',
+        url: '$save',
+        data: {
+            'comentario_id': $model->id
+        },
+        success: function (data, code, jqXHR) {
+            if (data[0]) {
+                document.getElementById("fav$model->id").src="icons/save.png";
+            } else {
+                document.getElementById("fav$model->id").src="icons/not-save.png";
+            }
+        }
+    });
+});
+EOT;
+$this->registerJs($fav);
 ?>
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-8">
@@ -113,6 +136,27 @@ $this->registerJs($likes1);
             });
             EOT;
             $this->registerJs($likes2);
+            $fav1 = <<<EOT
+            var boton = $("#save$original->id");
+            boton.click(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    method: 'GET',
+                    url: '$save',
+                    data: {
+                        'comentario_id': $model->id
+                    },
+                    success: function (data, code, jqXHR) {
+                        if (data[0]) {
+                            document.getElementById("fav$original->id").src="icons/save.png";
+                        } else {
+                            document.getElementById("fav$original->id").src="icons/not-save.png";
+                        }
+                    }
+                });
+            });
+            EOT;
+            $this->registerJs($fav);
             ?>
             <div class="modal" id="respuesta<?= $original->id ?>">
                 <div class="modal-dialog">
@@ -306,8 +350,10 @@ $this->registerJs($likes1);
                                 </a>
                                 <p id="countLike<?= $original->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $original->id])->count() ?></p>
                             </div>
-                            <div class="col-3">
-
+                            <div class="col-3 d-flex justify-content-center">
+                                <a id="save<?= $original->id ?>" class="heart">
+                                    <img src="<?= Comsave::fav($original->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $original->id ?>">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -518,8 +564,10 @@ $this->registerJs($likes1);
                                         <img src="<?= Likes::like($model->id) ? 'icons/like.svg' : 'icons/dislike.svg' ?>" class="icon" id="icon<?= $model->id ?>">
                                     </a>
                                 </div>
-                                <div class="col-3">
-
+                                <div class="col-3 d-flex justify-content-center">
+                                    <a id="save<?= $model->id ?>" class="heart">
+                                        <img src="<?= Comsave::fav($model->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $model->id ?>">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -716,8 +764,10 @@ $this->registerJs($likes1);
                                     <p id="countLike<?= $model->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $model->id])->count() ?> Likes</p>
                                 </a>
                             </div>
-                            <div class="col-3">
-
+                            <div class="col-3 d-flex justify-content-center">
+                                <a id="save<?= $model->id ?>" class="heart">
+                                    <img src="<?= Comsave::fav($model->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $model->id ?>">
+                                </a>
                             </div>
                         </div>
                     </div>

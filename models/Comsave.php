@@ -59,7 +59,7 @@ class Comsave extends \yii\db\ActiveRecord
         return $this->hasOne(Comentarios::className(), ['id' => 'comentario_id']);
     }
 
-    public function fav($comentario_id)
+    public static function fav($comentario_id)
     {
         $save = Comsave::find()->where([
             'comentario_id' => $comentario_id,

@@ -14,6 +14,10 @@ use yii\web\NotFoundHttpException;
 use app\models\Comentarios;
 use yii\data\Pagination;
 use app\models\Seguidores;
+use app\models\PasswordResetRequestForm;
+use yii\base\InvalidArgumentException;
+use yii\web\BadRequestHttpException;
+use app\models\ResetPasswordForm;
 
 require '../web/uploads3.php';
 
@@ -136,14 +140,43 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionRecuperarpass()
+    public function actionRequestPasswordReset()
     {
-        if (!Yii::$app->user->isGuest) {
+        $model = new PasswordResetRequestForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'Comprueba tu email.');
+
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+            }
+        }
+
+        return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionResetPassword($token)
+    {
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidArgumentException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->session->setFlash('success', 'Contraseña guardada correctamente.');
+
             return $this->goHome();
         }
 
-        $usuario = new Usuarios;
+        return $this->render('resetPassword', [
+            'model' => $model,
+        ]);
     }
+
 
     public function actionBusqueda()
     {
@@ -222,16 +255,8 @@ class SiteController extends Controller
                 ], true);
     
                 $body = <<<EOT
-                    <div class='wrap'>
-                        <div class='container'>
-                            <div class='row com'>
-                                <div class='col-12'>
-                                    <h2>Bienvenido a <img src='icons/logodavo2.png'></h2>
-                                    <a href="$url">Confirmar cuenta</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <h2>Pulsa el siguiente enlace para confirmar la cuenta de correo.<h2>
+                <a href="$url">Confirmar cuenta</a>
                 EOT;
                 $this->enviarMail($body, $newUser->email);
                 Yii::$app->session->setFlash('success', 'Se ha creado el usuario correctamente.');

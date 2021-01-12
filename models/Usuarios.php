@@ -147,4 +147,41 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         $text = preg_replace("/((http|https|www)[^\s]+)/", '<a href="$1">$0</a>', $text);
         return $text;
     }
+
+    public function setPassword($password)
+    {
+        $this->password = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    public function generatePasswordResetToken()
+    {
+        $this->token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+    
+    public static function findByPasswordResetToken($token)
+    {
+        if (!static::isPasswordResetTokenValid($token)) {
+            return null;
+        }
+
+        return static::findOne([
+            'token' => $token,
+        ]);
+    }
+
+    public static function isPasswordResetTokenValid($token)
+    {
+        if (empty($token)) {
+            return false;
+        }
+
+        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $expire = Yii::$app->params['usuarios.passwordResetTokenExpire'];
+        return $timestamp + $expire >= time();
+    }
+
+    public function removePasswordResetToken()
+    {
+        $this->token = null;
+    }
 }

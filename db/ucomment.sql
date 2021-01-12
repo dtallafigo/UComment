@@ -11,7 +11,7 @@ CREATE TABLE usuarios
     ,   password            varchar(255)    NOT NULL
     ,   rol                 varchar(255)    DEFAULT 'user'
     ,   auth_key            varchar(255)
-    ,   token               varchar(32)
+    ,   token               varchar(2048)
     ,   url_img             varchar(2048)   DEFAULT 'user.svg'
     ,   bio                 varchar(280)    DEFAULT 'Hola!'
     ,   ubi                 varchar(50)     

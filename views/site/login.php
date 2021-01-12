@@ -32,6 +32,9 @@ $this->title = 'Login';
 
                 <?php ActiveForm::end(); ?>
             </div>
+            <div class="col-12" style="margin-top: 20px;">
+                <p><?= Html::a('¿Olvidate tu contraseña?', ['site/request-password-reset']) ?></p>
+            </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="col-12">

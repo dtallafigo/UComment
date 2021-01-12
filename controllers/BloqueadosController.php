@@ -71,6 +71,9 @@ class BloqueadosController extends Controller
             if ($all[$random]->id == Yii::$app->user->id) {
                 return;
             }
+            if ($all[$random]->id == $id) {
+                return;
+            }
             for ($j = 0; $j < count($sugeridos); $j++) {
                 if ($all[$random]->id == $sugeridos[$j]->id) {
                     return;

@@ -1,5 +1,3 @@
 # Dificultades encontradas
 
-Explicar, indicando también las soluciones adoptadas en cada caso.
-
-Incluir aquí el elemento de innovación que se indicó en la propuesta.
+Jquery y JQuery UI diria que son las dos tecnologias que mas problemas me han dado de todo el proyecto.

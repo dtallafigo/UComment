@@ -485,12 +485,12 @@ $this->registerJs($likes1);
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-3 d-flex justify-content-center">
-                                    <a href="<?= Url::to(['comentarios/respuestas', 'id' => $model->id]); ?>">
+                                    <a href="<?= Url::to(['comentarios/respuestas', 'id' => $model->id]); ?>" id="link_like">
                                         <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
                                     </a>
                                 </div>
                                 <div class="col-3 d-flex justify-content-center">
-                                    <a href="<?= Url::to(['comentarios/citados', 'id' => $model->id]); ?>">
+                                    <a href="<?= Url::to(['comentarios/citados', 'id' => $model->id]); ?>" id="link_like">
                                         <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
                                     </a>
                                 </div>
@@ -702,12 +702,12 @@ $this->registerJs($likes1);
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-3 d-flex justify-content-center">
-                                <a href="<?= Url::to(['comentarios/respuestas', 'id' => $model->id]); ?>">
+                                <a href="<?= Url::to(['comentarios/respuestas', 'id' => $model->id]); ?>" id="link_like">
                                     <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
                                 </a>
                             </div>
                             <div class="col-3 d-flex justify-content-center">
-                                <a href="<?= Url::to(['comentarios/citados', 'id' => $model->id]); ?>">
+                                <a href="<?= Url::to(['comentarios/citados', 'id' => $model->id]); ?>" id="link_like">
                                     <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
                                 </a>
                             </div>

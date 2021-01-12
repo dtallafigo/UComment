@@ -697,7 +697,7 @@ a.desc:after {
     color: #fff;
 }
 
-div.row a{
+.class-header.row a{
     white-space: nowrap;
 }
 
@@ -739,7 +739,6 @@ div.row a{
 }
 
 #comentario {
-    margin-bottom: 1em;
     background-color: #18181a;
 }
 

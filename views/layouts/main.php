@@ -84,6 +84,10 @@ $this->registerJs($js2);
                     'url' => ['/site/notificaciones', 'id' => Yii::$app->user->id]
                 ],
                 [
+                    'label' => 'Chat',
+                    'url' => ['conversaciones/index', 'id' => Yii::$app->user->id],
+                ],
+                [
                     'label' => 'Usuarios',
                     'url' => ['/usuarios/index'],
                     'visible' => Yii::$app->user->isGuest ? false : (Yii::$app->user->id == 1)

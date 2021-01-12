@@ -266,7 +266,7 @@ $this->registerJs($likes1);
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-2 d-flex justify-content-center">
-                                            <img src="<?= $uc->url_img ?>" id="citado">
+                                            <img src="<?= s3GetUrl($uc->url_img, 'ucomment') ?>" id="citado">
                                         </div>
                                         <div class="col-10 d-flex justify-content-left">
                                             <p class="center"><?= $uc->log_us ?> · <?= $citado->fecha($citado->created_at) ?></p>
@@ -485,18 +485,19 @@ $this->registerJs($likes1);
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-3 d-flex justify-content-center">
-                                    <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
+                                    <a href="<?= Url::to(['comentarios/respuestas', 'id' => $model->id]); ?>">
+                                        <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
+                                    </a>
                                 </div>
                                 <div class="col-3 d-flex justify-content-center">
-                                    <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
+                                    <a href="<?= Url::to(['comentarios/citados', 'id' => $model->id]); ?>">
+                                        <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
+                                    </a>
                                 </div>
                                 <div class="col-3 d-flex justify-content-center">
                                     <a href="<?= Url::to(['likes/view', 'comentario_id' => $model->id]); ?>" id="link_like">
                                         <p id="countLike<?= $model->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $model->id])->count() ?> Likes</p>
                                     </a>
-                                </div>
-                                <div class="col-3">
-
                                 </div>
                             </div>
                         </div>
@@ -701,10 +702,14 @@ $this->registerJs($likes1);
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-3 d-flex justify-content-center">
-                                <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
+                                <a href="<?= Url::to(['comentarios/respuestas', 'id' => $model->id]); ?>">
+                                    <p class="count"><?= $model->getComentarios()->count(); ?> Respuesta</p>
+                                </a>
                             </div>
                             <div class="col-3 d-flex justify-content-center">
-                                <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
+                                <a href="<?= Url::to(['comentarios/citados', 'id' => $model->id]); ?>">
+                                    <p class="count"><?= $model->getCitados()->count(); ?> Citados</p>
+                                </a>
                             </div>
                             <div class="col-3 d-flex justify-content-center">
                                 <a href="<?= Url::to(['likes/view', 'comentario_id' => $model->id]); ?>" id="link_like">
@@ -824,7 +829,7 @@ $this->registerJs($likes1);
                 <div class="card-body s">
                     <div class="row">
                         <div class="col-2 d-flex justify-content-center">
-                            <img src="<?= $userRespuesta->url_img ?>" id="sugerido-img">
+                            <img src="<?= s3GetUrl($userRespuesta->url_img, 'ucomment') ?>" id="sugerido-img">
                         </div>
                         <div class="col-4 d-flex justify-content-left">
                             <a href="<?= Url::to(['usuarios/view', 'id' => $userRespuesta->id]); ?>">

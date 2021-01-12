@@ -63,6 +63,60 @@ class ComentariosController extends Controller
         ]);
     }
 
+    public function actionRespuestas($id)
+    {
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+        $actual = Usuarios::find()->where(['id' => Yii::$app->user->id])->one();
+        $comentarios = Comentarios::find()->where(['respuesta' => $id])->all();
+
+        if ($publicacion->load(Yii::$app->request->post())) {
+            if ($_FILES['Comentarios']['name']['url_img'] == null) {
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            } else {
+                uploadComentario($publicacion);
+                $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            }
+        }
+
+        return $this->render('respuestas', [
+            'comentarios' => $comentarios,
+            'actual' => $actual,
+            'publicacion' => $publicacion,
+        ]);
+    }
+
+    public function actionCitados($id)
+    {
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+        $actual = Usuarios::find()->where(['id' => Yii::$app->user->id])->one();
+        $comentarios = Comentarios::find()->where(['citado' => $id])->all();
+
+        if ($publicacion->load(Yii::$app->request->post())) {
+            if ($_FILES['Comentarios']['name']['url_img'] == null) {
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            } else {
+                uploadComentario($publicacion);
+                $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            }
+        }
+
+        return $this->render('citados', [
+            'comentarios' => $comentarios,
+            'actual' => $actual,
+            'publicacion' => $publicacion,
+        ]);
+    }
+
     /**
      * Vista de comentarios.
      * @param integer $id

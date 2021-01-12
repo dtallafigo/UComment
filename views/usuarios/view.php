@@ -112,6 +112,16 @@ $save = Url::to(['comsave/save']);
                 <?php endif; ?>
                 <?php if ($usuario->id != Yii::$app->user->id) : ?>
                     <?= Html::a($text, ['seguidores/follow', 'seguido_id' => $usuario->id], ['class' => 'follow follow-flex', 'id' => 'siguiendo']) ?>
+                    <?= ButtonDropdown::widget([
+                        'options' => ['class' => 'delete'],
+                        'direction' => 'left',
+                        'label' => '···',
+                        'dropdown' => [
+                            'items' => [
+                                Html::beginForm(['/bloqueados/bloquear', 'id' => $usuario->id], 'post') . Html::img('icons/eliminar.png', ['id' => 'borrar-cuenta']) . Html::submitButton('Bloquear usuario', ['class' => 'eliminar-comentario']) . Html::endForm()
+                            ],
+                        ]
+                    ]) ?>
                 <?php else : ?>
                     <?= Html::a('Editar', ['usuarios/update', 'id' => Yii::$app->user->id], ['class' => 'follow follow-flex']) ?>
                     <?= ButtonDropdown::widget([

@@ -697,6 +697,10 @@ a.desc:after {
     color: #fff;
 }
 
+div.row a{
+    white-space: nowrap;
+}
+
 /* View de Usuarios */
 
 /* Login */

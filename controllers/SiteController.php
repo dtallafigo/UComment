@@ -18,6 +18,7 @@ use app\models\PasswordResetRequestForm;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use app\models\ResetPasswordForm;
+use app\models\Likes;
 
 require '../web/uploads3.php';
 
@@ -125,15 +126,6 @@ class SiteController extends Controller
             array_push($sugeridos, $all[$random]);
         }
 
-        $getSeguidores = $actual->getSeguidos()->select('seguido_id')->column();
-        $getRelacionados = Seguidores::find()->where(['IN', 'seguidor_id', $getSeguidores])->andWhere(['seguido_id' => $usuario->id])->all();
-        $getIds = [];
-
-        for ($i = 0; $i < count($getRelacionados); $i++) {
-            $idUser = $getRelacionados[$i]->seguidor_id;
-            array_push($getIds, $idUser);
-        }
-        
         return $this->render('index', [
             'publicacion' => $publicacion,
             'model' => $model,
@@ -304,6 +296,45 @@ class SiteController extends Controller
         } else {
             throw new NotFoundHttpException('La página no existe.');
         }
+    }
+
+    public function actionNotificaciones($id)
+    {
+        $notificaciones = [];
+        $usuario = Usuarios::find()->where(['id' => $id])->one();
+        $actual = Usuarios::find()->where(['id' => Yii::$app->user->id])->one();
+        $seguidores = Seguidores::find()->where(['seguido_id' => $id])->all();
+        $idComentarios = $usuario->getComentarios()->select('id')->column();
+        $respuestas = Comentarios::find()->where(['IN', 'respuesta', $idComentarios])->andWhere(['<>', 'usuario_id', $id])->all();
+        $citados = Comentarios::find()->where(['IN', 'citado', $idComentarios])->andWhere(['<>', 'usuario_id', $id])->all();
+        $misLikes = Likes::find()->where(['IN', 'usuario_id', $idComentarios])->andWhere(['<>', 'usuario_id', $id])->all();
+        $notificaciones = array_merge($notificaciones, $citados, $seguidores, $respuestas, $misLikes);
+        $this->arraySortBy($notificaciones, 'created_at');
+
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+
+        if ($publicacion->load(Yii::$app->request->post())) {
+            if ($_FILES['Comentarios']['name']['url_img'] == null) {
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            } else {
+                uploadComentario($publicacion);
+                $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            }
+        }
+
+        return $this->render('notificaciones', [
+            'notificaciones' => $notificaciones,
+            'usuario' => $usuario,
+            'seguidores' => $seguidores,
+            'notificaciones' => $notificaciones,
+            'actual' => $actual,
+            'publicacion' => $publicacion,
+        ]);
     }
 
     /**

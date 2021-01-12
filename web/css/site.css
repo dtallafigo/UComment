@@ -712,3 +712,20 @@ a.desc:after {
 }
 
 /* Login */
+
+/* Notificaciones */
+
+#notificacion-like {
+    width: 50px;
+    height: auto;
+}
+
+#notificacion-like-foto {
+    width: 30px;
+    height: 30px;
+    border-radius: 150px;
+}
+
+#text {
+    color: #fff;
+}

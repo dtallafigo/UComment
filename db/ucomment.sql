@@ -34,8 +34,9 @@ DROP TABLE IF EXISTS seguidores CASCADE;
 
 CREATE TABLE seguidores
 (
-    seguidor_id     BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
-  , seguido_id      BIGINT      REFERENCES usuarios (id) ON DELETE CASCADE
+    seguidor_id     BIGINT          REFERENCES usuarios (id) ON DELETE CASCADE
+  , seguido_id      BIGINT          REFERENCES usuarios (id) ON DELETE CASCADE
+  , created_at      TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
   , PRIMARY KEY (seguidor_id, seguido_id)
 );
 

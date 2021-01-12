@@ -8,6 +8,7 @@ use app\models\Seguidores;
 use app\models\Usuarios;
 use app\models\Likes;
 use yii\bootstrap4\ButtonDropdown;
+use app\models\Comsave;
 
 $this->title = 'Citados';
 $js2 = <<<EOT
@@ -98,13 +99,11 @@ $save = Url::to(['comsave/save']);
                             'comentario_id': $comentario->id
                         },
                         success: function (data, code, jqXHR) {
-                            var text = '';
-                            if (data[0])
-                                text = 'NotSave'
-                            else
-                                text = 'Save'
-                            var save$comentario->id = document.getElementById("save$comentario->id");
-                            save$comentario->id.innerHTML = text;
+                            if (data[0]) {
+                                document.getElementById("fav$comentario->id").src="icons/save.png";
+                            } else {
+                                document.getElementById("fav$comentario->id").src="icons/not-save.png";
+                            }
                         }
                     });
                 });
@@ -302,8 +301,10 @@ $save = Url::to(['comsave/save']);
                                     </a>
                                     <p id="countLike<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                 </div>
-                                <div class="col-3">
-
+                                <div class="col-3 d-flex justify-content-center">
+                                    <a id="save<?= $comentario->id ?>" class="heart">
+                                        <img src="<?= Comsave::fav($comentario->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $comentario->id ?>">
+                                    </a>
                                 </div>
                             </div>
                         </div>

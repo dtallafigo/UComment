@@ -10,7 +10,7 @@ use app\models\Likes;
 use yii\bootstrap4\ButtonDropdown;
 use app\models\Comsave;
 
-$this->title = 'Respuestas';
+$this->title = 'Comentarios guardados';
 $js2 = <<<EOT
 const openEls = document.querySelectorAll("[data-open]");
 const closeEls = document.querySelectorAll("[data-close]");
@@ -52,7 +52,7 @@ $save = Url::to(['comsave/save']);
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="row com">
             <div class="col-12">
-                <h3>Respuestas</h3>
+                <h3>Lista de comentarios guardados</h3>
             </div>
         </div>
         <?php if (count($comentarios) <= 0) : ?>
@@ -301,7 +301,7 @@ $save = Url::to(['comsave/save']);
                                     </a>
                                     <p id="countLike<?= $comentario->id ?>" class="count"><?= Likes::find()->where(['comentario_id' => $comentario->id])->count() ?></p>
                                 </div>
-                                <div class="col-3 d-flex justify-content-center">
+                                <div class="col-3">
                                     <a id="save<?= $comentario->id ?>" class="heart">
                                         <img src="<?= Comsave::fav($comentario->id) ? 'icons/save.png' : 'icons/not-save.png' ?>" class="icon" id="fav<?= $comentario->id ?>">
                                     </a>

@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Usuarios;
 use yii\filters\AccessControl;
+use app\models\Comsave;
 
 require '../web/uploads3.php';
 
@@ -111,6 +112,34 @@ class ComentariosController extends Controller
         }
 
         return $this->render('citados', [
+            'comentarios' => $comentarios,
+            'actual' => $actual,
+            'publicacion' => $publicacion,
+        ]);
+    }
+
+    public function actionSave($id)
+    {
+        $publicacion = new Comentarios(['usuario_id' => Yii::$app->user->id]);
+        $actual = Usuarios::find()->where(['id' => Yii::$app->user->id])->one();
+        $ids = $actual->getFavoritos()->select('comentario_id')->column();
+        $comentarios = Comentarios::find()->where(['IN', 'id', $ids])->all();
+
+        if ($publicacion->load(Yii::$app->request->post())) {
+            if ($_FILES['Comentarios']['name']['url_img'] == null) {
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            } else {
+                uploadComentario($publicacion);
+                $publicacion->url_img = $_FILES['Comentarios']['name']['url_img'];
+                $publicacion->save();
+                Yii::$app->session->setFlash('success', 'Se ha modificado tu perfil.');
+                return $this->redirect(['comentarios/view', 'id' => $publicacion['id']]);
+            }
+        }
+
+        return $this->render('save', [
             'comentarios' => $comentarios,
             'actual' => $actual,
             'publicacion' => $publicacion,

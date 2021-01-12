@@ -701,6 +701,10 @@ div.row a{
     white-space: nowrap;
 }
 
+.help-block {
+    color: #fff;
+}
+
 /* View de Usuarios */
 
 /* Login */
@@ -731,5 +735,46 @@ div.row a{
 }
 
 #text {
+    color: #fff;
+}
+
+#comentario {
+    margin-bottom: 1em;
+    background-color: #18181a;
+}
+
+#cuerpo {
+    margin: 1em;
+}
+
+#fecha {
+    margin: 1em;
+}
+
+#modificar {
+    margin-right: 1em;
+}
+
+#message-wrapper {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    background-color: #18181a;
+}
+
+#sender {
+    margin: 1em;
+    padding: 1em;
+    background-color:  #7E4DBA;
+}
+
+#nosender {
+    margin: 1em;
+    padding: 1em;
+    background-color: #26172B;
+    color: #f2ddbc;
+}
+
+.empty {
     color: #fff;
 }

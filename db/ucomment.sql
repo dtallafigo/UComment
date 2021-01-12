@@ -70,6 +70,27 @@ CREATE TABLE bloqueados
   , PRIMARY KEY (usuario, bloqueado)
 );
 
+DROP TABLE IF EXISTS conversaciones CASCADE;
+
+CREATE TABLE conversaciones
+(
+    id          BIGSERIAL   PRIMARY KEY,
+    id_user1    BIGINT      NOT NULL        REFERENCES usuarios (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    id_user2    BIGINT      NOT NULL        REFERENCES usuarios (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+DROP TABLE IF EXISTS mensajes CASCADE;
+
+CREATE TABLE mensajes 
+(
+    id                  BIGSERIAL PRIMARY KEY,
+    id_sender           BIGINT NOT NULL REFERENCES usuarios (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    cuerpo              TEXT,
+    leido               BOOLEAN DEFAULT FALSE,
+    created_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_conversacion     BIGINT NOT NULL REFERENCES conversaciones(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 INSERT INTO usuarios (log_us, email, password, rol, auth_key)
 VALUES  ('florido', 'david.xipi99@hotmail.com', crypt('hola', gen_salt('bf', 10)), 'admin', ''),
         ('david', 'david.florido@iesdonana.org', crypt('hola', gen_salt('bf', 10)), 'user', ''),

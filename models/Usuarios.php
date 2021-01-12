@@ -184,4 +184,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->token = null;
     }
+
+    public function getMensajes()
+    {
+        return $this->hasMany(Mensajes::className(), ['id_sender' => 'id'])->inverseOf('sender');
+    }
 }

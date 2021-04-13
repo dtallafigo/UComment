@@ -6,6 +6,6 @@
     <br>
 </p>
 
-UComment es una red social donde compartir en 280 caracteres comentarios, fotos, noticias con tus amgios y la gente a la que sigues y la que te sigue.
+[UComment](https://ucomment.herokuapp.com) es una red social donde compartir en 280 caracteres comentarios, fotos, noticias con tus amgios y la gente a la que sigues y la que te sigue.
 
 Para la información técnica visita nuestro [GitHub Pages](https://dtallafigo.github.io/ucomment/)
